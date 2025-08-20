@@ -1,0 +1,33 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* for the search bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 20px; */
+  
+  padding: 5px 10px;
+  width: 200px;
+  background-color: #fff;
+}
+
+.search-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  color: #757474;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+   /* font-family: 'Inter', sans-serif; */
+
+  font-size: 13px;
+}
