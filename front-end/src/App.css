@@ -1,0 +1,24 @@
+:root {
+  --primary: #ff5b22
+;
+  --secondary: #ffa27f
+;
+  --background: #fcfaee;
+  --text: #222222;
+  --inside: #efeaea;
+}
+
+
+
+
+
+body{
+   background-color: var(--background);
+   /* background-color: red ; */
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;      /* remove default body margin */
+  padding-left: 20px;
+  overflow-x: hidden; /* optional: hide horizontal overflow */
+  color: var(--text);
+}
