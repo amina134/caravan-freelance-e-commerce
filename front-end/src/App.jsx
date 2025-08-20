@@ -5,6 +5,7 @@ import './App.css'
 import {fetchAllProducts}from './api/productApi'
 import { useSelector, useDispatch } from 'react-redux';
 import {setProduct} from './redux/productSlice'
+import Homepage from './components/frontOffice/3-main/homepage'
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
   },[products])
   return (
     <>
-    <h1>heyyy</h1>
+ 
     {/* {products.map(element=>(
       <div key={element._id}>
         <h3>{element.name}</h3>
@@ -29,6 +30,7 @@ function App() {
     ))
      
     } */}
+    <Homepage/>
     </>
   )
 }
