@@ -1,0 +1,117 @@
+.custom-arrow {
+  position: absolute;
+  top: 35%;
+  margin: 25px;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+ background:var(--background);
+  backdrop-filter: blur(6px);           /* glassy effect */
+  border-radius: 50%;                   /* circular */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.custom-arrow:hover {
+  background:var(--background); /* fully opaque on hover */
+  transform: translateY(-50%) scale(1.1);
+ box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.custom-arrow.prev {
+  left: 15px;
+}
+
+.custom-arrow.next {
+  right: 15px;
+}
+
+
+.custom-arrow:focus,
+.custom-arrow:active {
+      transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  outline: none;
+  box-shadow: none;       /* remove the blue outline on click */
+}
+
+
+.control-next {
+  right: 10px;
+}
+
+.slide1 ,.slide2,.slide3{
+        width:100vw;
+    height: 530px;
+    display: flex;
+}
+.part1-slide{
+    flex:1;
+    /* background-color: aqua; */
+    padding-top:180px;
+    display: flex;
+    flex-direction: column;
+  align-items:center;
+  gap: 1px;
+}
+.part2-slide{
+    flex:1;
+    background-color: blueviolet;
+}
+.slide1{
+
+ 
+}
+.slide2{
+  
+}
+.carousel-homepage{
+    width:100vw;
+    height: 4400vh;
+}
+
+.text1-title{
+    position: absolute;
+    top:32%;
+      font-family: 'Raleway', sans-serif;
+      letter-spacing: 9px;
+      font-size: 30px;
+      /* background-color: brown; */
+      margin-bottom: 0px;
+
+}
+.text2-title{
+   margin-top: 0px;
+   /* background-color: blue; */
+   padding-top:0px;
+
+  font-family: 'Sansita Swashed', cursive;
+  font-size: 85px;
+
+  font-weight:bolder;
+
+
+
+
+}
+.text3-title{
+      font-family: 'Raleway', sans-serif;
+      font-size: 15px;
+      font-weight: 100;
+      letter-spacing: 4px;
+      /* background-color: yellow; */
+  
+}
+.text1-title,
+.text2-title,
+.text3-title {
+  margin: 0!important;
+  padding: 0!important;
+}

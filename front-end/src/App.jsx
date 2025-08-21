@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {setProduct} from './redux/productSlice'
 import Homepage from './components/frontOffice/3-main/homepage'
 
+
 function App() {
 
   const products=useSelector(state=>state.productElement)
