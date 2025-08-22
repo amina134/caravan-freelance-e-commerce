@@ -3,10 +3,9 @@
 
 
 :root {
-  --primary: #ff5b22
-;
-  --secondary: #ffa27f
-;
+  --primary: #ff5b22;
+  --secondary: #ffa27f;
+  --optional:#e3230d;
   --background: #fcfaee;
   --text: #222222;
   --inside: #efeaea;
@@ -20,6 +19,8 @@ body{
    background-color: var(--background);
    /* background-color: red ; */
   width: 100%;
+  position: relative;
+  z-index: -1;
   min-height: 100vh;
   margin: 0;      /* remove default body margin */
   padding-left: 20px;

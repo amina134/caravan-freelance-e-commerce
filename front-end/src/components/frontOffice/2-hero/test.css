@@ -1,0 +1,46 @@
+
+
+.cover-img {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-10%);
+  height: 100%;
+}
+
+.cover-img .layers {
+  width: 380px;
+  height: 100%;
+  position: relative;
+  scale: 1.2;
+}
+
+.layer {
+  width: 100%;
+  position: absolute;
+}
+
+.layers img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.layer-4 {
+  top: calc(100% - 400px);
+  z-index: -3;
+}
+.layer-3 {
+  top: calc(100% - 460px);
+  z-index: -2;
+}
+.layer-2 {
+  top: calc(100% - 510px);
+  z-index: -1;
+}
+.layer-1 {
+  top: calc(100% - 600px);
+  z-index: 1;
+  scale: 1.2;
+}
+
+

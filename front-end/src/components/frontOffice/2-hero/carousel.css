@@ -1,3 +1,4 @@
+
 .custom-arrow {
   position: absolute;
   top: 35%;
@@ -48,54 +49,50 @@
 }
 
 .slide1 ,.slide2,.slide3{
-        width:100vw;
+    width:100vw;
     height: 530px;
+    position: relative;
     display: flex;
+    z-index: 40000;
 }
 .part1-slide{
-    flex:1;
-    /* background-color: aqua; */
+    flex:0.45;
+    background-color: aqua;
     padding-top:180px;
     display: flex;
     flex-direction: column;
   align-items:center;
   gap: 1px;
 }
-.part2-slide{
-    flex:1;
-    background-color: blueviolet;
-}
-.slide1{
-
- 
-}
-.slide2{
-  
-}
 .carousel-homepage{
     width:100vw;
     height: 4400vh;
+    position: relative;
+    z-index: 9999;
 }
+
+
 
 .text1-title{
     position: absolute;
-    top:32%;
-      font-family: 'Raleway', sans-serif;
-      letter-spacing: 9px;
-      font-size: 30px;
-      /* background-color: brown; */
-      margin-bottom: 0px;
+    top:33%;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 9px;
+    font-size: 30px;
+    /* background-color: brown; */
+    margin-bottom: 0px;
+    color:var(--optional);
 
 }
 .text2-title{
    margin-top: 0px;
    /* background-color: blue; */
    padding-top:0px;
-
+ 
   font-family: 'Sansita Swashed', cursive;
-  font-size: 85px;
-
-  font-weight:bolder;
+  font-size: 90px;
+  letter-spacing: 2px;
+  font-weight:900;
 
 
 
@@ -104,14 +101,45 @@
 .text3-title{
       font-family: 'Raleway', sans-serif;
       font-size: 15px;
+      position: absolute;
+      top:57%;
       font-weight: 100;
       letter-spacing: 4px;
       /* background-color: yellow; */
   
 }
+
 .text1-title,
 .text2-title,
 .text3-title {
   margin: 0!important;
   padding: 0!important;
 }
+.part2-slide{
+flex:0.5;
+position: relative;
+z-index: 2000;
+background-color: blueviolet;
+
+}
+.img-burger1{
+  background-color: black;
+  padding-bottom: 20px;
+  width:500px;
+
+  
+  z-index: 50000;
+  
+}
+  
+.img-bur1{
+  position: relative;
+  left:10%;
+  top:-30%; 
+z-index: 4566777;
+  width:60%;
+   
+
+
+}
+     
