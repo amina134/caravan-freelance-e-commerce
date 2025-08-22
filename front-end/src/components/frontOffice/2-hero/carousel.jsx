@@ -13,6 +13,7 @@ const CarouselPage = () => {
 
 
   return (
+  
     <Carousel
       className='carousel-homepage'
       renderArrowPrev={(onClickHandler, hasPrev, label) => (
@@ -46,17 +47,17 @@ const CarouselPage = () => {
             <h3 className='text1-title'>THE ULTIMATE</h3>
             <h2 className='text2-title'>Burger Club</h2>
             <h6 className='text3-title'>Fast. Flavorful. Unforgettable. </h6>
-            <h2 className='hey'>heyyyyyyy</h2>
+         
           </div>
             <div className='part2-slide'>
-              <div   className="img-burger1"></div>
+        
         {/* <motion.div
           
              className="img-burger1"
-            style={{ zIndex: 10000 }}  
+            
             whileHover={{
                
-                scale: [null, 1.1, 1.6],
+                scale: [null, 1.1, 1.3],
                 transition: {
                     duration: 0.5,
                     times: [0, 0.6, 1],
@@ -70,16 +71,32 @@ const CarouselPage = () => {
         >
  
             <img className="img-bur1" src="/bur.webp" alt="burger" />
-        </motion.div> */}
- <img className="img-bur1" src="/bur.webp" alt="burger" />
+        </motion.div>
+ */}
+         <div      className="img-burger1">   <img src='/Subject 14.png'/></div>
             </div>
       </div>
         
       <div className='slide2'>
-        <div className='part1-slide'>
-
-        </div>
-        <div className='part2-slide'>
+         <div className='car hot1'>
+             <div className='hot-dog-carousel'>
+                <img src='/Subject 15.png'/>
+             </div>
+         </div>
+         <div className='car hot2'>
+            <div className='hot-dog-carousel'>
+                <img src='/Subject 13.png'/>
+             </div>
+         </div>
+         <div className='car hot3'>
+              <div className='hot-dog-carousel'>
+                <img src='/Subject 14.png'/>
+             </div>
+         </div>
+       
+          
+       
+        <div>
           
         </div>
       </div>
@@ -92,6 +109,8 @@ const CarouselPage = () => {
         </div>
       </div>
     </Carousel>
+    
+      
   );
 };
 

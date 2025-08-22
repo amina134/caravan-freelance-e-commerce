@@ -53,11 +53,10 @@
     height: 530px;
     position: relative;
     display: flex;
-    z-index: 40000;
-}
+   overflow: visible !important; transform: none !important; opacity: 1 !important;}
 .part1-slide{
     flex:0.45;
-    background-color: aqua;
+    /* background-color: aqua; */
     padding-top:180px;
     display: flex;
     flex-direction: column;
@@ -65,10 +64,7 @@
   gap: 1px;
 }
 .carousel-homepage{
-    width:100vw;
-    height: 4400vh;
-    position: relative;
-    z-index: 9999;
+   overflow: visible !important; transform: none !important; opacity: 1 !important;
 }
 
 
@@ -117,29 +113,74 @@
 }
 .part2-slide{
 flex:0.5;
-position: relative;
-z-index: 2000;
-background-color: blueviolet;
+
+z-index: 20000000;
+
 
 }
 .img-burger1{
-  background-color: black;
-  padding-bottom: 20px;
-  width:500px;
 
-  
+margin-top: 50px;
+margin-left: 140px;
+  width:450px;
+
+   animation: rotate 10s linear infinite;
   z-index: 50000;
   
 }
+
   
 .img-bur1{
-  position: relative;
-  left:10%;
-  top:-30%; 
-z-index: 4566777;
-  width:60%;
+ 
+
+  width:80%;
    
 
 
 }
      
+
+
+/* slider2 */
+.hot-dog-carousel{
+  width:300px;
+  align-self: center;
+    animation: rotate 12s linear infinite;
+
+}
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slide2{
+  
+  gap:30px;
+  padding: 30px;;
+  align-items: center;
+}
+.car{
+  padding-left: 70px;
+  padding-top:50px ;
+  flex:1;
+  height:90%;
+  width: 80%;
+  border-radius: 50px;
+
+}
+.car:hover{
+  background-color: rgba(0, 0, 0, 0.14);
+}
+.hot1{
+
+}
+.hot2{
+  
+}
+.hot3{
+
+}
