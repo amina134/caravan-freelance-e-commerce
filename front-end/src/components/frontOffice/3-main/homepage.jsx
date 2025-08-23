@@ -5,6 +5,7 @@ import CarouselPage from '../2-hero/carousel';
 
 
 import CarouselBurger from '../2-hero/test';
+import Footer from '../5-footer/footer';
 import ProductCarousel from './carouselProducts';
 import ChefSection from './chef';
 
@@ -18,6 +19,7 @@ const Homepage=()=>{
     
        <ProductCarousel/>
        <ChefSection/>
+       <Footer/>
       
    
     </div>
