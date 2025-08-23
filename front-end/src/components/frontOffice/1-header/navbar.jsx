@@ -4,7 +4,7 @@ import { BsCart3 } from "react-icons/bs";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { FiUser } from "react-icons/fi";
 import './navbar.css';
-
+import { FiShoppingCart, FiHeart } from "react-icons/fi";
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -53,8 +53,8 @@ const Navbar = () => {
                 <div className="icon-button" onClick={toggleSearch}>
                     <BsSearch className="search-toggle-icon" />
                 </div>
-                <HiOutlineHeart />
-                <BsCart3 />
+                <FiHeart className='heart-icon-nav'/>
+                <FiShoppingCart className='cart-icon-nav' />
                 <FiUser className='user-icon' />
             </div>
             

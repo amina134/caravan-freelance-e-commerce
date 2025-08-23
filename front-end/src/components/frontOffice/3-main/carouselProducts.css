@@ -1,0 +1,153 @@
+.part2-hompage {
+  margin: clamp(20px, 4vw, 60px) 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.text-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: clamp(20px, 3vw, 40px);
+  padding: 0 5%;
+  text-align: center;
+}
+
+.special {
+  font-family: 'Sansita Swashed', cursive;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-size: clamp(1.4rem, 2.5vw, 2.8rem);
+  line-height: 1.2;
+}
+
+.special-para {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  max-width: 800px;
+  font-size: clamp(0.85rem, 1.2vw, 1.1rem);
+  line-height: 1.6;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin:10px;
+}
+
+.carousel-products {
+  padding: 0 clamp(10px, 4vw, 50px);
+  position: relative;
+}
+
+.prod {
+  display: flex;
+  padding-left: 15.15px;
+  
+  box-sizing: border-box;
+}
+
+/* ========== Slick slider arrows ========== */
+.carousel-products .slick-prev,
+.carousel-products .slick-next {
+  width: 45px;
+  height: 45px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border: none;
+  background: rgba(255,255,255,0.6);
+  color: #111;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.carousel-products .slick-prev { left: 10px; }
+.carousel-products .slick-next { right: 10px; }
+
+.carousel-products .slick-prev:hover,
+.carousel-products .slick-next:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+}
+
+/* Remove ugly outline on click */
+.carousel-products .slick-prev:focus,
+.carousel-products .slick-next:focus {
+  outline: none;
+}
+
+/* ========== Dots ========== */
+.carousel-products .slick-dots {
+  bottom: -35px;
+}
+
+.carousel-products .slick-dots li button:before {
+  font-size: 12px;
+  color: #333;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.carousel-products .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #111;
+}
+
+/* ========== Breakpoints ========== */
+@media (max-width: 1024px) {
+  .special-para {
+    max-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .special {
+    letter-spacing: 1px;
+  }
+  .carousel-products {
+    padding: 0 20px;
+  }
+  .prod {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-products {
+    padding: 0 15px;
+  }
+  .prod {
+    padding: 0 5px;
+  }
+  .carousel-products .slick-dots {
+    bottom: -28px;
+  }
+  .carousel-products .slick-dots li button:before {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .special {
+    font-size: 1.3rem;
+  }
+  .special-para {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .carousel-products {
+    padding: 0 10px;
+  }
+} make sure everything in responsive  and the arrows

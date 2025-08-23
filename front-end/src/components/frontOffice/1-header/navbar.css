@@ -116,8 +116,12 @@ background: none;
   transition: color 0.3s ease;
 }
 
-.user-icon {
+.user-icon,.cart-icon-nav,.heart-icon-nav{
   stroke-width: 1.5;
+   transition: transform 0.2s ease, color 0.3s ease;
+}
+.user-icon,.user-icon,.heart-icon-nav:hover{
+   transform: scale(1.2);
 }
 
 .icon-button {

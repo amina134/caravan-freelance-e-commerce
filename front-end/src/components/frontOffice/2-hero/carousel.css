@@ -120,11 +120,11 @@ z-index: 20000000;
 }
 .img-burger1{
 
-margin-top: 50px;
-margin-left: 140px;
-  width:450px;
 
-   animation: rotate 10s linear infinite;
+margin-left: 140px;
+  width:550px;
+margin-bottom: 50px;
+ 
   z-index: 50000;
   
 }

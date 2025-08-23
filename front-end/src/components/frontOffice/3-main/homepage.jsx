@@ -1,8 +1,11 @@
 import Navbar from '../1-header/navbar';
+import ProductCard from '../2-hero/cardProduct';
 import CarouselPage from '../2-hero/carousel';
-import Favourites from '../2-hero/favourites';
+
+
 
 import CarouselBurger from '../2-hero/test';
+import ProductCarousel from './carouselProducts';
 
 import './homepage.css';
 const Homepage=()=>{
@@ -10,7 +13,9 @@ const Homepage=()=>{
     <div className="home-overall">
         <Navbar/>
        <CarouselPage/>
-       <Favourites/>
+    
+    
+       <ProductCarousel/>
       
    
     </div>

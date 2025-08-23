@@ -73,24 +73,24 @@ const CarouselPage = () => {
             <img className="img-bur1" src="/bur.webp" alt="burger" />
         </motion.div>
  */}
-         <div      className="img-burger1">   <img src='/Subject 14.png'/></div>
+         <div      className="img-burger1">   <img src="/bur.webp"/></div>
             </div>
       </div>
         
       <div className='slide2'>
          <div className='car hot1'>
              <div className='hot-dog-carousel'>
-                <img src='/Subject 15.png'/>
+                <img src='productImages/Subject 15.png'/>
              </div>
          </div>
          <div className='car hot2'>
             <div className='hot-dog-carousel'>
-                <img src='/Subject 13.png'/>
+                <img src='productImages/Subject 13.png'/>
              </div>
          </div>
          <div className='car hot3'>
               <div className='hot-dog-carousel'>
-                <img src='/Subject 14.png'/>
+                <img src='productImages/Subject 14.png'/>
              </div>
          </div>
        
