@@ -22,7 +22,7 @@ body{
   position: relative;
   z-index: -1;
   min-height: 100vh;
-  margin: 0;      /* remove default body margin */
+  padding: 10px;      /* remove default body margin */
   
   overflow-x: hidden; /* optional: hide horizontal overflow */
   color: var(--text);

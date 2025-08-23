@@ -6,6 +6,7 @@ import CarouselPage from '../2-hero/carousel';
 
 import CarouselBurger from '../2-hero/test';
 import ProductCarousel from './carouselProducts';
+import ChefSection from './chef';
 
 import './homepage.css';
 const Homepage=()=>{
@@ -16,6 +17,7 @@ const Homepage=()=>{
     
     
        <ProductCarousel/>
+       <ChefSection/>
       
    
     </div>
