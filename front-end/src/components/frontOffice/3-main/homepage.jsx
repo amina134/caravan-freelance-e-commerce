@@ -10,6 +10,7 @@ import ProductCarousel from './carouselProducts';
 import ChefSection from './chef';
 
 import './homepage.css';
+import Welcome from './welcome';
 const Homepage=()=>{
    return(
     <div className="home-overall">
@@ -19,7 +20,9 @@ const Homepage=()=>{
     
        <ProductCarousel/>
        <ChefSection/>
+       <Welcome/>
        <Footer/>
+       
       
    
     </div>

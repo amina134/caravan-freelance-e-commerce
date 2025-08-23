@@ -1,19 +1,27 @@
 
+/* Carousel Container */
+.carousel-homepage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+
+}
+
+/* Custom Arrows */
 .custom-arrow {
   position: absolute;
-  top: 35%;
-  margin: 25px;
+  top: 50%;
   transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-
- background:var(--background);
-  backdrop-filter: blur(6px);           /* glassy effect */
-  border-radius: 50%;                   /* circular */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  background: var(--background);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -21,20 +29,23 @@
 }
 
 .custom-arrow:hover {
-  background:var(--background); /* fully opaque on hover */
+  background: white;
   transform: translateY(-50%) scale(1.1);
- box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .custom-arrow.prev {
-  left: 15px;
+  left: 20px;
 }
 
 .custom-arrow.next {
-  right: 15px;
+  right: 20px;
 }
 
-
+.custom-arrow svg {
+  font-size: 24px;
+  color: var(--text-dark);
+}
 .custom-arrow:focus,
 .custom-arrow:active {
       transform: translateY(-50%) scale(1.1);
@@ -43,35 +54,43 @@
   box-shadow: none;       /* remove the blue outline on click */
 }
 
-
-.control-next {
-  right: 10px;
+/* Slide Container */
+.slide1, .slide2, .slide3 {
+  width: 100%;
+  height: 530px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
 }
 
-.slide1 ,.slide2,.slide3{
-    width:100vw;
-    height: 530px;
-    position: relative;
-    display: flex;
-   overflow: visible !important; transform: none !important; opacity: 1 !important;}
-.part1-slide{
-    flex:0.45;
-    /* background-color: aqua; */
-    padding-top:180px;
-    display: flex;
-    flex-direction: column;
-  align-items:center;
-  gap: 1px;
-}
-.carousel-homepage{
-   overflow: visible !important; transform: none !important; opacity: 1 !important;
+/* ===== SLIDE 1 STYLES ===== */
+.slide1 {
+  
 }
 
+.part1-slide {
+  flex: 0.55;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  background: transparent;
+}
 
+.part1-slide1 {
+ 
+  flex:1;
+
+  padding-right: 0;
+
+
+}
 
 .text1-title{
     position: absolute;
-    top:33%;
+    top:8%;
+    left:18%;
+    align-self: center;
     font-family: 'Raleway', sans-serif;
     letter-spacing: 9px;
     font-size: 30px;
@@ -98,7 +117,8 @@
       font-family: 'Raleway', sans-serif;
       font-size: 15px;
       position: absolute;
-      top:57%;
+      top:32%;
+      left:19%;
       font-weight: 100;
       letter-spacing: 4px;
       /* background-color: yellow; */
@@ -111,76 +131,327 @@
   margin: 0!important;
   padding: 0!important;
 }
-.part2-slide{
-flex:0.5;
-
-z-index: 20000000;
-
-
-}
-.img-burger1{
-
-
-margin-left: 140px;
-  width:550px;
-margin-bottom: 50px;
+.slide1-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 50px;
  
-  z-index: 50000;
+justify-content: center;   
+}
+
+.btn-primary, .btn-secondary {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 150px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+   font-weight: 400;
+   font-family: "Raleway", sans-serif;
   
 }
 
-  
-.img-bur1{
+.btn-primary:hover {
+
+  background: #b51d1d;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(214, 40, 40, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 0.3px solid black;
+ font-family: "Raleway", sans-serif;
+ font-weight: 400;
+  color: var(--text-dark);
  
-
-  width:80%;
-   
-
-
-}
-     
-
-
-/* slider2 */
-.hot-dog-carousel{
-  width:300px;
-  align-self: center;
-    animation: rotate 12s linear infinite;
-
-}
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
-.slide2{
-  
-  gap:30px;
-  padding: 30px;;
+.btn-secondary:hover {
+  background: var(--text-dark);
+  color: white;
+  transform: translateY(-3px);
+}
+
+.categories-slide1 {
+  display: flex;
+
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: center;
+  align-content: center;
+}
+
+.category-slide {
+  width:190px;
+
+
+  border-radius: 12px;
+  padding: 10px;
+
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.category-slide:hover {
+  transform: translateY(-5px);
+}
+
+.category-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.category-slide h4 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin: 5px 0;
+}
+
+.category-slide h6 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #666;
+  margin: 0;
+}
+
+.part2-slide {
+  flex: 0.45;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.img-burger1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.img-bur1 {
+  width: 100%;
+  max-width: 550px;
+  margin-right: 80px;
+
+  transition: transform 0.5s ease;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.img-bur1:hover {
+  transform: rotate(5deg) scale(1.05);
+}
+
+/* ===== SLIDE 2 STYLES ===== */
+.slide2 {
+ 
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.car {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.car:hover {
+  background: rgba(78, 67, 67, 0.097);
+  transform: translateY(-5px);
+}
+
+.hot-dog-carousel {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--card-bg);
+  border-radius: 50%;
+  padding: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hot-dog-carousel img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ===== SLIDE 3 STYLES ===== */
+.slide3 {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  justify-content: center;
   align-items: center;
 }
-.car{
-  padding-left: 70px;
-  padding-top:50px ;
-  flex:1;
-  height:90%;
-  width: 80%;
-  border-radius: 50px;
 
+.images-slid3 {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
 }
-.car:hover{
-  background-color: rgba(0, 0, 0, 0.14);
-}
-.hot1{
 
+.slid3-des {
+  flex: 1;
+  background: var(--card-bg);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
-.hot2{
+
+.slid3-des:hover {
+  transform: translateY(-5px);
+}
+
+.slid-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* Indicators */
+.carousel-homepage .control-dots {
+  bottom: 20px;
+}
+
+.carousel-homepage .control-dots .dot {
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  transition: all 0.3s ease;
+}
+
+.carousel-homepage .control-dots .dot.selected {
+  background: var(--secondary);
+  width: 30px;
+  border-radius: 10px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .text2-title {
+    font-size: 3rem;
+  }
   
+  .categories-slide1 {
+    flex-wrap: wrap;
+  }
+  
+  .hot-dog-carousel {
+    width: 200px;
+    height: 200px;
+  }
 }
-.hot3{
 
+@media (max-width: 768px) {
+  .slide1 {
+    flex-direction: column;
+    height: auto;
+    padding: 30px 20px;
+  }
+  
+  .part1-slide, .part2-slide {
+    flex: 1;
+    width: 100%;
+  }
+  
+  .text2-title {
+    font-size: 2.5rem;
+  }
+  
+  .slide1-buttons {
+    flex-direction: column;
+  }
+  
+  .categories-slide1 {
+    flex-direction: column;
+  }
+  
+  .slide2 {
+    flex-direction: column;
+    height: auto;
+    padding: 30px 20px;
+  }
+  
+  .car {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .images-slid3 {
+    flex-direction: column;
+  }
+  
+  .custom-arrow {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .custom-arrow svg {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .text2-title {
+    font-size: 2rem;
+  }
+  
+  .text1-title {
+    font-size: 1rem;
+    letter-spacing: 2px;
+  }
+  
+  .text3-title {
+    font-size: 1rem;
+  }
+  
+  .btn-primary, .btn-secondary {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-width: 130px;
+  }
+  
+  .custom-arrow {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .custom-arrow.prev {
+    left: 10px;
+  }
+  
+  .custom-arrow.next {
+    right: 10px;
+  }
 }

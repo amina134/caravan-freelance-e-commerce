@@ -41,16 +41,53 @@ const CarouselPage = () => {
       showThumbs={false}
       autoPlay={false}
     >
-      <div className='slide1'>
+     <div className="slide1">
+  <div className="part1-slide">
+    <div className='part1-slide1'>
+    <h3 className="text1-title">THE ULTIMATE</h3>
+    <h2 className="text2-title">Burger Club</h2>
+    <h6 className="text3-title">Fast. Flavorful. Unforgettable.</h6>
+     <div className="slide1-buttons">
       
-          <div className='part1-slide'>
-            <h3 className='text1-title'>THE ULTIMATE</h3>
-            <h2 className='text2-title'>Burger Club</h2>
-            <h6 className='text3-title'>Fast. Flavorful. Unforgettable. </h6>
-         
-          </div>
-            <div className='part2-slide'>
-        
+      <button className="btn-secondary">See Menu</button>
+      <button className="btn-primary">Order Now</button>
+    </div>
+    </div>
+     <div className='categories-slide1'>
+      <div className='category-slide'>
+        <img className='category-img ' src='productImages/pizza1.png'/>
+        <h4>Pizza</h4>
+        <h6>Delicous and cheesy</h6>
+      </div>
+      <div className='category-slide'>
+        <img className='category-img ' src='productImages/Subject 14.png'/>
+        <h4>Hot Dog</h4>
+        <h6>Delicous and cheesy</h6>
+      </div>
+      <div className='category-slide'>
+        <img  className='category-img 'src='bur.webp'/>
+        <h4>Poutine</h4>
+        <h6>Delicous and cheesy</h6>
+      </div>
+     </div>
+
+   
+    
+   
+    </div>
+     <div className="part2-slide">
+     
+    <div>
+       <div className="img-burger1">
+      <img className="img-bur1" src="/bur.webp" alt="Delicious Burger" />
+    </div>
+    
+  </div>
+  </div>
+  </div>
+
+
+
         {/* <motion.div
           
              className="img-burger1"
@@ -73,14 +110,12 @@ const CarouselPage = () => {
             <img className="img-bur1" src="/bur.webp" alt="burger" />
         </motion.div>
  */}
-         <div      className="img-burger1">   <img src="/bur.webp"/></div>
-            </div>
-      </div>
-        
+       
+       
       <div className='slide2'>
          <div className='car hot1'>
              <div className='hot-dog-carousel'>
-                <img src='productImages/Subject 15.png'/>
+                <img src='productImages/pizza1.png'/>
              </div>
          </div>
          <div className='car hot2'>
@@ -101,12 +136,18 @@ const CarouselPage = () => {
         </div>
       </div>
       <div className='slide3'>
-        <div className='part1-slide'>
-
+       <div className='images-slid3'>
+        <div className='slid3-des'>
+           <img  className='slid-img'src='pizza1.png'/>
         </div>
-        <div className='part2-slide'>
-          
+          <div className='slid3-des'>
+           <img  className='slid-img'src='productImages/slid10.webp'/>
         </div>
+          <div className='slid3-des'>
+           <img  className='slid-img'src='productImages/slid3.png'/>
+        </div>
+         
+       </div>
       </div>
     </Carousel>
     

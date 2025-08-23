@@ -1,0 +1,154 @@
+.welcome-comp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 30px;
+  flex-wrap: wrap; /* ensures stacking on smaller screens */
+}
+
+.welcome-img-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.welcome-side-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+}
+
+.welcome-side-container h2 {
+  font-family: 'Sansita Swashed', cursive;
+  font-size: clamp(2rem, 5vw, 4rem); /* responsive scaling */
+  font-weight: bolder;
+  color: #2d2d2d;
+  margin-bottom: 10px;
+}
+
+.welcome-side-container p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.7;
+  font-family: "Raleway", sans-serif;
+  color: #555;
+  margin:10px;
+  max-width: 600px;
+}
+
+.welcome-buttons {
+  display: flex;
+  flex-wrap: wrap;
+ 
+  gap: 20px;
+}
+
+.welcome-side-container button {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Raleway', sans-serif;
+  border-radius: 15% 2% 15%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 160px;
+}
+
+.welcome-side-container button:hover {
+  transform: scale(1.05);
+}
+
+.menu-but-welcome {
+  background: var(--primary);
+  color: #fff;
+}
+
+.book-but-welcome {
+  background: #2d2d2d;
+  color: #fff;
+}
+
+/* ========== Responsive Breakpoints ========== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+
+  .welcome-comp {
+    flex-direction: column;
+    padding: 60px 40px;
+    gap: 40px;
+    background-color: aqua;
+  }
+
+  .welcome-side-container {
+    text-align: center;
+  }
+
+  .welcome-buttons {
+    justify-content: center;
+  }
+}
+
+/* Small tablets & mobile */
+@media (max-width: 768px) {
+
+  .welcome-comp {
+    padding: 40px 20px;
+  }
+
+  .welcome-side-container h2 {
+    font-size: 2rem;
+  }
+
+  .welcome-side-container p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .welcome-buttons {
+    flex-direction: column;
+    gap: 15px;
+
+
+      background-color: red;
+  }
+
+  .welcome-side-container button {
+    width: 100%;
+    align-self: center;
+    max-width: 250px;
+  }
+ 
+}
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+  .welcome-img {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+
+  .welcome-side-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .welcome-side-container p {
+    font-size: 0.9rem;
+
+  }
+.welcome-buttons {
+    flex-direction: column;
+    gap: 15px;
+      justify-content: center;
+  }
+}
