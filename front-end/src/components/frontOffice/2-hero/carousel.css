@@ -307,35 +307,74 @@ justify-content: center;
 
 /* ===== SLIDE 3 STYLES ===== */
 .slide3 {
-  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  /* background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); */
   justify-content: center;
   align-items: center;
 }
 
-.images-slid3 {
-  display: flex;
-  gap: 30px;
-  padding: 40px;
-}
+
 
 .slid3-des {
-  flex: 1;
-  background: var(--card-bg);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  position: absolute;
+  right: 26%;
+  top: 34%;
 }
 
-.slid3-des:hover {
-  transform: translateY(-5px);
+.pizza-catch{
+  display: inline-block;  /* Needed so rotation applies properly */
+  font-size: 2rem; /* adjust size */
+  font-weight: bold;
+ 
 }
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 
 .slid-img {
+   animation: spin 4s linear infinite;
+
   width: 100%;
-  height: 300px;
+  height: 700px;
   object-fit: cover;
 }
+.circle-text-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.circle-text-svg text {
+  font-size: 28px;       /* adjust text size */
+  fill: #FF6347;         /* text color */
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Indicators */
 .carousel-homepage .control-dots {

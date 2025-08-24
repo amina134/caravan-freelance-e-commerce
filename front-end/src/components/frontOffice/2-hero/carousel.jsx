@@ -136,18 +136,34 @@ const CarouselPage = () => {
         </div>
       </div>
       <div className='slide3'>
-       <div className='images-slid3'>
+      
         <div className='slid3-des'>
-           <img  className='slid-img'src='pizza1.png'/>
+           <img  className='slid-img'src='/pizza3.png'/>
         </div>
-          <div className='slid3-des'>
-           <img  className='slid-img'src='productImages/slid10.webp'/>
-        </div>
-          <div className='slid3-des'>
-           <img  className='slid-img'src='productImages/slid3.png'/>
-        </div>
-         
-       </div>
+       {/* <div>
+       <h1 className='pizza-catch'>Your Favorite Pizza .Just a click away</h1>
+       </div> */}
+     
+    <svg
+  viewBox="0 0 40 10"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    id="circlePath"
+    d="
+      M 10, 50
+      a 40,40 0 1,1 80,0
+      40,40 0 1,1 -80,0
+    "
+  />
+  <text>
+    <textPath href="#circlePath">
+      Your text here!
+    </textPath>
+  </text>
+</svg>
+
+       
       </div>
     </Carousel>
     
