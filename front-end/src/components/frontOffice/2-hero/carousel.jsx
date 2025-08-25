@@ -136,28 +136,22 @@
           </div>
         </div>
         <div className='slide3'>
+          <div className='text-slide3'>
+             <h1 className='title-slide2'>Your Favourite Pizzas, just a click away</h1> 
+             <h6 className='des-slide3'>Hot & frech Pizza. Delivered Fast</h6>
+              <div className="slide1-buttons slide3-but">
         
+        <button className="btn-secondary">See Menu</button>
+        <button className="btn-primary">Order Now</button>
+      </div>
+          </div>
+          <div></div>
           <div className='slid3-des'>
             <img  className='slid-img'src='/pizza3.png'/>
           </div>
         
       
-    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" className='svg'>
-    <path
-      id="circlePath"
-      d="
-        M 40, 104
-        a 30,30 0 1,1 40,0
-        20,20 0 1,1 -40,0
-      "
-      stroke="none" fill="none"
-    />
-    <text font-size="6">
-      <textPath href="#circlePath">
-          DSICOVER OUR DELECIOUS PIZZAS  
-      </textPath>
-    </text>
-  </svg>
+   
 
         
         </div>
