@@ -31,6 +31,7 @@
             type="button"
             onClick={onClickHandler}
             title={label}
+             showStatus={false} 
             className="custom-arrow next"
           >
             <IoIosArrowForward />
@@ -139,7 +140,7 @@
           <div className='text-slide3'>
              <h1 className='title-slide2'>Your Favourite Pizzas, just a click away</h1> 
              <h6 className='des-slide3'>Hot & frech Pizza. Delivered Fast</h6>
-              <div className="slide1-buttons slide3-but">
+              <div className=" slide3-but">
         
         <button className="btn-secondary">See Menu</button>
         <button className="btn-primary">Order Now</button>
@@ -149,6 +150,7 @@
           <div className='slid3-des'>
             <img  className='slid-img'src='/pizza3.png'/>
           </div>
+          <div>hello</div>
         
       
    

@@ -208,13 +208,14 @@ background: none;
   }
   
   .nav ul {
-    gap: 30px;
+    gap: 20px;
   }
 }
 @media(max-width:900px){
    .navbar {
     flex-wrap: wrap;
     padding: 15px;
+
   }
   
   .logo {
@@ -224,6 +225,7 @@ background: none;
   .hamburger {
     display: flex;
     order: 1;
+    margin-right: 10px;
   }
   
   /* Hamburger animation */
