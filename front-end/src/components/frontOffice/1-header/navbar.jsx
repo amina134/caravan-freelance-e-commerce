@@ -4,6 +4,7 @@ import { BsCart3 } from "react-icons/bs";
 import { HiOutlineHeart } from "react-icons/hi2";
 import { FiUser } from "react-icons/fi";
 import './navbar.css';
+import { Link } from "react-router-dom";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ const Navbar = () => {
             <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
                 <ul>
                     <li>Home</li>
-                    <li>Menu</li>
+                   <Link  to="/Menu"> <li>Menu</li></Link>
                     <li>Contact</li>
                     <li>About</li>
                 </ul>

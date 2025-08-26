@@ -7,7 +7,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import {setProduct} from './redux/productSlice'
 import Homepage from './components/frontOffice/3-main/homepage'
 
-
+import { Routes, Route } from "react-router-dom";
+import Menu from './components/frontOffice/3-main/menu';
+import Navbar from './components/frontOffice/1-header/navbar';
 function App() {
 
   const products=useSelector(state=>state.productElement)
@@ -20,18 +22,19 @@ function App() {
   }
   useEffect(()=>{
      getAllProducts()
-  },[products])
+  },[])
   return (
-    <>
+   
  
-    {/* {products.map(element=>(
-      <div key={element._id}>
-        <h3>{element.name}</h3>
-      </div>
-    ))
-     
-    } */}
-    <Homepage/>
+ 
+    <>
+    <Navbar/>
+    <Routes> 
+       
+      <Route path='/' element={<Homepage/>}/>
+      <Route path='/Menu' element={<Menu/>}/>
+    </Routes>
+   
     </>
   )
 }

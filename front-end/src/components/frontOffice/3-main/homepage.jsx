@@ -14,7 +14,7 @@ import Welcome from './welcome';
 const Homepage=()=>{
    return(
     <div className="home-overall">
-        <Navbar/>
+      
        <CarouselPage/>
     
     
