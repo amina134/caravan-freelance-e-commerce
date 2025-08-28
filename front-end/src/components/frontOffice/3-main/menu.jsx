@@ -5,63 +5,154 @@ import { useState } from 'react';
 
 const Menu = () => {
   const products = useSelector(state => state.productElement || []);
-  const [priceRange, setPriceRange] = useState([0, 30]);
+  const [priceRange, setPriceRange] = useState([0, 50]);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [sortOption, setSortOption] = useState("bestSellers");
+  const [minRating, setMinRating] = useState(0);
+  const [activeFilters, setActiveFilters] = useState(0);
 
   const categories = ["All", "Pizza", "Burger", "Hot Dog", "Poutine"];
+  const sortOptions = [
+    { value: "bestSellers", label: "Best Sellers" },
+    { value: "priceAsc", label: "Price: Low to High" },
+    { value: "priceDesc", label: "Price: High to Low" },
+    { value: "newest", label: "Newest First" }
+  ];
 
-  // Filter products by category + price
-  const filteredProducts = products.filter(p => {
-    const inCategory = activeCategory === "All" || p.category === activeCategory;
-    const inPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
-    return inCategory && inPrice;
-  });
+  // Calculate active filters count
+  const updateActiveFiltersCount = () => {
+    let count = 0;
+    if (activeCategory !== "All") count++;
+    if (priceRange[0] > 0 || priceRange[1] < 50) count++;
+    if (minRating > 0) count++;
+    setActiveFilters(count);
+  };
+
+  // Reset all filters
+  const resetFilters = () => {
+    setActiveCategory("All");
+    setPriceRange([0, 50]);
+    setSortOption("bestSellers");
+    setMinRating(0);
+    setActiveFilters(0);
+  };
+
+  // Filter products by category + price + rating
+  // const filteredProducts = products.filter(p => {
+  //   const inCategory = activeCategory === "All" || p.category === activeCategory;
+  //   const inPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
+  //   const meetsRating = p.rating >= minRating;
+  //   return inCategory && inPrice && meetsRating;
+  // });
+  const filteredProducts=[...products]
+
+  // Update active filters count when dependencies change
+  useState(() => {
+    updateActiveFiltersCount();
+  }, [activeCategory, priceRange, minRating]);
 
   return (
     <div className="menu-layout">
 
       {/* Filters Column */}
       <div className="filter-setup">
-        <h2>Filter Menu</h2>
+        <div className="filter-header">
+          <h2>Filters {activeFilters > 0 && <span className="filter-count">{activeFilters}</span>}</h2>
+          <button className="reset-btn" onClick={resetFilters}>
+            Reset All
+          </button>
+        </div>
 
-        {/* Price Filter with Range */}
+        {/* Category Filter */}
         <div className="filter-section">
-          <h3>Price Range</h3>
+          <h3>Category</h3>
+          <div className="chip-container">
+            {categories.map((cat, i) => (
+              <div
+                key={i}
+                className={`chip ${activeCategory === cat ? "active" : ""}`}
+                onClick={() => {
+                  setActiveCategory(cat);
+                  updateActiveFiltersCount();
+                }}
+              >
+                {cat}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Price Range Filter */}
+        <div className="filter-section">
+          <h3>Price Range: {priceRange[0]}dt - {priceRange[1]}dt</h3>
           <div className="price-range">
-            <input 
-              type="range" 
-              min="0" 
-              max="50" 
-              value={priceRange[0]} 
-              onChange={e => setPriceRange([+e.target.value, priceRange[1]])}
-            />
-            <input 
-              type="range" 
-              min="0" 
-              max="50" 
-              value={priceRange[1]} 
-              onChange={e => setPriceRange([priceRange[0], +e.target.value])}
-            />
-            <div className="price-display">
-              ${priceRange[0]} - ${priceRange[1]}
+            <div className="slider-container">
+              <div 
+                className="slider-track"
+                style={{ 
+                  left: `${(priceRange[0] / 50) * 100}%`, 
+                  width: `${((priceRange[1] - priceRange[0]) / 50) * 100}%` 
+                }}
+              ></div>
+              <input 
+                type="range" 
+                min="0" 
+                max="50" 
+                value={priceRange[0]} 
+                onChange={e => {
+                  const value = Math.min(+e.target.value, priceRange[1] - 5);
+                  setPriceRange([value, priceRange[1]]);
+                  updateActiveFiltersCount();
+                }}
+                className="slider-thumb"
+              />
+              <input 
+                type="range" 
+                min="0" 
+                max="50" 
+                value={priceRange[1]} 
+                onChange={e => {
+                  const value = Math.max(+e.target.value, priceRange[0] + 5);
+                  setPriceRange([priceRange[0], value]);
+                  updateActiveFiltersCount();
+                }}
+                className="slider-thumb"
+              />
+            </div>
+            <div className="price-labels">
+              <span>0 dt</span>
+              <span>50 dt</span>
             </div>
           </div>
         </div>
 
-        {/* Sort By */}
+        
+
+        {/* Sort Options */}
         <div className="filter-section">
           <h3>Sort By</h3>
-          <select className="sort-select">
-            <option>Best Sellers</option>
-            <option>Price Ascending</option>
-            <option>Price Descending</option>
-          </select>
+          <div className="sort-options">
+            {sortOptions.map(option => (
+              <div 
+                key={option.value}
+                className={`sort-option ${sortOption === option.value ? 'active' : ''}`}
+                onClick={() => setSortOption(option.value)}
+              >
+                {option.label}
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Apply Button (for mobile) */}
+        <button className="apply-filters">
+          Apply Filters
+        </button>
       </div>
 
       {/* Products Column */}
       <div className="products-column">
-        {/* Category Slider/Navbar */}
+        {/* Category Navigation */}
         <div className="category-slider">
           {categories.map((cat, i) => (
             <button

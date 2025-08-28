@@ -6,6 +6,12 @@ const productSchema = new mongoose.Schema({
  // category: { type: String, enum: ["food", "drink", "dessert"], required: true },
   image: { type: String }, // path to image
   isAvailable: { type: Boolean, default: true },
+ category: { 
+    type: String, 
+    enum: ['Pizza', 'Poutine', 'Hot Dog', 'Burger'], 
+    required: true 
+  },
+  soldCount: { type: Number, default: 0 },
   supplements: [
     {
       name: { type: String, required: true },
