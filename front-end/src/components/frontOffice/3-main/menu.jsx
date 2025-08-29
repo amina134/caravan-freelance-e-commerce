@@ -8,7 +8,7 @@ const Menu = () => {
   const [priceRange, setPriceRange] = useState([0, 50]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortOption, setSortOption] = useState("bestSellers");
-  const [minRating, setMinRating] = useState(0);
+
   const [activeFilters, setActiveFilters] = useState(0);
 
   const categories = ["All", "Pizza", "Burger", "Hot Dog", "Poutine"];
@@ -24,7 +24,7 @@ const Menu = () => {
     let count = 0;
     if (activeCategory !== "All") count++;
     if (priceRange[0] > 0 || priceRange[1] < 50) count++;
-    if (minRating > 0) count++;
+
     setActiveFilters(count);
   };
 
@@ -33,23 +33,23 @@ const Menu = () => {
     setActiveCategory("All");
     setPriceRange([0, 50]);
     setSortOption("bestSellers");
-    setMinRating(0);
+  
     setActiveFilters(0);
   };
 
   // Filter products by category + price + rating
-  // const filteredProducts = products.filter(p => {
-  //   const inCategory = activeCategory === "All" || p.category === activeCategory;
-  //   const inPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
-  //   const meetsRating = p.rating >= minRating;
-  //   return inCategory && inPrice && meetsRating;
-  // });
-  const filteredProducts=[...products]
+  const filteredProducts = products.filter(p => {
+    const inCategory = activeCategory === "All" || p.category === activeCategory;
+    const inPrice = p.price >= priceRange[0] && p.price <= priceRange[1];
+    
+    return inCategory && inPrice ;
+  });
+
 
   // Update active filters count when dependencies change
   useState(() => {
     updateActiveFiltersCount();
-  }, [activeCategory, priceRange, minRating]);
+  }, [activeCategory, priceRange]);
 
   return (
     <div className="menu-layout">
