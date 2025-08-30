@@ -20,5 +20,6 @@ export const deleteProduct=async(id)=>{
 
 export const getUniqueProduct = async (id) => {
     const { data } = await axios.get(`http://localhost:${API_URL}/product/getProduct/${id}`);
+    console.log("data from axiiiiiios",data)
     return data;
 }

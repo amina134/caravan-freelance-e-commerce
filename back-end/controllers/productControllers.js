@@ -24,7 +24,7 @@ const getProduct=async(req,res)=>{
     try{
       const product=await productSchema.findById(req.params.id);
       if(product){
-        res.status(200).json({message:'product gotten succesfully',book})
+        res.status(200).json({message:'product gotten succesfully',product})
 
       }
     }catch(error){

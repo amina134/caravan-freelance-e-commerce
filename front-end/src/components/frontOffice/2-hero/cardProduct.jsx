@@ -7,11 +7,11 @@ import {
 } from "framer-motion";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 import "./cardProduct.css";
-
+import { Link } from "react-router-dom";
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE /2 ;
 
-const ProductCard = ({ name, description, price, image }) => {
+const ProductCard = ({_id, name, description, price, image }) => {
   const ref = useRef(null);
 
   const [liked, setLiked] = useState(false);
@@ -46,8 +46,12 @@ const ySpring = useSpring(y);
     x.set(0);
     y.set(0);
   };
+  const sayhello=()=>{
+    console.log("hey amina",_id)
+  }
 
   return (
+  
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
@@ -57,7 +61,9 @@ const ySpring = useSpring(y);
         transform,
       }}
       className="food-card"
+      
     >
+        <Link to={`/ProductInformation/${_id}`}>
       <div className="food-image-wrapper">
         <img src={image} alt={name} className="food-image" />
         <span className="food-price">{price}dt</span>
@@ -93,7 +99,9 @@ const ySpring = useSpring(y);
           </button>
         </div>
       </div>
+        </Link>
     </motion.div>
+   
   );
 };
 
