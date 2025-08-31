@@ -1,0 +1,20 @@
+.similar-items-container {
+  margin-top: 40px;
+  background-color: pink;
+  width:80vw;
+  padding: 40px;
+  margin:100px;
+}
+
+.similar-items-container h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.similar-items-grid {
+  display: flex;
+flex-direction: row;
+  gap: 16px;
+}

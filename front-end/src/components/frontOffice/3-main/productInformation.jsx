@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import './productInformation.css';
 import { useState, useEffect } from 'react';
 import { getUniqueProduct } from '../../../api/productApi';
+import SimilarItems from './similarItems';
 
 const ProductInformation = () => {
   const { id } = useParams();
@@ -10,13 +11,14 @@ const ProductInformation = () => {
   const [error, setError] = useState(null);
   const [selectedSupplements, setSelectedSupplements] = useState([]);
   const [quantity, setQuantity] = useState(1);
-
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
         const data = await getUniqueProduct(id);
         setProduct(data.product);
+       
       } catch (err) {
         setError('Failed to load product information');
         console.error('Error fetching product:', err);
@@ -24,6 +26,7 @@ const ProductInformation = () => {
         setLoading(false);
       }
     };
+
 
     if (id) {
       fetchProduct();
@@ -173,6 +176,9 @@ const ProductInformation = () => {
             </button>
           </div>
         </div>
+      </div>
+      <div>
+        <SimilarItems foodCat={product.category}/>
       </div>
     </div>
   );
