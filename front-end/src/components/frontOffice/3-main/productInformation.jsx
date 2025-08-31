@@ -85,7 +85,7 @@ const ProductInformation = () => {
         {/* Product Image */}
         <div className="product-image">
           {product.image ? (
-            <img src={product.image} alt={product.name} />
+            <img src={`/${product.image}`} alt={product.name} />
           ) : (
             <div className="image-placeholder">
               <i className="fas fa-image"></i>
@@ -124,7 +124,7 @@ const ProductInformation = () => {
                   >
                     <div className="supplement-info">
                       <span className="supplement-name">{supplement.name}</span>
-                      <span className="supplement-price">+${supplement.price}</span>
+                      <span className="supplement-price">+{supplement.price}dt</span>
                     </div>
                     {!supplement.isAvailable && (
                       <span className="out-of-stock">Out of stock</span>
@@ -154,7 +154,7 @@ const ProductInformation = () => {
           <div className="price-section">
             <div className="total-price">
               <span className="label">Total:</span>
-              <span className="amount">${calculateTotalPrice().toFixed(2)}</span>
+              <span className="amount">{calculateTotalPrice().toFixed(2)}dt</span>
             </div>
             
             <button 
