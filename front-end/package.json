@@ -11,10 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^7.0.0",
+    "@fortawesome/react-fontawesome": "^3.0.2",
     "@gsap/react": "^2.1.2",
     "@mui/material": "^7.3.1",
     "@reduxjs/toolkit": "^2.8.2",
     "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.7",
     "embla-carousel": "^8.6.0",
     "embla-carousel-autoplay": "^8.6.0",

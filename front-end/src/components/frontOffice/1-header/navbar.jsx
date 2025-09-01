@@ -6,10 +6,11 @@ import { FiUser } from "react-icons/fi";
 import './navbar.css';
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
+import Login from '../6-sign/login';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
-
+    const [showLoginForm, setShowLoginForm] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
         // Close search when opening menu
@@ -56,7 +57,7 @@ const Navbar = () => {
                 </div>
                 <FiHeart className='heart-icon-nav'/>
                 <FiShoppingCart className='cart-icon-nav' />
-                <FiUser className='user-icon' />
+                <FiUser  onClick={()=>{setShowLoginForm(true)}}className='user-icon' />
             </div>
             
             <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
@@ -64,6 +65,13 @@ const Navbar = () => {
                 <span className='span-ham'></span>
                 <span className='span-ham'></span>
             </div>
+            {/* Login Form */}
+            {showLoginForm && (
+                <div className="loginForm">
+                    <Login key={showLoginForm} setShowLoginForm={setShowLoginForm} />
+                </div>
+               
+            )}
         </div>
     );
 };

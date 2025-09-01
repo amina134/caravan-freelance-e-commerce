@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import bcrypt from "bcryptjs"; // for password hashing
+const mongoose=require('mongoose')
+
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   role: { type: String, enum: ["customer", "admin"], default: "customer" },
   phone: { type: String },
   address: { type: String },
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "product" }],
   imageUser:{type:String,}
 }, { timestamps: true });
 
@@ -16,4 +16,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-export default User;
+module.exports=User
