@@ -65,7 +65,7 @@ const ySpring = useSpring(y);
     >
         <Link to={`/ProductInformation/${_id}`}>
       <div className="food-image-wrapper">
-        <img src={image} alt={name} className="food-image" />
+        <img src={`/${image}`} alt={name} className="food-image" />
         <span className="food-price">{price}dt</span>
       </div>
 

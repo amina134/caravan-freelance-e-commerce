@@ -178,7 +178,7 @@ const ProductInformation = () => {
         </div>
       </div>
       <div>
-        <SimilarItems foodCat={product.category}/>
+        <SimilarItems foodCat={product.category} foodId={id}/>
       </div>
     </div>
   );

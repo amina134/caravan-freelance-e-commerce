@@ -2,13 +2,13 @@ import { useSelector } from 'react-redux';
 import './similarItems.css';
 import ProductCard from '../2-hero/cardProduct';
 
-const SimilarItems = ({ foodCat }) => {
+const SimilarItems = ({ foodCat ,foodId }) => {
   const products = useSelector((state) => state.productElement || []);
-   console.log("products images noooot",products)
+  
   const similarProducts = products.filter(
-    (element) => element.category === foodCat
+    (element) => element.category === foodCat && element._id !=foodId
   );
-
+  console.log("products images noooot",similarProducts)
   if (!similarProducts.length) return null; 
 
   return (
