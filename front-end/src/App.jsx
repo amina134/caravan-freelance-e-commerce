@@ -11,6 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import Menu from './components/frontOffice/3-main/menu';
 import Navbar from './components/frontOffice/1-header/navbar';
 import ProductInformation from './components/frontOffice/3-main/productInformation';
+import UserZone from './components/backOffice/user/userZone';
 function App() {
 
   const products=useSelector(state=>state.productElement)
@@ -35,6 +36,9 @@ function App() {
       <Route path='/' element={<Homepage/>}/>
       <Route path='/Menu' element={<Menu/>}/>
       <Route path="/ProductInformation/:id" element={<ProductInformation/>}/>
+
+
+      <Route path='/userZone' element={<UserZone/>}/>
     </Routes>
    
     </>

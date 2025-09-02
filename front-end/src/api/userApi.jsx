@@ -5,7 +5,10 @@ export const postUser = async (values) => {
     const res = await axios.post(`http://localhost:${API_URL}/user/signup`, { ...values });
     return res.data
 }
-
+export const postUserSignIn =async(values)=>{
+        const res = await axios.post(`http://localhost:${API_URL}/user/signin`, { ...values });
+        return res.data;
+}
 
 export const updateUser = async (id, values) => {
     const updateUser = await axios.put(`http://localhost:${API_URL}/user/updateUser/${id}`, { ...values });

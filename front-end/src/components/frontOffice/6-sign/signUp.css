@@ -1,0 +1,116 @@
+/* Responsive Container */
+.container-signUp {
+
+  width: 90%;
+  max-width: 700px;
+  height: auto;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Input styles */
+/* .login-input {
+ 
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  width: 100%;
+} */
+
+.login-input.error {
+  border-color: red;
+}
+
+/* Button */
+/* .button-click {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+} */
+
+.button-click:hover {
+  background-color: #444;
+}
+
+/* Social Media */
+.socialMedia-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+
+/* Message Styling */
+.form-message {
+  margin-top: 10px;
+  font-size: 14px;
+  color: crimson;
+  text-align: center;
+}
+.hey{
+ text-align: center;
+  margin-left: 83px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width:160px !important;
+}
+
+
+
+/* Red border for input errors */
+.input-error {
+  border: 1px solid #e53935;
+  background-color: #fff5f5;
+}
+
+/* Small error messages under each input */
+.input-error-message {
+  color: #e53935;
+  font-size: 0.75rem;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  margin-left: 55px;
+  padding-left: 5px;
+}
+
+/* General success or error message after form submission */
+.form-message {
+  margin-top: 15px;
+ 
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  width: 100%;
+}
+
+.form-message.error {
+  color: #d8000c;
+  background-color: #ffdddd;
+  border: 1px solid #d8000c;
+}
+
+.form-message.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
