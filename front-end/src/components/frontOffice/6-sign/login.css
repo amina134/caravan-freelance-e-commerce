@@ -13,13 +13,13 @@
   z-index: 1000;
 }
 
-icon-close {
+.icon-close {
     font-family: 'icomoon' !important;
     font-size: 1.5rem;
     color: var(--subtitle);
     transition: 0.3s;
     background-color: transparent;
-
+  border: none;
     top:15%;
     z-index: 9990;
     position: fixed;
@@ -32,6 +32,7 @@ icon-close {
     font-size: 1.7rem;
     color:#E59560;
     rotate: 180deg;
+    border: none;
 }
 
 
@@ -39,13 +40,6 @@ icon-close {
 
 
 
-input {
-  background-color: #eee;
-  border: none;
-  padding: 12px 15px;
-  margin: 8px 0;
-  width: 100%;
-}
 
 .container {
   background-color: #fff;
@@ -123,9 +117,9 @@ input {
 }
 
 .overlay {
-  background: #FF416C;
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background: #865762;
+  background: -webkit-linear-gradient(to right, #865762,  #925462);
+  background: linear-gradient(to right,  #865762, rgb(180, 67, 93));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -157,10 +151,17 @@ input {
   transition: transform 0.6s ease-in-out;
 }
 .overlay-right {
-	right: 0;
+	right: -40px;
 	transform: translateX(0);
 
 }
+.overlay-left{
+	left:-40px;
+	transform: translateX(0);
+
+}
+
+
 
 .ghost{
   border-radius: 20px;
@@ -175,10 +176,11 @@ input {
   transition: transform 80ms ease-in;
 }
 .h1-login{
-  margin-top :70px;
+  margin-top :10px;
   margin-bottom: 14px;
   font-size: 34px;
   text-align: center;
+    font-family: "Raleway", sans-serif;
 
 }
 .create-account{
@@ -187,12 +189,20 @@ input {
 }
 .h2-login{
   text-align: center;
+  margin-top :10px;
+  margin-bottom: 14px;
+  font-size: 34px;
+ 
+
 }
 .p-login{
   font-size: 14px;
   font-weight: 100;
   line-height: 20px;
   letter-spacing: 0.5px;
+  word-wrap: break-word;
+  width:300px;
+  
   margin: 20px 0 30px;
 }
 

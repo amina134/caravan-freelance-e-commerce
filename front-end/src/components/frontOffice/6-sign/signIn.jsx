@@ -1,158 +1,190 @@
 import './signIn.css'
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { postUserSignIn } from '../../../api/userApi';
+import { postUserSignIn, fetchAccount } from '../../../api/userApi';
+
 // Email Validation using regex expression
- const isEmail = (mail) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mail);
+const isEmail = (mail) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mail);
     
-const SignIn=()=>{
+const SignIn = ({ setShowLoginForm }) => {
     // Inputs 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [rememberMe, setRememberMe] = useState();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+      const [rememberMe, setRememberMe] = useState(false);
     
     // inputs errors
-    const [emailError, setEmailError] = useState(false);
-    const [passwordError, setPasswordError] = useState(false);
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
     // Overall Form Validity
-    const [formValid, setFormValid] = useState();
-    const [success, setSuccess] = useState();
-    const [verif, setVerif] = useState("")
+    const [formError, setFormError] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const navigate=useNavigate();
-    ///////***   validations ****///////
+    const navigate = useNavigate();
+    
     // Validation for onBlur Email
     const handleEmail = () => {
-        console.log(isEmail(email));
+        if (!email) {
+            setEmailError("Email is required");
+            return;
+        }
+        
         if (!isEmail(email)) {
-            setEmailError(true);
+            setEmailError("Please enter a valid email address");
             return;
         }
 
-        setEmailError(false);
+        setEmailError("");
     };
+    
     // Validation for onBlur Password
     const handlePassword = () => {
-        if (
-            !password ||
-
-            password.length < 5 ||
-
-            password.length > 20
-        ) {
-            setPasswordError(true);
+        if (!password) {
+            setPasswordError("Password is required");
+            return;
+        }
+        
+        if (password.length < 5) {
+            setPasswordError("Password must be at least 5 characters long");
             return;
         }
 
-        setPasswordError(false);
+        if (password.length > 20) {
+            setPasswordError("Password must be less than 20 characters");
+            return;
+        }
+
+        setPasswordError("");
     };
-    /////// end of validation part ///////
-    // submit login //
-    const submitLogin=async(values)=>{
-        console.log("provided email",values.email);
-        console.log("provided password",values.password);
+    
+    // submit login
+    const submitLogin = async (values) => {
+        setIsSubmitting(true);
+        setFormError("");
+        
         try {
-            
-            const res= await postUserSignIn(values)
-            localStorage.setItem('token',res.token);
-            const data=await fetchAccount();
-            console.log('email from Mongodb',data.email);
-            console.log("Password from MongoDB :", data.password);
-
-            const test=bcrypt.compareSync(values.password,data.password)
-            console.log('test',test)
-            if((values.email===data.email)&&(test)){
-                if((data.role==='admin')){
-                   // navigate('/dashboradAdmin');
+            const res = await postUserSignIn(values);
+               if (rememberMe) {
+                    localStorage.setItem("token", res.token); 
+                } else {
+                    sessionStorage.setItem("token", res.token); 
                 }
-                else{
-                    console.log('sucess',success)
-                    setSuccess('from submitted succesfully')
+
+                alert("Login successful!");
+            
+            // If login is successful, fetch account data
+            try {
+                const data = await fetchAccount();
+                setShowLoginForm(false);
+                
+                if (data.role === 'admin') {
+                    // navigate('/dashboardAdmin');
+                    console.log("Admin logged in");
+                } else {
                     navigate('/userZone');
-                    
                 }
-            
+            } catch (error) {
+                console.error("Error fetching account:", error);
+                setFormError("Login successful but couldn't load user data");
             }
-            else if(!test){
-                 setFormValid("Incorrect email or password. Please try again.");
-                console.log(formValid)
-            }
-
-
         } catch (error) {
-             console.log(error)
+            console.log("Login error:", error);
+            
+            // Handle different error formats from backend
+            if (error.response?.data?.error) {
+                setFormError(error.response.data.error);
+            } else if (error.response?.data?.msg) {
+                setFormError(error.response.data.msg);
+            } else if (error.message) {
+                setFormError(error.message);
+            } else {
+                setFormError("Login failed. Please try again.");
+            }
+        } finally {
+            setIsSubmitting(false);
         }
-    }
-    ///// handle submittion//////////////////
-    const handleSubmit=()=>{
-        /////// check for errors
-
-        // if email error is true
-        if(emailError || !email){
-            setFormValid('email is invalid .please re-enter')
+    };
+    
+    // Handle form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        // Validate inputs
+        handleEmail();
+        handlePassword();
+        
+        // Check if there are any errors
+        if (emailError || passwordError || !email || !password) {
+            if (!email) setEmailError("Email is required");
+            if (!password) setPasswordError("Password is required");
+            setFormError("Please fix the errors above");
             return;
         }
-
-        // if password error is true 
-        if(passwordError || !password){
-            setFormValid( "Password is set btw 5 - 20 characters long. Please Re-Enter"
-            );
-            return;
-        }
-        setFormValid(null)
-        submitLogin({email,password})
-    }
-    return(
+        
+        submitLogin({ email, password });
+    };
+    
+    return (
         <div className="form-container sign-in-container">
-            <div>
-                <h1 className='h1-login create-account '>Sign In</h1>
-                  {/* <div className='socialMedia-container'>
-                            <a className="instagram-icon-login"> <CiInstagram /></a>
-                             <a className='facebook-icon-login'><GrFacebookOption /> </a>
-                              <a className="youtube-icon-login"><FaYoutube/></a>
-                      
-                           </div> */}
-                 {/* <div  className="hey">
-                    <GoogleLogin 
-                    onSuccess={(credentialResponse) => {
-                        console.log("Google login ssuccess:", credentialResponse);
-                    
-                    }}
-                    onError={() => {
-                        console.log("Google login failed");
-                    }}
+            <form onSubmit={handleSubmit} noValidate>
+                <h1 className='h1-login create-account'>Sign In</h1>
+                
+                <span className="or">or use your account</span>
+                
+                <div className="input-group">
+                    <input
+                        className={`login-input ${emailError ? 'input-error' : ''}`}
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onBlur={handleEmail}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            if (emailError) setEmailError("");
+                        }}
                     />
-                </div> */}
-                <span className="other-method special">or use your account</span>
-                <input   className={`login-input ${emailError ? 'input-error' : ''}`} type="email" placeholder="Email" 
-                error={emailError}
-                value={email}
-                onBlur={handleEmail}
-                onChange={(event)=>{
-                    setEmail(event.target.value);
-                }}/>
-                {emailError && <p className="input-error-message">Please enter a valid email.</p>}
-                <input  className={`login-input ${passwordError ? 'input-error' : ''}`} type="password" placeholder="Password" 
-                 error={passwordError}
-                 value={password}
-                 onBlur={handlePassword}
-                 onChange={(event)=>{
-                     setPassword(event.target.value);
-                 }}/>
-                 {passwordError && <p className="input-error-message">Password must be 8–20 characters long.</p>}
-                <a className='a-login ' href="#">Forgot your password?</a>
-                <button className="button-click"  onClick={handleSubmit}>Sign In</button>
-            </div>
-
-              {/* Show Form Error if any */}
-              {formValid && (
-                <div className="form-message error">
-                    {formValid}
+                    {emailError && <div className="error-message">{emailError}</div>}
                 </div>
-            )}
-       
+                
+                <div className="input-group">
+                    <input
+                        className={`login-input ${passwordError ? 'input-error' : ''}`}
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onBlur={handlePassword}
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                            if (passwordError) setPasswordError("");
+                        }}
+                    />
+                    {passwordError && <div className="error-message">{passwordError}</div>}
+                </div>
+                
+                {/* <a className='a-login' href="#">Forgot your password?</a> */}
+                 <label>
+                    <input 
+                    type="checkbox" 
+                    checked={rememberMe}
+                    onChange={() => setRememberMe(!rememberMe)}
+                    />
+                    Remember me
+                </label>
+                <button 
+                    className={`button-click ${isSubmitting ? 'submitting' : ''}`} 
+                    type="submit"
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? 'Signing In...' : 'Sign In'}
+                </button>
+                
+                {formError && (
+                    <div className="form-error-message">
+                        {formError}
+                    </div>
+                )}
+            </form>
         </div>
+    );
+};
 
-    )
-}
-export default SignIn;
+export default SignIn;  

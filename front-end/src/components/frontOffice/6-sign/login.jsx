@@ -4,7 +4,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';  // Import the fa-x
 import SignUp from './signup'
 import SignIn from './signIn'
 import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from "react"
+import { useState } from "react";
+
 import { CiHeart } from "react-icons/ci";
 const Login=({setShowLoginForm})=>{
     const [isSignUp,setIsSignUp]=useState(true)
@@ -14,8 +15,8 @@ const Login=({setShowLoginForm})=>{
         <div className='login-form'>
             <button className='icon-close' onClick={() => setShowLoginForm(false)} > <FontAwesomeIcon icon={faXmark} /></button>                  
             <div className={`container ${isSignUp ? "right-panel-active" : ""}`}>
-                    <SignUp setIsSignUp={() => setIsSignUp(true)} />
-                    <SignIn setIsSignUp={() => setIsSignUp(false)} />
+                    <SignUp setShowLoginForm={setShowLoginForm} setIsSignUp={() => setIsSignUp(true)} />
+                    <SignIn  setShowLoginForm={setShowLoginForm}setIsSignUp={() => setIsSignUp(false)} />
                     <div className="overlay-container">
                         <div className="overlay">
                         <div className="overlay-panel overlay-left">

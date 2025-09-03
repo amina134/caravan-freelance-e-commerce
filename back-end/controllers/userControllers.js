@@ -81,18 +81,18 @@ const deleteUser = async (req, res) => {
 const signIn=async(req,res)=>{
     try {
         const {email,password}=req.body;
-        const found=userSchema.findOne({email});
+        const found= await userSchema.findOne({email});
         console.log(found);
-        if(!found){return res.json({msg:'Emaail not found '})};
-        const match=bcrypt.compare(password,found.password);
-        if(!match){return res.json({msg:'false password'})}
+        if(!found){  return res.status(400).json({ error: "email not found" })};
+        const match= await bcrypt.compare(password,found.password);
+        if(!match){   return res.status(400).json({ error: "Incorrect password" })}
         const payload={id:found._id};
         const token=jwt.sign(payload,process.env.JWT_SECRET)
         res.json({ msg: 'you are welcome SignIn', found, token });
         console.log('Logged in to your session successfully', email, password);
         
     } catch (error) {
-           console.log(error);
+          return res.status(500).json({ msg: "Server error" });
     }
 }
 ///// sign  up/////
@@ -103,14 +103,14 @@ const signUp=async(req,res)=>{
           return res.status(400).json({ error: "Username is required" });
         }
         const found =await userSchema.findOne({email});
-        if(found){return res.json({ msg: 'Already registered' }) };
+        if(found){  return res.status(400).json({ error: 'Email already registered' });};
         const newUser=await new userSchema(req.body)
         const saltRounds = 10;
         const salt = bcrypt.genSaltSync(saltRounds);
         const hash = bcrypt.hashSync(password, salt);
         newUser.password = hash;
        
-        newUser.save();
+        await newUser.save();
         const token=jwt.sign({id:newUser._id},process.env.JWT_SECRET)
         res.status(200).json({ msg: 'Welcome', token,
         user: {

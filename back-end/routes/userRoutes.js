@@ -19,5 +19,10 @@ userRoute.delete('/deleteUser/:id', deleteUser);
 userRoute.post('/signin', SignInValidation, Validation, signIn);
 //http://localhost:4100/user/signup
 userRoute.post('/signup', SignUpValidation, Validation, signUp);
+//http://localhost:4100/user/myaccount
+userRoute.get('/myaccount', AuthValidation, async (req, res) => {
+    res.send(res.user);
+    console.log("this is the req :", res.user);
+})
 
 module.exports = userRoute;

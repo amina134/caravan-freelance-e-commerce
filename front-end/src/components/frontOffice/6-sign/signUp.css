@@ -1,49 +1,10 @@
 /* Responsive Container */
-.container-signUp {
 
-  width: 90%;
-  max-width: 700px;
-  height: auto;
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-/* Input styles */
-/* .login-input {
- 
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-bottom: 16px;
-  width: 100%;
-} */
 
 .login-input.error {
   border-color: red;
 }
 
-/* Button */
-/* .button-click {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background-color: #000;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-} */
 
 .button-click:hover {
   background-color: #444;
@@ -113,4 +74,13 @@
   color: #155724;
   background-color: #d4edda;
   border: 1px solid #c3e6cb;
+}
+.h1-create-account{
+   font-family: "Raleway", sans-serif;
+   font-weight: 800;
+   
+}
+.form-sign{
+
+
 }
