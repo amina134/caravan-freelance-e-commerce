@@ -1,147 +1,155 @@
-import './signUp.css'
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useState } from "react";
-// social media icons
-import { CiInstagram } from "react-icons/ci";
-import { GrFacebookOption } from "react-icons/gr";
-import { FaYoutube } from "react-icons/fa";
-import { IoLogoGoogle } from "react-icons/io";
 import { postUser } from '../../../api/userApi';
+import './signUp.css';
 
 const SignUp = ({ setShowLoginForm }) => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    
-    // email validation using regex
     const isEmail = (mail) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mail);
     
-    // Inputs
-    const [userName, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [formData, setFormData] = useState({
+        userName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
     
-    // Inputs errors 
-    const [userNameError, setUserNameError] = useState('');
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-    
-    // Form validity and messages
+    const [errors, setErrors] = useState({});
     const [formMessage, setFormMessage] = useState('');
-    const [isError, setIsError] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Validation functions
-    const handleUserName = () => {
-        if (!userName || userName.length < 3) {
-            setUserNameError("Username must be at least 3 characters long");
-            return;
-        }
-        setUserNameError('');
-    };
-
-    const handleEmail = () => {
-        if (!isEmail(email)) {
-            setEmailError("Please enter a valid email address");
-            return;
-        }
-        setEmailError('');
-    };
-
-    const handlePassword = () => {
-        if (!password || password.length < 8 || password.length > 20) {
-            setPasswordError("Password must be 8-20 characters long");
-            return;
-        }
-        setPasswordError('');
-    };
-
-    // Add user to database
-    const handleAdd = async (value) => {
-        try {
-            const res = await postUser(value);
-            
-           
-            localStorage.setItem("token", res.token);
-            setShowLoginForm(false)
-            navigate("/userZone");
-        } catch (error) {
-            setFormMessage(error.message);
-             setIsError(true);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        // Clear error when user starts typing
+        if (errors[name]) {
+            setErrors(prev => ({
+                ...prev,
+                [name]: ''
+            }));
         }
     };
 
-    // Handle form submission
-    const handleSubmit = (e) => {
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!formData.userName || formData.userName.length < 3) {
+            newErrors.userName = "Username must be at least 3 characters";
+        }
+
+        if (!formData.email || !isEmail(formData.email)) {
+            newErrors.email = "Please enter a valid email address";
+        }
+
+        if (!formData.password || formData.password.length < 8) {
+            newErrors.password = "Password must be at least 8 characters";
+        }
+
+        if (formData.password !== formData.confirmPassword) {
+            newErrors.confirmPassword = "Passwords do not match";
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setFormMessage('');
-        setIsError(false);
-        
-        // Validate all fields
-        handleUserName();
-        handleEmail();
-        handlePassword();
-        
-        // Check if any errors exist
-        if (userNameError || emailError || passwordError || 
-            !userName || !email || !password) {
-            setFormMessage("Please fix the errors before submitting");
-            setIsError(true);
+
+        if (!validateForm()) {
+            setFormMessage("Please fix the errors below");
             return;
         }
-        
-        // Proceed with registration
-        handleAdd({ userName, email, password });
-        
 
+        setIsSubmitting(true);
+        try {
+            const res = await postUser({
+                userName: formData.userName,
+                email: formData.email,
+                password: formData.password
+            });
+            
+            localStorage.setItem("token", res.token);
+            setShowLoginForm(false);
+            navigate("/userZone");
+        } catch (error) {
+            setFormMessage(error.message || "Sign up failed. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
-        <div className="form-container sign-up-container">
-            <form className='form-sign' onSubmit={handleSubmit}>
-                <h1 className='h1-create-account'>Create Account</h1>
-                
-                <span className="other-method">or use your email for registration</span>
-                
+        <form className="signup-form" onSubmit={handleSubmit}>
+            <div className="input-group">
+                <label htmlFor="userName">Username</label>
                 <input
-                    className={`login-input ${userNameError ? 'input-error' : ''}`}
+                    id="userName"
+                    name="userName"
                     type="text"
-                    placeholder="Name"
-                    value={userName}
-                    onChange={(event) => setUserName(event.target.value)}
-                    onBlur={handleUserName}
+                    placeholder="Enter your full name"
+                    value={formData.userName}
+                    onChange={handleChange}
+                    className={errors.userName ? 'input-error' : 'input-sign-up'}
                 />
-                {userNameError && <p className="input-error-message">{userNameError}</p>}
+                {errors.userName && <span className="error-text">{errors.userName}</span>}
+            </div>
 
+            <div className="input-group">
+                <label htmlFor="email">Email</label>
                 <input
-                    className={`login-input ${emailError ? 'input-error' : ''}`}
+                    id="email"
+                    name="email"
                     type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    onBlur={handleEmail}
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={errors.email ? 'input-error' : 'input-sign-up'}
                 />
-                {emailError && <p className="input-error-message">{emailError}</p>}
+                {errors.email && <span className="error-text">{errors.email}</span>}
+            </div>
 
+            <div className="input-group">
+                <label htmlFor="password">Password</label>
                 <input
-                    className={`login-input ${passwordError ? 'input-error' : ''}`}
+                    id="password"
+                    name="password"
                     type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    onBlur={handlePassword}
+                    placeholder="Create a password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={errors.password ? 'input-error' :'input-sign-up'}
                 />
-                {passwordError && <p className="input-error-message">{passwordError}</p>}
+                {errors.password && <span className="error-text">{errors.password}</span>}
+            </div>
 
-                {/* Form message display */}
-                {formMessage && (
-                    <p className={isError ? "form-error-message" : "form-success-message"}>
-                        {formMessage}
-                    </p>
+          
+
+            {formMessage && (
+                <div className="form-message error">
+                    {formMessage}
+                </div>
+            )}
+
+            <button 
+                type="submit" 
+                className={`submit-button ${isSubmitting ? 'submitting' : ''}`}
+                disabled={isSubmitting}
+            >
+                {isSubmitting ? (
+                    <>
+                        <span className="spinner"></span>
+                        Creating Account...
+                    </>
+                ) : (
+                    'Create Account'
                 )}
-
-                <button type="submit" className="button-click">Sign Up</button>
-            </form>
-        </div>
+            </button>
+        </form>
     );
 };
 
