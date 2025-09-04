@@ -96,7 +96,7 @@ input:focus, .icon-close:focus,
 .switch-button {
     background: none;
     border: none!important;
-    color:black ;
+    color:black;
     cursor: pointer;
     text-decoration: underline;
     font-size: 0.9rem;

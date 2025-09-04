@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { postUser } from '../../../api/userApi';
 import './signUp.css';
-
+import { setCurrentUser, setToken } from "../../../redux/userSlice";
+import {  useDispatch } from 'react-redux';
 const SignUp = ({ setShowLoginForm }) => {
     const navigate = useNavigate();
     const isEmail = (mail) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mail);
@@ -17,7 +18,7 @@ const SignUp = ({ setShowLoginForm }) => {
     const [errors, setErrors] = useState({});
     const [formMessage, setFormMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
-
+    const dispatch=useDispatch()
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -74,6 +75,8 @@ const SignUp = ({ setShowLoginForm }) => {
             });
             
             localStorage.setItem("token", res.token);
+            dispatch(setCurrentUser(res.user));
+            dispatch(setToken(res.token));
             setShowLoginForm(false);
             navigate("/userZone");
         } catch (error) {

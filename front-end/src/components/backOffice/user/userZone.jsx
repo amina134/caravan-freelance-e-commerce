@@ -1,9 +1,9 @@
-
+import './userZone.css'
 
 const UserZone=()=>{
     return(
-        <div>
-            
+        <div className="userZone-layout">
+            <h1>hex</h1>
         </div>
     )
 }

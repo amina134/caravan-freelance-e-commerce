@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { postUserSignIn, fetchAccount } from '../../../api/userApi';
 import './signIn.css';
-
+import {  useDispatch } from 'react-redux';
+import { setCurrentUser, setToken } from "../../../redux/userSlice";
 const isEmail = (mail) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mail);
     
 const SignIn = ({ setShowLoginForm }) => {
@@ -13,7 +14,7 @@ const SignIn = ({ setShowLoginForm }) => {
     const [passwordError, setPasswordError] = useState("");
     const [formError, setFormError] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-
+    const dispatch=useDispatch();
     const navigate = useNavigate();
     
     const handleEmail = () => {
@@ -49,6 +50,8 @@ const SignIn = ({ setShowLoginForm }) => {
             }
 
             const data = await fetchAccount();
+             dispatch(setCurrentUser(res.user));
+            dispatch(setToken(res.token));
             setShowLoginForm(false);
             
             if (data.role === 'admin') {
@@ -56,6 +59,7 @@ const SignIn = ({ setShowLoginForm }) => {
             } else {
                 navigate('/userZone');
             }
+            
         } catch (error) {
             setFormError("Invalid email or password. Please try again.");
         } finally {
