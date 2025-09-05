@@ -6,11 +6,16 @@ import { FiUser } from "react-icons/fi";
 import './navbar.css';
 import { Link } from "react-router-dom";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
+import { useSelector, useDispatch } from "react-redux";
 import Login from '../6-sign/login';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
     const [showLoginForm, setShowLoginForm] = useState(false);
+    const[showUserDropdown,setShowUserDropdown]=useState(false)
+    const { token } = useSelector((state) => state.userElement);
+    const isLoggedIn = !!token;
+
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
         // Close search when opening menu
@@ -57,7 +62,16 @@ const Navbar = () => {
                 </div>
                 <FiHeart className='heart-icon-nav'/>
                 <FiShoppingCart className='cart-icon-nav' />
-                <FiUser  onClick={()=>{setShowLoginForm(true)}}className='user-icon' />
+                <FiUser 
+                 onClick={()=>{ 
+                    if(isLoggedIn){
+                        setShowUserDropdown(true)
+                    }
+                    else{
+                        setShowLoginForm(true)
+                    }
+                  }}
+                 className='user-icon' />
             </div>
             
             <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
@@ -71,6 +85,11 @@ const Navbar = () => {
                     <Login key={showLoginForm} setShowLoginForm={setShowLoginForm} />
                 </div>
                
+            )}
+            {showUserDropdown &&(
+                <div>
+                    <h2>qmounaaaaaaa</h2>
+                 </div>
             )}
         </div>
     );
