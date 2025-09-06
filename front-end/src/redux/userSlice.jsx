@@ -8,7 +8,7 @@
     },
     reducers: {
       setAuth: (state, action) => {
-        state.currentUser = action.payload.user;
+        state.currentUser = action.payload.currentUser;
         state.token = action.payload.token;
       },
       logout: (state) => {
