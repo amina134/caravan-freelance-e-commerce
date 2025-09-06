@@ -75,7 +75,7 @@ const SignUp = ({ setShowLoginForm }) => {
             });
             
             localStorage.setItem("token", res.token);
-            dispatch(setAuth({ user: res.user, token: res.token }));
+           dispatch(setAuth({ currentUser: res.user, token: res.token }));
 
             setShowLoginForm(false);
             navigate("/userZone");
