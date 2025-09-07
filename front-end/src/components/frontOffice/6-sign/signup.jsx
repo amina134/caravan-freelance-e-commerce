@@ -78,7 +78,7 @@ const SignUp = ({ setShowLoginForm }) => {
            dispatch(setAuth({ currentUser: res.user, token: res.token }));
 
             setShowLoginForm(false);
-            navigate("/userZone");
+            navigate("/userzone");
         } catch (error) {
             setFormMessage(error.message || "Sign up failed. Please try again.");
         } finally {
