@@ -6,7 +6,6 @@
 background: none;
 padding-right: 30px;
 
-background-color: pink;
 
 
 
@@ -178,7 +177,48 @@ background-color: pink;
   z-index: 9999;
   animation: fadeIn 0.3s ease;
 }
-  
+.user-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 30px; /* adjust based on your design */
+  left: -48px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-width: 80px;
+
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.user-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.user-dropdown ul li {
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  font-size: 17px;
+}
+
+.user-dropdown ul li:hover {
+  background-color: #f0f0f0;
+}
+
+/* Show dropdown on hover */
+.user-dropdown-container:hover .user-dropdown {
+  display: block;
+}
+
+
 @media (max-width:2650px) {
    .logo {
     margin-right: auto;

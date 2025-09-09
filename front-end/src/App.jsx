@@ -38,7 +38,11 @@ function App() {
       <Route path="/ProductInformation/:id" element={<ProductInformation/>}/>
 
 
-      <Route path='/userZone' element={<UserZone/>}/>
+      <Route path='/userZone' element={<UserZone/>}>
+        <Route index   element={<Homepage/>}/>
+        <Route path='Menu' element={<Menu/>}/>
+        <Route path="ProductInformation/:id" element={<ProductInformation/>}/>
+      </Route>
     </Routes>
    
     </>

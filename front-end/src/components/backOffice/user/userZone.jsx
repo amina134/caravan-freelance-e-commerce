@@ -1,9 +1,10 @@
 import './userZone.css'
-
+ import { Outlet } from "react-router-dom";
 const UserZone=()=>{
     return(
         <div className="userZone-layout">
-            <h1>hex</h1>
+          <Outlet/>
+
         </div>
     )
 }

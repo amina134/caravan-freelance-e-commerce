@@ -1,24 +1,21 @@
 import React, { useState } from 'react';
 import { BsSearch } from "react-icons/bs";
-import { BsCart3 } from "react-icons/bs";
-import { HiOutlineHeart } from "react-icons/hi2";
-import { FiUser } from "react-icons/fi";
+import { FiUser, FiShoppingCart, FiHeart } from "react-icons/fi";
 import './navbar.css';
 import { Link } from "react-router-dom";
-import { FiShoppingCart, FiHeart } from "react-icons/fi";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Login from '../6-sign/login';
+
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
     const [showLoginForm, setShowLoginForm] = useState(false);
-    const[showUserDropdown,setShowUserDropdown]=useState(false)
+
     const { token } = useSelector((state) => state.userElement);
     const isLoggedIn = !!token;
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-        // Close search when opening menu
         if (!isMenuOpen && isSearchVisible) {
             setIsSearchVisible(false);
         }
@@ -26,7 +23,6 @@ const Navbar = () => {
 
     const toggleSearch = () => {
         setIsSearchVisible(!isSearchVisible);
-        // Close menu when opening search
         if (!isSearchVisible && isMenuOpen) {
             setIsMenuOpen(false);
         }
@@ -41,7 +37,7 @@ const Navbar = () => {
             <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
                 <ul>
                     <li>Home</li>
-                   <Link  to="/Menu"> <li>Menu</li></Link>
+                    <Link to="/Menu"><li>Menu</li></Link>
                     <li>Contact</li>
                     <li>About</li>
                 </ul>
@@ -62,16 +58,29 @@ const Navbar = () => {
                 </div>
                 <FiHeart className='heart-icon-nav'/>
                 <FiShoppingCart className='cart-icon-nav' />
-                <FiUser 
-                 onClick={()=>{ 
-                    if(isLoggedIn){
-                        setShowUserDropdown(true)
-                    }
-                    else{
-                        setShowLoginForm(true)
-                    }
-                  }}
-                 className='user-icon' />
+
+                {/* User Dropdown Container */}
+                <div className="user-dropdown-container">
+                    <FiUser 
+                        onClick={() => {
+                            if (!isLoggedIn) setShowLoginForm(true);
+                        }}
+                        className='user-icon' 
+                    />
+
+                    {isLoggedIn && (
+                        <div className="user-dropdown">
+                            <ul>
+                                <li>
+                                    <Link to="/profile">Profile</Link>
+                                </li>
+                                <li onClick={() => console.log("Logout clicked")}>
+                                    Logout
+                                </li>
+                            </ul>
+                        </div>
+                    )}
+                </div>
             </div>
             
             <div className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
@@ -79,17 +88,11 @@ const Navbar = () => {
                 <span className='span-ham'></span>
                 <span className='span-ham'></span>
             </div>
-            {/* Login Form */}
+
             {showLoginForm && (
                 <div className="loginForm">
                     <Login key={showLoginForm} setShowLoginForm={setShowLoginForm} />
                 </div>
-               
-            )}
-            {showUserDropdown &&(
-                <div>
-                    <h2>qmounaaaaaaa</h2>
-                 </div>
             )}
         </div>
     );
