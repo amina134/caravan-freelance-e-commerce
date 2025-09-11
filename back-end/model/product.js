@@ -12,6 +12,7 @@ const productSchema = new mongoose.Schema({
     required: true 
   },
   soldCount: { type: Number, default: 0 },
+  stock: { type: Number, default: 5 },
   supplements: [
     {
       name: { type: String, required: true },

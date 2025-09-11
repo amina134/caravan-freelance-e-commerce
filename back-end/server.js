@@ -7,6 +7,7 @@ const port =process.env.port
 const connectDb=require('./config/connect-db')
 const productRoute = require('./routes/productRoutes')
 const userRoute=require('./routes/userRoutes')
+const cartRoute=require('./routes/cartRoutes')
 app.use(cors());
 app.use('/productImages',express.static(path.join(__dirname,'public/productImages')))
 
@@ -18,6 +19,9 @@ app.use('/product',productRoute)
 
 // user route
 app.use('/user',userRoute)
+
+// cart route 
+app.use('/cart', cartRoute)
 app.listen(port,()=>{
     console.log(`server is running on ${port}`);
 }) // to run the server
