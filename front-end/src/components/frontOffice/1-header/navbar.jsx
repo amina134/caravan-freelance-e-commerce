@@ -57,7 +57,7 @@ const Navbar = () => {
                     <BsSearch className="search-toggle-icon" />
                 </div>
                 <FiHeart className='heart-icon-nav'/>
-                <FiShoppingCart className='cart-icon-nav' />
+            <Link to="/userZone/cart">  <FiShoppingCart className='cart-icon-nav' /></Link>
 
                 {/* User Dropdown Container */}
                 <div className="user-dropdown-container">

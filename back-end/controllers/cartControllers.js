@@ -129,7 +129,7 @@ const updateQuantityItemCart = async (req, res) => {
       }
   
       // Step 3: Update the quantity (ensure it stays within the stock limits)
-      existingItem.quantity = Math.max(1, Math.min(newQuantity,6));
+      existingItem.quantity = Math.max(1, Math.min(newQuantity,existingItem.productId.stock));
 
       // Step 4: Save the updated cart
       await cart.save();
