@@ -38,36 +38,36 @@ const SignIn = ({ setShowLoginForm }) => {
     };
     
     const submitLogin = async (values) => {
-        setIsSubmitting(true);
-        setFormError("");
-        
-        try {
-            const res = await postUserSignIn(values);
-            if (rememberMe) {
-                localStorage.setItem("token", res.token); 
-            } else {
-                sessionStorage.setItem("token", res.token); 
-            }
+  setIsSubmitting(true);
+  setFormError('');
 
-            const data = await fetchAccount();
-            dispatch(setAuth({ user: res.user, token: res.token }));
+  try {
+    const res = await postUserSignIn(values);
+    console.log('res from sign innnnn', res);
 
-           
-            setShowLoginForm(false);
-            
-            if (data.role === 'admin') {
-                navigate('/dashboard');
-            } else {
-                navigate('/userZone');
-            }
-            
-        } catch (error) {
-            setFormError("Invalid email or password. Please try again.");
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
-    
+    // Use res.found as the user (from your backend response)
+    const user = res.found;
+    if (!user) {
+      throw new Error('User data not found in response');
+    }
+
+    // Dispatch setAuth with rememberMe to handle storage in the reducer
+    dispatch(setAuth({ user, token: res.token, rememberMe }));
+
+    setShowLoginForm(false);
+
+    if (user.role === 'admin') {
+      navigate('/dashboard');
+    } else {
+      navigate('/userZone');
+    }
+  } catch (error) {
+    console.error('Login error:', error);
+    setFormError(error.response?.data?.error || 'Invalid email or password. Please try again.');
+  } finally {
+    setIsSubmitting(false);
+  }
+};
     const handleSubmit = (e) => {
         e.preventDefault();
         

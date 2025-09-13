@@ -123,4 +123,12 @@ const signUp=async(req,res)=>{
            console.log(error);
     }
 }
-module.exports={getAllUsers,addUser,getUserById,updateUser,deleteUser,signIn,signUp}
+const fetchAccount = async (req, res) => {
+  try {
+    res.status(200).json(req.user); // send user info
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to fetch account" });
+  }
+};
+module.exports={getAllUsers,addUser,getUserById,updateUser,deleteUser,signIn,signUp,fetchAccount}

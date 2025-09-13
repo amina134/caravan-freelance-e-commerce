@@ -1,6 +1,6 @@
 const express=require('express');
 const userRoute=express.Router();
-const { getAllUsers, addUser, getUserById, updateUser, deleteUser, signIn, signUp } = require('../controllers/userControllers');
+const { getAllUsers, addUser, getUserById, updateUser, deleteUser, signIn, signUp,fetchAccount } = require('../controllers/userControllers');
 const {AuthValidation}=require('../middleware/authValidation')
 const { SignInValidation, SignUpValidation, Validation } = require('../middleware/signUpValidation');
 userRoute.use(express.json());
@@ -20,9 +20,7 @@ userRoute.post('/signin', SignInValidation, Validation, signIn);
 //http://localhost:4100/user/signup
 userRoute.post('/signup', SignUpValidation, Validation, signUp);
 //http://localhost:4100/user/myaccount
-userRoute.get('/myaccount', AuthValidation, async (req, res) => {
-    res.send(res.user);
-    console.log("this is the req :", res.user);
-})
+userRoute.get('/myaccount', AuthValidation, fetchAccount
+   )
 
 module.exports = userRoute;

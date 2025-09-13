@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
 import { postUser } from '../../../api/userApi';
 import './signUp.css';
-import { setAuth } from "../../../redux/userSlice";
+import { setAuth ,setCurrentUser} from "../../../redux/userSlice";
 import {  useDispatch } from 'react-redux';
 const SignUp = ({ setShowLoginForm }) => {
     const navigate = useNavigate();
@@ -73,9 +73,10 @@ const SignUp = ({ setShowLoginForm }) => {
                 email: formData.email,
                 password: formData.password
             });
-            
+            console.log("ressssssssss",res)
             localStorage.setItem("token", res.token);
-           dispatch(setAuth({ currentUser: res.user, token: res.token }));
+            dispatch(setAuth({ user: res.user, token: res.token }));
+            dispatch(setCurrentUser(res.user));
          
             setShowLoginForm(false);
             navigate("/userZone");
