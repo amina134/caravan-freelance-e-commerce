@@ -12,12 +12,21 @@ const cartSlice=createSlice({
         },
         updateCartItemQuantity:(state,action)=>{
             const {itemId,quantity}=action.payload;
-            const item=state.items.find((i)=>i.productId===itemId)
+            const item=state.items.find((i)=>i.productId._id===itemId._id)
+            console.log("redux item",item)
             if(item){
                 item.quantity=quantity;
             }
         },
+        clearCart:(state,action)=>{
+            state.items=[]
+        },
+        removeFromCart:(state,action)=>{
+            const {itemId}=action.payload;
+            state.items = state.items.filter(item => item.productId._id !== itemId);
+        }
+        }
     }
-})
-export const{setCart}=cartSlice.actions
+)
+export const{setCart,updateCartItemQuantity,removeFromCart,clearCart}=cartSlice.actions
 export default cartSlice.reducer;

@@ -39,7 +39,7 @@ export const removeItemFromCart = async (userId, productId) => {
 };
 
 // Clear cart
-export const clearCart = async (userId) => {
+export const clearCartApi = async (userId) => {
     try {
         const response = await axios.delete(`${BASE_URL}/clearCart/${userId}`);
         return response.data;
