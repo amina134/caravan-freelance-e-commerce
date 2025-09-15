@@ -8,7 +8,7 @@ const connectDb = async () => {
     console.log("✅ Connected to your database: caravan");
   } catch (error) {
     console.error("❌ Database connection error:", error.message);
-    process.exit(1); // stop the server if DB fails
+    process.exit(1)// stop the server if DB fails
   }
 };
 
