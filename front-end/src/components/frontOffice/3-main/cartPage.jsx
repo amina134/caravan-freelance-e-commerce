@@ -41,7 +41,7 @@ const CartPage = () => {
     // update backend 
     const updateItem = await updateQuantityApi(currentUser._id, item.productId._id, updatedQuantity);
     
-    console.log("item id heeyy", item.productId);
+    console.log("item id heeyy", item);
     dispatch(updateCartItemQuantity({ itemId: item.productId, quantity: updatedQuantity }));
   };
 
@@ -49,6 +49,7 @@ const CartPage = () => {
   const handleDeleteItem = async (item) => {
     try {
       // Call API to remove item from backend
+      console.log("crt page: product id ",item.productId._id)
       await removeItemFromCart(currentUser._id, item.productId);
       
       // Update Redux store
