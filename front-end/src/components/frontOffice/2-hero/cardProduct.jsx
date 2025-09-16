@@ -5,23 +5,24 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import { FiShoppingCart, FiHeart } from "react-icons/fi";
+import { FiShoppingCart, FiHeart, FiCheck } from "react-icons/fi";
+import { toast, ToastContainer } from "react-toastify";
 import "./cardProduct.css";
 import { Link } from "react-router-dom";
+
 const ROTATION_RANGE = 32.5;
-const HALF_ROTATION_RANGE = ROTATION_RANGE /2 ;
+const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
-const ProductCard = ({_id, name, description, price, image }) => {
+const ProductCard = ({ _id, name, description, price, image }) => {
   const ref = useRef(null);
-
   const [liked, setLiked] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(false);
 
-const x = useMotionValue(0);
-const y = useMotionValue(-5);
+  const x = useMotionValue(0);
+  const y = useMotionValue(-5);
 
-
-const xSpring = useSpring(x);
-const ySpring = useSpring(y);
+  const xSpring = useSpring(x);
+  const ySpring = useSpring(y);
 
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
@@ -46,12 +47,20 @@ const ySpring = useSpring(y);
     x.set(0);
     y.set(0);
   };
-  const sayhello=()=>{
-    console.log("hey amina",_id)
-  }
+
+  const handleAddToCart = (e) => {
+    e.stopPropagation();
+    setAddedToCart(true);
+
+    
+    // Reset the tick icon after 2 seconds
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 2000);
+  };
 
   return (
-  
+     <>
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
@@ -61,47 +70,53 @@ const ySpring = useSpring(y);
         transform,
       }}
       className="food-card"
-      
     >
-        <Link to={`/ProductInformation/${_id}`}>
-      <div className="food-image-wrapper">
-        <img src={`/${image}`} alt={name} className="food-image" />
-        <span className="food-price">{price}dt</span>
-      </div>
-
-      {/* Content section clickable */}
-      <div
-        className="food-content"
-        onClick={() => alert(`Clicked on ${name}`)} // You can replace this with navigation or details modal
-      >
-        <h3 className="food-title">{name}</h3>
-        <p className="food-desc">{description}</p>
-
-        {/* Icons container */}
-        <div className="food-icons">
-          <button
-            className={`heart-btn ${liked ? "liked" : ""}`}
-            onClick={(e) => {
-              e.stopPropagation(); // prevent triggering content click
-              setLiked(!liked);
-            }}
-          >
-            <FiHeart size={20} />
-          </button>
-          <button
-            className="cart-btn"
-            onClick={(e) => {
-              e.stopPropagation();
-              alert(`Added ${name} to cart!`);
-            }}
-          >
-            <FiShoppingCart size={20} />
-          </button>
+      <Link to={`/ProductInformation/${_id}`}>
+        <div className="food-image-wrapper">
+          <img src={`/${image}`} alt={name} className="food-image" />
+          <span className="food-price">{price}dt</span>
         </div>
-      </div>
-        </Link>
-    </motion.div>
+         </Link>
+        <div
+          className="food-content"
+          onClick={() => alert(`Clicked on ${name}`)}
+        >
+          <h3 className="food-title">{name}</h3>
+          <p className="food-desc">{description}</p>
+
+          <div className="food-icons">
+            <button
+              className={`heart-btn ${liked ? "liked" : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLiked(!liked);
+              }}
+            >
+              <FiHeart size={20} />
+            </button>
+            <button
+              className={`cart-btn ${addedToCart ? "added" : ""}`}
+              onClick={handleAddToCart}
+            >
+              {addedToCart ? (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500 }}
+                >
+                  <FiCheck size={20} />
+                </motion.div>
+              ) : (
+                <FiShoppingCart size={20} />
+              )}
+            </button>
+          </div>
+        </div>
    
+    </motion.div>
+     
+
+     </>
   );
 };
 

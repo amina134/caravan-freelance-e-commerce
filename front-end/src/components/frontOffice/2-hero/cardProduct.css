@@ -115,3 +115,23 @@
 .slick-dots {
   left: -35px; /* move dots lower */
 }
+
+
+
+.cart-btn.added {
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+}
+
+/* Animation for the checkmark */
+@keyframes checkmarkAnimation {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
