@@ -2,7 +2,8 @@ import './menu.css';
 import { useSelector } from 'react-redux';
 import ProductCard from '../2-hero/cardProduct';
 import { useState } from 'react';
-
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css';
 const Menu = () => {
   const products = useSelector(state => state.productElement || []);
   const [priceRange, setPriceRange] = useState([0, 50]);
@@ -172,7 +173,22 @@ const Menu = () => {
           ))}
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        className="my-toast-container"
+        toastClassName="my-toast"
+        bodyClassName="my-toast-body"
+       
+        autoClose={2000}
 
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ marginTop: '100px' ,}} // Add some top margin to prevent overlap with header
+      />
     </div>
   );
 };

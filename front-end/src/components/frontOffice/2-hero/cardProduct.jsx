@@ -7,13 +7,18 @@ import {
 } from "framer-motion";
 import { FiShoppingCart, FiHeart, FiCheck } from "react-icons/fi";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Make sure to import the CSS
 import "./cardProduct.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { addItemToCart } from "../../../api/cartApi";
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
 const ProductCard = ({ _id, name, description, price, image }) => {
+  const{currentUser}=useSelector((state)=>state.userElement)
+  console.log("current user in product",currentUser)
   const ref = useRef(null);
   const [liked, setLiked] = useState(false);
   const [addedToCart, setAddedToCart] = useState(false);
@@ -48,11 +53,22 @@ const ProductCard = ({ _id, name, description, price, image }) => {
     y.set(0);
   };
 
-  const handleAddToCart = (e) => {
+  const handleAddToCart =async (e) => {
+     const addItem=await addItemToCart(currentUser._id,_id,1)
     e.stopPropagation();
     setAddedToCart(true);
 
-    
+    // Show success notification
+    toast.success(`${name} added to cart!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
     // Reset the tick icon after 2 seconds
     setTimeout(() => {
       setAddedToCart(false);
@@ -60,26 +76,26 @@ const ProductCard = ({ _id, name, description, price, image }) => {
   };
 
   return (
-     <>
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transformStyle: "preserve-3d",
-        transform,
-      }}
-      className="food-card"
-    >
-      <Link to={`/ProductInformation/${_id}`}>
-        <div className="food-image-wrapper">
-          <img src={`/${image}`} alt={name} className="food-image" />
-          <span className="food-price">{price}dt</span>
-        </div>
-         </Link>
+    <>
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transformStyle: "preserve-3d",
+          transform,
+        }}
+        className="food-card"
+      >
+        <Link to={`/ProductInformation/${_id}`}>
+          <div className="food-image-wrapper">
+            <img src={`/${image}`} alt={name} className="food-image" />
+            <span className="food-price">{price}dt</span>
+          </div>
+        </Link>
         <div
           className="food-content"
-          onClick={() => alert(`Clicked on ${name}`)}
+       
         >
           <h3 className="food-title">{name}</h3>
           <p className="food-desc">{description}</p>
@@ -103,8 +119,9 @@ const ProductCard = ({ _id, name, description, price, image }) => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 500 }}
+                 
                 >
-                  <FiCheck size={20} />
+                  <FiCheck size={20} className="tick-added" />
                 </motion.div>
               ) : (
                 <FiShoppingCart size={20} />
@@ -112,11 +129,11 @@ const ProductCard = ({ _id, name, description, price, image }) => {
             </button>
           </div>
         </div>
-   
-    </motion.div>
+      </motion.div>
+      
+    
      
-
-     </>
+    </>
   );
 };
 

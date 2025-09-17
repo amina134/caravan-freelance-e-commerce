@@ -1,3 +1,10 @@
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+
 .food-card {
   border-radius: 16px;
     padding: 20px;
@@ -118,9 +125,10 @@
 
 
 
-.cart-btn.added {
-  color: #27ae60;
-  background: rgba(39, 174, 96, 0.1);
+.cart-btn.added:focus {
+  color: #ddfb32;
+
+  
 }
 
 /* Animation for the checkmark */
@@ -134,4 +142,8 @@
   100% {
     transform: scale(1);
   }
+}
+
+.tick-added{
+  color: black;
 }
