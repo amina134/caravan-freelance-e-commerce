@@ -5,24 +5,26 @@ import {
   useMotionValue,
   useSpring,
 } from "framer-motion";
-import { FiShoppingCart, FiHeart, FiCheck } from "react-icons/fi";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Make sure to import the CSS
+import { FiShoppingCart, FiHeart
+  
+} from "react-icons/fi";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { GoTrash } from "react-icons/go";
 import "./cardProduct.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { addItemToCart } from "../../../api/cartApi";
+import { addItemToCart, updateQuantityApi } from "../../../api/cartApi";
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
 const ProductCard = ({ _id, name, description, price, image }) => {
-  const{currentUser}=useSelector((state)=>state.userElement)
-  console.log("current user in product",currentUser)
+  const { currentUser } = useSelector((state) => state.userElement);
   const ref = useRef(null);
-  const [liked, setLiked] = useState(false);
-  const [addedToCart, setAddedToCart] = useState(false);
 
+  const [liked, setLiked] = useState(false);
+  const [quantity, setQuantity] = useState(0); 
   const x = useMotionValue(0);
   const y = useMotionValue(-5);
 
@@ -32,7 +34,7 @@ const ProductCard = ({ _id, name, description, price, image }) => {
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
   const handleMouseMove = (e) => {
-    if (!ref.current) return [0, 0];
+    if (!ref.current) return;
 
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
@@ -53,87 +55,96 @@ const ProductCard = ({ _id, name, description, price, image }) => {
     y.set(0);
   };
 
-  const handleAddToCart =async (e) => {
-     const addItem=await addItemToCart(currentUser._id,_id,1)
+  // Add item to cart
+  const handleAddToCart = async (e) => {
     e.stopPropagation();
-    setAddedToCart(true);
+    setQuantity(1); // 👈 set first quantity to 1
+    await addItemToCart(currentUser._id, _id, 1);
 
-    // Show success notification
     toast.success(`${name} added to cart!`, {
       position: "top-right",
       autoClose: 2000,
       hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
     });
+  };
 
-    // Reset the tick icon after 2 seconds
-    setTimeout(() => {
-      setAddedToCart(false);
-    }, 2000);
+  // Increase qty
+  const handleIncrease = async (e) => {
+    e.stopPropagation();
+    const newQty = quantity + 1;
+    setQuantity(newQty);
+    console.log("currentUser._id :",currentUser._id,"id product ",_id,"quantity ",newQty)
+    await updateQuantityApi(currentUser._id, _id, newQty);
+  };
+
+  // Decrease qty or remove
+  const handleDecrease = async (e) => {
+    e.stopPropagation();
+    if (quantity === 1) {
+      setQuantity(0); // remove
+      toast.info(`${name} removed from cart`, { autoClose: 2000 });
+      // await removeItemFromCart(currentUser._id, _id)
+    } else {
+      const newQty = quantity - 1;
+      setQuantity(newQty);
+      await addItemToCart(currentUser._id, _id, newQty);
+    }
   };
 
   return (
-    <>
-      <motion.div
-        ref={ref}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transformStyle: "preserve-3d",
-          transform,
-        }}
-        className="food-card"
-      >
-        <Link to={`/ProductInformation/${_id}`}>
-          <div className="food-image-wrapper">
-            <img src={`/${image}`} alt={name} className="food-image" />
-            <span className="food-price">{price}dt</span>
-          </div>
-        </Link>
-        <div
-          className="food-content"
-       
-        >
-          <h3 className="food-title">{name}</h3>
-          <p className="food-desc">{description}</p>
-
-          <div className="food-icons">
-            <button
-              className={`heart-btn ${liked ? "liked" : ""}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                setLiked(!liked);
-              }}
-            >
-              <FiHeart size={20} />
-            </button>
-            <button
-              className={`cart-btn ${addedToCart ? "added" : ""}`}
-              onClick={handleAddToCart}
-            >
-              {addedToCart ? (
-                <motion.div
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 500 }}
-                 
-                >
-                  <FiCheck size={20} className="tick-added" />
-                </motion.div>
-              ) : (
-                <FiShoppingCart size={20} />
-              )}
-            </button>
-          </div>
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformStyle: "preserve-3d", transform }}
+      className="food-card"
+    >
+      <Link to={`/ProductInformation/${_id}`}>
+        <div className="food-image-wrapper">
+          <img src={`/${image}`} alt={name} className="food-image" />
+          <span className="food-price">{price}dt</span>
         </div>
-      </motion.div>
-      
-    
-     
-    </>
+      </Link>
+
+      <div className="food-content">
+
+        <h3 className="food-title">{name}</h3>
+        <p className="food-desc">{description}</p>
+
+        <div className="food-icons">
+          {/*  Like */}
+          <button
+            className={`heart-btn ${liked ? "liked" : ""}`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setLiked(!liked);
+            }}
+          >
+            <FiHeart size={20} />
+          </button>
+
+          {/* Carttttttttttttttttttttttttttttttttttttttttttttt*/}
+          {quantity === 0 ? (
+            // Initial "Add to cart"
+            <button className="cart-btn" onClick={handleAddToCart}>
+              <FiShoppingCart size={20} />
+            </button>
+          ) : (
+            // Quantity controls
+            <div className="cart-qty-controls">
+              <button onClick={handleDecrease} className="qty-btn">
+                {quantity === 1 ? <GoTrash    className="trash-icon" /> 
+                : "-"}
+              </button>
+              <span className="qty-display">{quantity}</span>
+              <button onClick={handleIncrease} className="qty-btn">
+                +
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

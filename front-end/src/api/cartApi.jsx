@@ -28,7 +28,7 @@ export const addItemToCart = async (userId, productId, quantity) => {
 };
 
 // Remo ve item from cart
-export const removeItemFromCart = async (userId, productId) => {
+export const removeItemFromCart = async (userId,productId) => {
     try {
         const response = await axios.delete(`${BASE_URL}/removeCart/${userId}/${productId._id}`);
         console.log("item to be be removed",productId._id)
