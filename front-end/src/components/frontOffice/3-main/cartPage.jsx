@@ -50,7 +50,7 @@ const CartPage = () => {
     try {
       // Call API to remove item from backend
       console.log("crt page: product id ",item.productId._id)
-      await removeItemFromCart(currentUser._id, item.productId);
+      await removeItemFromCart(currentUser._id, item.productId._id);
       
       // Update Redux store
       dispatch(removeFromCart({ itemId: item.productId._id }));

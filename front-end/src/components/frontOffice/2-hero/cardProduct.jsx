@@ -14,7 +14,7 @@ import { GoTrash } from "react-icons/go";
 import "./cardProduct.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { addItemToCart, updateQuantityApi } from "../../../api/cartApi";
+import { addItemToCart, updateQuantityApi,removeItemFromCart } from "../../../api/cartApi";
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
@@ -83,7 +83,7 @@ const ProductCard = ({ _id, name, description, price, image }) => {
     if (quantity === 1) {
       setQuantity(0); // remove
       toast.info(`${name} removed from cart`, { autoClose: 2000 });
-      // await removeItemFromCart(currentUser._id, _id)
+      await removeItemFromCart(currentUser._id, _id)
     } else {
       const newQty = quantity - 1;
       setQuantity(newQty);
