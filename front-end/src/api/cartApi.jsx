@@ -17,9 +17,9 @@ export const getCartByUserId=async(userId)=>{
 };
 
 // Add item to cart
-export const addItemToCart = async (userId, productId, quantity) => {
+export const addItemToCart = async (userId, productId, quantity,supplements) => {
     try {
-        const response = await axios.post(`${BASE_URL}/addCart/${userId}`, { productId, quantity });
+        const response = await axios.post(`${BASE_URL}/addCart/${userId}`, { productId, quantity,supplements });
         return response.data;
     } catch (error) {
         console.error('Error adding item to cart:', error);

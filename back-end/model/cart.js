@@ -20,6 +20,12 @@ const CartSchema = new mongoose.Schema({
         min: 1,
         default: 1,
       },
+      supplements: [
+    {
+      name: String,
+      price: Number
+    }
+    ]
     },
   ],
   totalPrice: {

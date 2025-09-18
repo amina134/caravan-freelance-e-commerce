@@ -1,9 +1,13 @@
 import { useParams } from 'react-router-dom';
 import './productInformation.css';
+
 import { useState, useEffect } from 'react';
 import { getUniqueProduct } from '../../../api/productApi';
 import SimilarItems from './similarItems';
-
+import { addItemToCart } from '../../../api/cartApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
+import { addToCart } from '../../../redux/cartSlice';
 const ProductInformation = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -11,8 +15,10 @@ const ProductInformation = () => {
   const [error, setError] = useState(null);
   const [selectedSupplements, setSelectedSupplements] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  
+  const { currentUser } = useSelector((state) => state.userElement);
+  const dispatch = useDispatch();
   useEffect(() => {
+
     const fetchProduct = async () => {
       try {
         setLoading(true);
@@ -51,7 +57,15 @@ const ProductInformation = () => {
     return (product.price + supplementsPrice) * quantity;
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async() => {
+    console.log("prosucrrrr",product)
+    console.log("iddddd",id)
+    await addItemToCart(currentUser._id,id,quantity,selectedSupplements)
+     dispatch(addToCart({
+    id,
+    quantity,
+    supplements: selectedSupplements
+  }));
     // Add to cart logic here
     console.log('Adding to cart:', {
       product: product.name,
@@ -59,9 +73,9 @@ const ProductInformation = () => {
       supplements: selectedSupplements,
       totalPrice: calculateTotalPrice()
     });
+  
     
-    // Show success message or redirect
-    alert('Product added to cart successfully!');
+    
   };
 
   if (loading) {
@@ -160,20 +174,20 @@ const ProductInformation = () => {
               <span className="amount">{calculateTotalPrice().toFixed(2)}dt</span>
             </div>
             
-            <button 
+             <Link  to="/userZone/cart"> <button 
               className="add-to-cart-btn"
               onClick={handleAddToCart}
               disabled={!product.isAvailable}
             >
               {product.isAvailable ? (
                 <>
-                  <i className="fas fa-shopping-cart"></i>
+              <i className="fas fa-shopping-cart"></i>
                   Add to Cart
                 </>
               ) : (
                 'Out of Stock'
               )}
-            </button>
+            </button></Link> 
           </div>
         </div>
       </div>

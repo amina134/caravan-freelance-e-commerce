@@ -21,7 +21,7 @@ const getCartByUserId = async (req, res) => {
 
 
 const addItemToCart = async (req, res) => {
-  const { productId, quantity } = req.body;
+  const { productId, quantity,supplements } = req.body;
   const { userId } = req.params;
 
   try {
@@ -38,17 +38,26 @@ const addItemToCart = async (req, res) => {
       if (!cart) {
           cart = new cartSchema({ userId, items: [] });
       }
-
+     console.log("productId",productId)
       // Step 3: Check if the item already exists in the cart
-      const existingItem = cart.items.find(item => item.productId.toString() === productId);
+   const existingItem = cart.items.find(item => {
+  const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
+  const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
 
+  return (
+    item.productId.toString() === productId &&
+    JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
+  );
+});
+    console.log("exusiting item ",existingItem)
       if (existingItem) {
-         
+          existingItem.quantity += quantity;
       } else {
-          // If item doesn't exist, add it
+         
           cart.items.unshift({
               productId: product._id, 
               quantity,
+               supplements: supplements || []
           });
       }
 
@@ -72,8 +81,10 @@ const removeItemFromCart = async (req, res) => {
         let cart = await cartSchema.findOne({ userId });
 
         if (!cart) return res.status(404).json({ msg: 'Cart not found' });
-
-        cart.items = cart.items.filter(item => item.productId.toString() !== productId);
+        
+        cart.items = cart.items.filter(item =>
+           {console.log("item.id", item._id.toString()) ;
+           return item._id.toString() !== productId });
 
         await cart.save();
         res.status(200).json({ msg: 'Item removed from cart', cart });

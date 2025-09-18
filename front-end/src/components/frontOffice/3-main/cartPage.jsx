@@ -50,10 +50,10 @@ const CartPage = () => {
     try {
       // Call API to remove item from backend
       console.log("crt page: product id ",item.productId._id)
-      await removeItemFromCart(currentUser._id, item.productId._id);
+      await removeItemFromCart(currentUser._id, item._id);
       
       // Update Redux store
-      dispatch(removeFromCart({ itemId: item.productId._id }));
+      dispatch(removeFromCart({ itemId: item._id }));
       
       console.log('Item removed from cart:', item.productId._id);
     } catch (error) {
@@ -107,10 +107,10 @@ const CartPage = () => {
                 <h3>{item.productId.name}</h3>
                 <p>{item.productId.price.toFixed(2)} dt</p>
                 {/* Display extras/supplements */}
-                {item.productId.supplements && item.productId.supplements.length > 0 && (
+                {item.supplements && item.supplements.length > 0 && (
                   <div className="cart-extras">
                     <p className="extras-label">Extras:</p>
-                    {item.productId.supplements.map((extra, index) => (
+                    {item.supplements.map((extra, index) => (
                       <div key={index} className="extra-item">
                         <span>{extra.name}</span>
                         <span>+{extra.price.toFixed(2)} dt</span>

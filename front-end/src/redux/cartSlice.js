@@ -10,7 +10,32 @@ const cartSlice=createSlice({
         setCart:(state,action)=>{
            state.items=action.payload;
         },
-        updateCartItemQuantity:(state,action)=>{
+  addToCart: (state, action) => {
+      const { id, quantity, supplements } = action.payload;
+
+      // Check if the product already exists with the same supplements
+       const existingItem = state.items.find(item => {
+        const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
+        const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
+
+        return (
+            item.productId.toString() === productId &&
+            JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
+        );
+        });
+
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        console.log("proddddduct to add ",product)
+        state.items.unshift({
+          productId: id,
+          quantity,
+          supplements: supplements || [],
+        });
+      }
+    },       
+     updateCartItemQuantity:(state,action)=>{
             const {itemId,quantity}=action.payload;
             const item=state.items.find((i)=>i.productId._id===itemId._id)
             console.log("redux item",item)
@@ -23,10 +48,10 @@ const cartSlice=createSlice({
         },
         removeFromCart:(state,action)=>{
             const {itemId}=action.payload;
-            state.items = state.items.filter(item => item.productId._id !== itemId);
+            state.items = state.items.filter(item => item._id !== itemId);
         }
         }
     }
 )
-export const{setCart,updateCartItemQuantity,removeFromCart,clearCart}=cartSlice.actions
+export const{setCart,updateCartItemQuantity,removeFromCart,clearCart,addToCart}=cartSlice.actions
 export default cartSlice.reducer;
