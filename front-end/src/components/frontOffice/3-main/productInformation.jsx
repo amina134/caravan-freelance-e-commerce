@@ -24,6 +24,7 @@ const ProductInformation = () => {
         setLoading(true);
         const data = await getUniqueProduct(id);
         setProduct(data.product);
+        console.log("prduct infooooo",product)
        
       } catch (err) {
         setError('Failed to load product information');
@@ -59,10 +60,10 @@ const ProductInformation = () => {
 
   const handleAddToCart = async() => {
     console.log("prosucrrrr",product)
-    console.log("iddddd",id)
-    await addItemToCart(currentUser._id,id,quantity,selectedSupplements)
+    
+    await addItemToCart(currentUser._id,product,quantity,selectedSupplements)
      dispatch(addToCart({
-    id,
+    product,
     quantity,
     supplements: selectedSupplements
   }));

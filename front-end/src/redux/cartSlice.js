@@ -11,25 +11,25 @@ const cartSlice=createSlice({
            state.items=action.payload;
         },
   addToCart: (state, action) => {
-      const { id, quantity, supplements } = action.payload;
+      const { product, quantity, supplements } = action.payload;
 
       // Check if the product already exists with the same supplements
        const existingItem = state.items.find(item => {
-        const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
-        const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
-
-        return (
-            item.productId.toString() === productId &&
-            JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
-        );
-        });
+  const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
+  const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
+ console.log("prodct slice ",product)
+  return (
+       item.productId._id.toString() === product._id &&
+      JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
+  );
+});
 
       if (existingItem) {
         existingItem.quantity += quantity;
       } else {
         console.log("proddddduct to add ",product)
         state.items.unshift({
-          productId: id,
+          productId: product,
           quantity,
           supplements: supplements || [],
         });

@@ -38,14 +38,18 @@ const addItemToCart = async (req, res) => {
       if (!cart) {
           cart = new cartSchema({ userId, items: [] });
       }
-     console.log("productId",productId)
+    
       // Step 3: Check if the item already exists in the cart
    const existingItem = cart.items.find(item => {
   const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
   const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
+  console.log("summplements 1", JSON.stringify(itemSupplementsIds))
+   console.log("summplements 2", JSON.stringify(newSupplementsIds))
+   console.log(" item.productId.toString(", item.productId.toString())
+     console.log("productId.toString(",productId)
 
   return (
-    item.productId.toString() === productId &&
+     item.productId.toString() === productId._id &&
     JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
   );
 });
