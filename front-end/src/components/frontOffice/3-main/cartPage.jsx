@@ -97,7 +97,7 @@ const CartPage = () => {
       ) : (
         <div className="cart-items">
           {itemsRedux.map((item) => (
-            <div key={item._id} className="cart-item">
+            <div  key={item._id || item.productId._id}  className="cart-item">
               <img
                 src={`/${item.productId.image}`} 
                 alt={item.productId.name}
