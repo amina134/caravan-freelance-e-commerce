@@ -4,10 +4,10 @@ import './productInformation.css';
 import { useState, useEffect } from 'react';
 import { getUniqueProduct } from '../../../api/productApi';
 import SimilarItems from './similarItems';
-import { addItemToCart } from '../../../api/cartApi';
+import { addItemToCart, getCartByUserId } from '../../../api/cartApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
-import { addToCart } from '../../../redux/cartSlice';
+import { addToCart,setCart } from '../../../redux/cartSlice';
 const ProductInformation = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -24,7 +24,7 @@ const ProductInformation = () => {
         setLoading(true);
         const data = await getUniqueProduct(id);
         setProduct(data.product);
-        console.log("prduct infooooo",product)
+        console.log("prduct infooooo",data.product)
        
       } catch (err) {
         setError('Failed to load product information');
@@ -61,19 +61,17 @@ const ProductInformation = () => {
   const handleAddToCart = async() => {
     console.log("prosucrrrr",product)
     
-    await addItemToCart(currentUser._id,product,quantity,selectedSupplements)
-     dispatch(addToCart({
-    product,
-    quantity,
-    supplements: selectedSupplements
-  }));
+       await addItemToCart(currentUser._id, product._id, quantity, selectedSupplements);
+       console.log("the prod to add in redux is :",product,"qty:",quantity,"supplements",selectedSupplements)
+       const updatedCart=await getCartByUserId(currentUser._id);
+      dispatch(setCart(updatedCart.cart.items));
     // Add to cart logic here
-    console.log('Adding to cart:', {
-      product: product.name,
-      quantity,
-      supplements: selectedSupplements,
-      totalPrice: calculateTotalPrice()
-    });
+    // console.log('Adding to cart:', {
+    //   product: product.name,
+    //   quantity,
+    //   supplements: selectedSupplements,
+      
+    // });
   
     
     

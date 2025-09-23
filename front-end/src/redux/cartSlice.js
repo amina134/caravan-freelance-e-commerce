@@ -17,9 +17,9 @@
         const existingItem = state.items.find(item => {
     const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
     const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
-  console.log("prodct slice ",product)
+      console.log("proeuct in process of adding  ",product)
     return (
-        item.productId._id.toString() === product._id &&
+        item.productId._id.toString() === product._id.toString() &&
         JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
     );
   });
@@ -27,12 +27,14 @@
         if (existingItem) {
           existingItem.quantity += quantity;
         } else {
-          console.log("proddddduct to add ",product)
+          console.log("proddddduct to add redux ",product)
           state.items.unshift({
             productId: product,
             quantity,
             supplements: supplements || [],
+            _id: Date.now().toString()
           });
+          console.log("ITEMS IN REDUX",state.items);
         }
       },       
       updateCartItemQuantity:(state,action)=>{

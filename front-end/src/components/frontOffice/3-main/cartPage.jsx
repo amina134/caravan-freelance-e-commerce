@@ -16,6 +16,7 @@ const CartPage = () => {
     if (currentUser && currentUser._id) {
       const fetchCartItems = async () => {
         try {
+
           const response = await getCartByUserId(currentUser._id);
           console.log('response items', response.cart.items);
           dispatch(setCart(response.cart.items));
@@ -104,8 +105,8 @@ const CartPage = () => {
                 className="cart-item-img"
               />
               <div className="cart-item-info">
-                {/* <h3>{item.productId.name}</h3>
-                <p>{item.productId.price.toFixed(2)} dt</p> */}
+                <h3>{item.productId.name}</h3>
+                <p>{item.productId.price.toFixed(2)} dt</p>
                 {/* Display extras/supplements */}
                 {item.supplements && item.supplements.length > 0 && (
                   <div className="cart-extras">

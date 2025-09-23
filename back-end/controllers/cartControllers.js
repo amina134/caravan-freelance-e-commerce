@@ -49,7 +49,7 @@ const addItemToCart = async (req, res) => {
      console.log("productId.toString(",productId)
 
   return (
-     item.productId.toString() === productId._id &&
+     item.productId.toString() === productId.toString() && 
     JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)
   );
 });
