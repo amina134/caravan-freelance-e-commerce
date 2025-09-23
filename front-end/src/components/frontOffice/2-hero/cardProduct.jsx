@@ -15,15 +15,16 @@ import "./cardProduct.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { addItemToCart, updateQuantityApi,removeItemFromCart } from "../../../api/cartApi";
+import { addFavorites,removeFavorites } from "../../../api/userApi";
 
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
-const ProductCard = ({ _id, name, description, price, image }) => {
+const ProductCard = ({ _id, name, description, price, image,liked: initialLiked = false  }) => {
   const { currentUser } = useSelector((state) => state.userElement);
   const ref = useRef(null);
 
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(initialLiked);
   const [quantity, setQuantity] = useState(0); 
   const x = useMotionValue(0);
   const y = useMotionValue(-5);
@@ -90,6 +91,23 @@ const ProductCard = ({ _id, name, description, price, image }) => {
       await addItemToCart(currentUser._id, _id, newQty);
     }
   };
+  const handleToggleFavorite = async (e) => {
+  e.stopPropagation();
+  try {
+    if (liked) {
+      // If already liked, remove from favorites
+      await removeFavorites(currentUser._id, _id);
+      setLiked(false);
+    } else {
+      // If not liked, add to favorites
+      await addFavorites(currentUser._id, _id);
+      setLiked(true);
+    }
+  } catch (err) {
+    console.error("Error updating favorites:", err);
+    toast.error("Could not update favorites");
+  }
+};
 
   return (
     <motion.div
@@ -115,10 +133,7 @@ const ProductCard = ({ _id, name, description, price, image }) => {
           {/*  Like */}
           <button
             className={`heart-btn ${liked ? "liked" : ""}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setLiked(!liked);
-            }}
+            onClick={handleToggleFavorite}
           >
             <FiHeart size={20} />
           </button>

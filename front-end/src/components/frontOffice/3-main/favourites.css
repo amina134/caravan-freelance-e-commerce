@@ -2,7 +2,7 @@
     display: flex;
   width: 100vw;
   min-height: 100vh;
-  background: #723030;
+  /* background: #723030; */
   gap: 24px;
   padding: 24px;
   box-sizing: border-box;

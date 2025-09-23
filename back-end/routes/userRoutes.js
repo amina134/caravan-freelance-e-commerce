@@ -22,7 +22,7 @@ userRoute.post('/signup', SignUpValidation, Validation, signUp);
 //http://localhost:4100/user/myaccount
 userRoute.get('/myaccount', AuthValidation, fetchAccount)
 //http://localhost:4100/user/addFavourites
-userRoute.post('/addFavourites',addFavorites)
+userRoute.post('/addFavorites',addFavorites)
 
 //http://localhost:4100/user/removeFavorites
 userRoute.delete('/removeFavorites',removeFavorites)

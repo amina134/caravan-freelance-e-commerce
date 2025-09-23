@@ -60,3 +60,34 @@ export const fetchAllUsers = async () => {
     const { data } = await axios.get(`http://localhost:${API_URL}/user/allUsers`);
     return data;
 }
+  export const fetchFavorites = async (userId) => {
+        try {
+          const res = await axios.get(`http://localhost:4100/user/getFavorites/${userId}`);
+          return res.data.favorites;
+        } catch (err) {
+          console.error("Error fetching favorites:", err);
+        }
+      };
+
+export const addFavorites = async (userId, productId) => {
+  try {
+    const res = await axios.post(`http://localhost:${API_URL}/user/addFavorites`, { userId, productId });
+    return res.data;
+  } catch (error) {
+    console.error("Error adding favorite:", error);
+    throw error;
+  }
+};
+
+// Remove product from favorites
+export const removeFavorites = async (userId, productId) => {
+  try {
+    const res = await axios.delete(`http://localhost:${API_URL}/user/removeFavorites`, { 
+      data: { userId, productId } 
+    });
+    return res.data;
+  } catch (error) {
+    console.error("Error removing favorite:", error);
+    throw error;
+  }
+};
