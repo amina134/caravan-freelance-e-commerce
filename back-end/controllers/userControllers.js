@@ -131,4 +131,61 @@ const fetchAccount = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch account" });
   }
 };
-module.exports={getAllUsers,addUser,getUserById,updateUser,deleteUser,signIn,signUp,fetchAccount}
+const addFavorites = async (req, res) => {
+  try {
+    const { userId, productId } = req.body;
+
+    // find the user
+    const user = await userSchema.findById(userId);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    // check if product already exists in favourites
+    if (user.favorites.includes(productId)) {
+      return res.status(400).json({ error: "Product already in favourites" });
+    }
+
+    // add product to favourites
+    user.favorites.push(productId);
+    await user.save();
+
+    res.status(200).json({ msg: "Product added to favourites", favorites: user.favorites });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error adding to favourites" });
+  }
+};
+const removeFavorites = async (req, res) => {
+  try {
+    const { userId, productId } = req.body;
+
+    const user = await userSchema.findById(userId);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
+    // remove the product from favourites
+    user.favorites = user.favorites.filter(id => id.toString() !== productId);
+    await user.save();
+
+    res.status(200).json({ msg: "Product removed from favourites", favorites: user.favorites });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error removing from favourites" });
+  }
+};
+// Get all favourite products for a user
+const getFavorites = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await userSchema.findById(id).populate('favorites');
+    if (!user) return res.status(404).json({ error: "User not found" });
+    
+    res.status(200).json({
+      msg: "Favourites fetched successfully",
+      favorites: user.favorites
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to fetch favourites" });
+  }
+};
+module.exports={getAllUsers,addUser,getUserById,updateUser,deleteUser,signIn,signUp,fetchAccount,removeFavorites,addFavorites,getFavorites}

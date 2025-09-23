@@ -36,7 +36,7 @@ const Navbar = () => {
             
             <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
                 <ul>
-                    <li>Home</li>
+                <li>Home</li>
                     <Link to="/Menu"><li>Menu</li></Link>
                     <li>Contact</li>
                     <li>About</li>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <div className="icon-button" onClick={toggleSearch}>
                     <BsSearch className="search-toggle-icon" />
                 </div>
-                <FiHeart className='heart-icon-nav'/>
+                 <Link to="/userZone/favourites"><FiHeart className='heart-icon-nav'/></Link>
             <Link to="/userZone/cart">  <FiShoppingCart className='cart-icon-nav' /></Link>
 
                 {/* User Dropdown Container */}
