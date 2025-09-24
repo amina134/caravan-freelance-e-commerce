@@ -31,7 +31,13 @@ export const postUserSignIn =async(values)=>{
 }
 
 export const updateUser = async (id, values) => {
-    const updateUser = await axios.put(`http://localhost:${API_URL}/user/updateUser/${id}`, { ...values });
+    try {
+    const res = await axios.put(`http://localhost:${API_URL}/user/updateUser/${id}`, { ...values });
+    return res.data;
+  } catch (err) {
+    console.error("Error updating user:", err);
+    throw err; 
+  }
 }
 
 

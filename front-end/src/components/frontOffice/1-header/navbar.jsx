@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { BsSearch } from "react-icons/bs";
 import { FiUser, FiShoppingCart, FiHeart } from "react-icons/fi";
 import './navbar.css';
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Login from '../6-sign/login';
-
+import {logout} from '../../../redux/userSlice'
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
     const [showLoginForm, setShowLoginForm] = useState(false);
-
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
     const { token } = useSelector((state) => state.userElement);
     const isLoggedIn = !!token;
 
@@ -27,6 +28,10 @@ const Navbar = () => {
             setIsMenuOpen(false);
         }
     };
+    const logoutUser=()=>{
+        dispatch(logout())
+        navigate('/')
+    }
 
     return (
         <div className='navbar'>
@@ -72,9 +77,10 @@ const Navbar = () => {
                         <div className="user-dropdown">
                             <ul>
                                 <li>
-                                    <Link to="/profile">Profile</Link>
+                                    <Link to="userZone/profile">Profile</Link>
                                 </li>
-                                <li onClick={() => console.log("Logout clicked")}>
+                                <li onClick={() => {console.log("Logout clicked");
+                                                  logoutUser();}}>
                                     Logout
                                 </li>
                             </ul>

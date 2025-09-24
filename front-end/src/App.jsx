@@ -14,6 +14,7 @@ import ProductInformation from './components/frontOffice/3-main/productInformati
 import UserZone from './components/backOffice/user/userZone';
 import CartPage from './components/frontOffice/3-main/cartPage';
 import Favourites from './components/frontOffice/3-main/favourites';
+import Profile from './components/frontOffice/3-main/profile';
 function App() {
 
   const products=useSelector(state=>state.productElement)
@@ -47,6 +48,7 @@ function App() {
         <Route path="ProductInformation/:id" element={<ProductInformation/>}/>
         <Route path='cart' element={<CartPage/>}/>
         <Route path='favourites' element={<Favourites/>}/>
+        <Route path='profile' element={<Profile/>}/>
       </Route>
     </Routes>
    

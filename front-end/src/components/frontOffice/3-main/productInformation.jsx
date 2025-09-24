@@ -72,8 +72,7 @@ const ProductInformation = () => {
     //   supplements: selectedSupplements,
       
     // });
-  
-    
+ 
     
   };
 
