@@ -20,7 +20,7 @@ import { addFavorites,removeFavorites } from "../../../api/userApi";
 const ROTATION_RANGE = 32.5;
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
-const ProductCard = ({ _id, name, description, price, image,liked: initialLiked = false  }) => {
+const ProductCard = ({ _id, name, description, price, image,liked: initialLiked = false ,onUnlike }) => {
   const { currentUser } = useSelector((state) => state.userElement);
   const ref = useRef(null);
 
@@ -94,16 +94,18 @@ const ProductCard = ({ _id, name, description, price, image,liked: initialLiked 
   const handleToggleFavorite = async (e) => {
   e.stopPropagation();
   try {
-    if (liked) {
-      // If already liked, remove from favorites
-      await removeFavorites(currentUser._id, _id);
-      setLiked(false);
-    } else {
-      // If not liked, add to favorites
-      await addFavorites(currentUser._id, _id);
-      setLiked(true);
-    }
-  } catch (err) {
+      if (liked) {
+        await removeFavorites(currentUser._id, _id);
+        setLiked(false);
+
+        // 🔴 notify parent (Favourites)
+        if (onUnlike) {
+          onUnlike(_id);
+        }
+      } else {
+        await addFavorites(currentUser._id, _id);
+        setLiked(true);
+      } }catch (err) {
     console.error("Error updating favorites:", err);
     toast.error("Could not update favorites");
   }

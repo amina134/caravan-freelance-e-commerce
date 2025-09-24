@@ -1,11 +1,78 @@
-.favourites-container{
-    display: flex;
-  width: 100vw;
-  min-height: 100vh;
-  /* background: #723030; */
-  gap: 24px;
-  padding: 24px;
-  box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+/* Container */
+.favourites-container {
+ max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+font-family: 'Raleway', sans-serif;
+  line-height: 1.6;
 
+
+  min-height: 100vh;
+
+}
+
+/* Title */
+
+.fav-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: #2d3748;
+  position: relative;
+  background: linear-gradient(135deg,var(--primary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.fav-title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--secondary) 0%,var(--primary) 100%);
+  border-radius: 2px;
+}
+
+/* No favourites message */
+.no-fav {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 50px;
+}
+
+/* Grid container for products */
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  padding: 10px 0;
+}
+
+/* Product card wrapper responsiveness */
+.fav-grid > * {
+  width: 100%;
+}
+
+/* Optional: adjust for mobile */
+@media (max-width: 768px) {
+  .fav-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fav-title {
+    font-size: 1.5rem;
+  }
+
+  .fav-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
 }
