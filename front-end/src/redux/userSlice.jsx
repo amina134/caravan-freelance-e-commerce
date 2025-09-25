@@ -46,6 +46,11 @@ const userSlice = createSlice({
     },
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
+       const token = state.token || localStorage.getItem('token') || sessionStorage.getItem('token');
+  if (token) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(action.payload));
+  }
     },
   },
 });

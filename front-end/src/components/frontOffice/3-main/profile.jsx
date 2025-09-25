@@ -6,9 +6,10 @@ import { setCurrentUser } from '../../../redux/userSlice';
 import { updateUser } from '../../../api/userApi';
 
 const Profile = () => {
-    
+
   const [isEditing, setIsEditing] = useState(false);
   const { currentUser } = useSelector((state) => state.userElement);
+    console.log("cuurent user debut",currentUser);
   const dispatch=useDispatch();
   const [customerData, setCustomerData] = useState(
   {...currentUser}

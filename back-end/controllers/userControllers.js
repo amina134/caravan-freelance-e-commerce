@@ -44,25 +44,38 @@ const getUserById = async (req, res) => {
         res.send('You have a problem');
     }
 }
-// update user by id 
+
+
 const updateUser = async (req, res) => {
-    try {
-        const { id } = req.params;
-        console.log("id", id);
-         if (req.body.password) {
-            const saltRounds = 10;
-            const bcrypt = require('bcrypt');
-            const hash = bcrypt.hashSync(req.body.password, saltRounds);
-            req.body.password = hash;
-        }
-        const updatedUser = await userSchema.findByIdAndUpdate(id, { $set: { ...req.body } },{new:true});
-        console.log("Updated User", updatedUser);
-        res.status(200).json({ msg: 'User updated', updatedUser });
-    } catch (error) {
-        console.log(error);
-        res.send('You have a problem');
+  try {
+    const { id } = req.params;
+    console.log("id", id);
+
+    const updates = { ...req.body };
+
+    // Only hash password if it's a NEW plain password
+    if (updates.password) {
+      const saltRounds = 10;
+      updates.password = bcrypt.hashSync(updates.password, saltRounds);
+    } else {
+      // If no password provided → don't overwrite it
+      delete updates.password;
     }
-}
+
+    const updatedUser = await userSchema.findByIdAndUpdate(
+      id,
+      { $set: updates },
+      { new: true }
+    );
+
+    console.log("Updated User", updatedUser);
+    res.status(200).json({ msg: "User updated", updatedUser });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "You have a problem" });
+  }
+};
+
 // delete a user 
 const deleteUser = async (req, res) => {
     try {
