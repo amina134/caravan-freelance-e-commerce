@@ -117,28 +117,22 @@ const Profile = () => {
           <div className="sidebar">
             <div className="card">
               <div className="avatar"><User size={32} /></div>
-              <h3>{customerData.name}</h3>
-              <p>Loyal Customer</p>
-              <div>
+            
+              <p>{customerData.userName}</p>
+              {/* <div>
                 <p style={{ fontSize: '1.5rem', fontWeight: 'bold', color:'#f97316'}}>127</p>
                 <p>Total Orders</p>
-              </div>
+              </div> */}
             </div>
 
-            <div className="card favorites">
+            {/* <div className="card favorites">
               <h3><Heart size={18} /> Favorite Items</h3>
               {favoriteItems.map((item, index) => (
                 <div key={index}><Heart size={14} /> {item}</div>
               ))}
-            </div>
+            </div> */}
 
-            <div className="card quick-actions">
-              <h3>Quick Actions</h3>
-              <button>Make a Reservation</button>
-              <button>Order Online</button>
-              <button>View Menu</button>
-              <button>Contact Us</button>
-            </div>
+            
           </div>
         </div>
       </div>

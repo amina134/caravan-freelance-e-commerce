@@ -13,6 +13,15 @@ const productSchema = new mongoose.Schema({
   },
   soldCount: { type: Number, default: 0 },
   stock: { type: Number, default: 5 },
+  reviews: [
+    {
+      user: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+      rating: { type: Number, required: true, min: 1, max: 5 },
+      comment: { type: String, required: true },
+      createdAt: { type: Date, default: Date.now }
+    }
+  ],
+  averageRating: { type: Number, default: 0 },
   supplements: [
     {
       name: { type: String, required: true },

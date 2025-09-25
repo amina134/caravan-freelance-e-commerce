@@ -72,5 +72,69 @@ const getAllProducts=async(req,res)=>{
     }
 }
 
+///// fir the reviews////
+// Add a review to a product
+const addReview = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { userId, rating, comment } = req.body;
 
-module.exports={getProduct,addProduct,updateProduct,deleteProduct,getAllProducts}
+        // Find product
+        const product = await productSchema.findById(id);
+        if (!product) return res.status(404).json({ msg: 'Product not found' });
+
+      
+        const existingReview = product.reviews.find(r => r.user.toString() === userId);
+        if (existingReview) {
+            return res.status(400).json({ msg: 'You have already reviewed this product' });
+        }
+
+        // Add review
+        product.reviews.push({ user: userId, rating, comment });
+
+        // Update average rating
+        product.averageRating = product.reviews.reduce((acc, r) => acc + r.rating, 0) / product.reviews.length;
+
+        await product.save();
+        
+        res.status(201).json({ msg: 'Review added', reviews: product.reviews, averageRating: product.averageRating });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: 'Server error' });
+    }
+};
+
+// Get all reviews of a product
+const getReviews = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await productSchema.findById(id).populate('reviews.user', 'userName email'); // populate user info
+        if (!product) return res.status(404).json({ msg: 'Product not found' });
+
+        res.json({ reviews: product.reviews, averageRating: product.averageRating });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: 'Server error' });
+    }
+};
+
+// Optional: Delete a review
+const deleteReview = async (req, res) => {
+    try {
+        const { id, reviewId } = req.params;
+        const product = await productSchema.findById(id);
+        if (!product) return res.status(404).json({ msg: 'Product not found' });
+
+        product.reviews = product.reviews.filter(r => r._id.toString() !== reviewId);
+        product.averageRating = product.reviews.length
+            ? product.reviews.reduce((acc, r) => acc + r.rating, 0) / product.reviews.length
+            : 0;
+
+        await product.save();
+        res.json({ msg: 'Review deleted', reviews: product.reviews, averageRating: product.averageRating });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: 'Server error' });
+    }
+};
+module.exports={getProduct,addProduct,updateProduct,deleteProduct,getAllProducts,deleteReview,addReview,getReviews}
