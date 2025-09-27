@@ -18,6 +18,7 @@
     const itemSupplementsIds = (item.supplements || []).map(s => s._id.toString()).sort();
     const newSupplementsIds = (supplements || []).map(s => s._id.toString()).sort();
       console.log("proeuct in process of adding  ",product)
+      
     return (
         item.productId._id.toString() === product._id.toString() &&
         JSON.stringify(itemSupplementsIds) === JSON.stringify(newSupplementsIds)

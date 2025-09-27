@@ -23,3 +23,23 @@ export const getUniqueProduct = async (id) => {
     console.log("data from axiiiiiios",data)
     return data;
 }
+
+
+// for the reviews 
+export const fetchReviews = async (id) => {
+  const { data } = await axios.get(`http://localhost:${API_URL}/product/getReviews/${id}`);
+  console.log("data reviews",data)
+  return data;
+};
+
+// Add review
+export const addReview = async (id, review) => {
+  const { data } = await axios.post(`http://localhost:${API_URL}/product/addReview/${id}`, review);
+  return data;
+};
+
+// Delete review
+export const deleteReview = async (id, reviewId) => {
+  const { data } = await axios.delete(`http://localhost:${API_URL}/product/deleteReview/${id}/${reviewId}`);
+  return data;
+};

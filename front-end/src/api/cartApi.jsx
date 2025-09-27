@@ -62,3 +62,6 @@ export const updateQuantityApi = async (userId, productId, newQuantity) => {
         throw error;
     }
 };
+
+
+

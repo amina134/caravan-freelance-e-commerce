@@ -8,6 +8,7 @@ import { addItemToCart, getCartByUserId } from '../../../api/cartApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import { addToCart,setCart } from '../../../redux/cartSlice';
+import Reviews from '../2-hero/reviews';
 const ProductInformation = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -191,6 +192,9 @@ const ProductInformation = () => {
       </div>
       <div>
         <SimilarItems foodCat={product.category} foodId={id}/>
+      </div>
+      <div className='reviews-part'>
+        <Reviews productId={id} />
       </div>
     </div>
   );
