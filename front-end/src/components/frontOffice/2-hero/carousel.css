@@ -144,6 +144,7 @@
   transition: all 0.3s ease;
   border: none;
   min-width: 150px;
+ 
   text-align: center;
 }
 
@@ -155,9 +156,9 @@
 }
 
 .btn-primary:hover {
-  background: #b51d1d;
+  
   transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(214, 40, 40, 0.4);
+ 
 }
 
 .btn-secondary {
@@ -165,12 +166,12 @@
   border: 0.3px solid black;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
-  color: var(--text-dark);
+   color: black !important;
 }
 
 .btn-secondary:hover {
   background: var(--text-dark);
-  color: white;
+
   transform: translateY(-3px);
 }
 

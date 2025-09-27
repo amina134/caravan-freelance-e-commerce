@@ -5,6 +5,7 @@
   import { gsap } from "gsap";
   import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
   import React, { useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
   import * as motion from "motion/react-client"
   const CarouselPage = () => {
@@ -50,7 +51,7 @@
       <h6 className="text3-title">Fast. Flavorful. Unforgettable.</h6>
       <div className="slide1-buttons">
         
-        <button className="btn-secondary">See Menu</button>
+       <Link to='/Menu'> <button className="btn-secondary">See Menu</button></Link>
         <button className="btn-primary">Order Now</button>
       </div>
       </div>

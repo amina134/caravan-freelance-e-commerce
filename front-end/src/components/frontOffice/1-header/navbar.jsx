@@ -36,7 +36,7 @@ const Navbar = () => {
     return (
         <div className='navbar'>
             <div className='logo'>
-                <img src="/logo.png" alt="Caravan" />
+                <img src="/logoo.png" alt="Caravan" />
             </div>
             
             <div className={`nav ${isMenuOpen ? 'active' : ''}`}>
