@@ -96,6 +96,7 @@ const ProductInformation = () => {
   }
 
   return (
+    <div className='info-cont'>
     <div className="info-layout">
       <div className="product-container">
         {/* Product Image */}
@@ -196,6 +197,7 @@ const ProductInformation = () => {
       <div className='reviews-part'>
         <Reviews productId={id} />
       </div>
+    </div>
     </div>
   );
 };

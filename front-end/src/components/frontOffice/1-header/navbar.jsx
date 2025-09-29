@@ -10,6 +10,11 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchVisible, setIsSearchVisible] = useState(false);
     const [showLoginForm, setShowLoginForm] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const products = useSelector(state => state.productElement || []); // get the products 
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
+    console.log("productssss navbarrrr",products)
     const dispatch=useDispatch();
     const navigate=useNavigate();
     const { token } = useSelector((state) => state.userElement);
@@ -20,6 +25,16 @@ const Navbar = () => {
         if (!isMenuOpen && isSearchVisible) {
             setIsSearchVisible(false);
         }
+    };
+    /// search icon logic 
+     const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    const results = products.filter((p) =>
+    p.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredProducts(results);
+  
     };
 
     const toggleSearch = () => {
@@ -49,12 +64,33 @@ const Navbar = () => {
             </div>
             
             <div className={`search-container ${isSearchVisible ? 'active' : ''}`}>
-                <input
-                    type="text"
-                    className="search-input"
-                    placeholder="What are you looking for?"
-                />
-                <span className="search-icon"><BsSearch /></span>
+            <input
+                type="text"
+                className="search-input"
+                placeholder="What are you looking for?"
+                value={searchTerm}
+                onChange={handleChange}
+            />
+            <span className="search-icon"><BsSearch /></span>
+
+            {searchTerm && (
+                <div className="search-results">
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map((p) => (
+                    <div
+                        key={p._id}
+                        className="search-result-item"
+                        onClick={() => navigate(`/ProductInformation/${p._id}`)} // example navigation
+
+                    >
+                        {p.name}
+                    </div>
+                    ))
+                ) : (
+                    <div className="no-results">No results found</div>
+                )}
+                </div>
+            )}
             </div>
             
             <div className='icons-nav'>

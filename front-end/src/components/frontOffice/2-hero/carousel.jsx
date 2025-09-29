@@ -4,11 +4,17 @@
   import './carousel.css';
   import { gsap } from "gsap";
   import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-  import React, { useEffect, useRef } from "react";
+  import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
   import * as motion from "motion/react-client"
   const CarouselPage = () => {
+       const products = useSelector(state => state.productElement || []); // get the products 
+       const [burger,setBurger]=useState({})
+       const [hotDog,setHotDog]=useState({})
+       const [poutine,setPoutine]=useState({})
+       
 
 
 
@@ -42,6 +48,7 @@ import { Link, useNavigate } from "react-router-dom";
         infiniteLoop={true}
         showThumbs={false}
         autoPlay={false}
+        showStatus={false} 
       >
       <div className="slide1">
     <div className="part1-slide">
@@ -56,11 +63,13 @@ import { Link, useNavigate } from "react-router-dom";
       </div>
       </div>
       <div className='categories-slide1'>
-        <div className='category-slide'>
-          <img className='category-img ' src='productImages/pizza1.png'/>
+        <Link to="/Menu" state={{ category: "Pizza" }}>
+        <div className="category-slide">
+          <img className="category-img" src="productImages/pizza1.png" />
           <h4>Pizza</h4>
-          <h6>Delicous and cheesy</h6>
+          <h6>Delicious and cheesy</h6>
         </div>
+        </Link>
         <div className='category-slide'>
           <img className='category-img ' src='productImages/Subject 14.png'/>
           <h4>Hot Dog</h4>

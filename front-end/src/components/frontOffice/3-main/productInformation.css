@@ -1,15 +1,16 @@
 /* ===== Reset Base ===== */
+.info-cont{
 
+}
 
 /* ===== Layout ===== */
 .info-layout {
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin-left: 100px ;
-  min-height: 100vh;
+ 
+
   display: flex;
   align-items: center;
-  justify-content: center;
+
+
   flex-direction: column;
 
 }
@@ -18,7 +19,7 @@
 .product-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-
+ 
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.313);
