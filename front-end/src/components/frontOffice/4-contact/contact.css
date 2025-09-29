@@ -1,0 +1,173 @@
+/* ===== Container ===== */
+.contact-container {
+  width: 100vw;
+  margin: 0 auto;
+  padding: 40px 20px;
+    padding: 2rem 1rem;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+
+}
+
+/* ===== Header ===== */
+.contact-header {
+font-size: 2.75rem;
+  font-weight: 800;
+  color: #2d3748;
+  position: relative;
+  background: linear-gradient(135deg,var(--primary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.contact-header h1 {
+  font-size: 2rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ===== Content Grid ===== */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ===== Info Section ===== */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.info-section {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.info-section h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.info-section p {
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.contact-detail {
+  color: #007bff;
+  font-weight: 500;
+}
+
+/* ===== Form Section ===== */
+.contact-form-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input,
+.form-textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  font-family: inherit;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ===== Submit Button ===== */
+.submit-btn {
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  background: #0056b3;
+}
+
+.submit-btn:active {
+  background: #004085;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form-container {
+    padding: 20px;
+  }
+
+  .info-section {
+    padding: 15px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 20px 15px;
+  }
+
+  .contact-header h1 {
+    font-size: 1.6rem;
+  }
+}

@@ -15,6 +15,8 @@ import UserZone from './components/backOffice/user/userZone';
 import CartPage from './components/frontOffice/3-main/cartPage';
 import Favourites from './components/frontOffice/3-main/favourites';
 import Profile from './components/frontOffice/3-main/profile';
+import About from './components/frontOffice/4-contact/about';
+import Contact from './components/frontOffice/4-contact/contact';
 function App() {
 
   const products=useSelector(state=>state.productElement)
@@ -40,7 +42,8 @@ function App() {
       <Route path='/Menu' element={<Menu/>}/>
 
       <Route path="/ProductInformation/:id" element={<ProductInformation/>}/>
-
+      <Route path="/About-us" element={<About/>}/>
+      <Route path="/Contact" element={<Contact/>}/>
 
       <Route path='/userZone' element={<UserZone/>}>
          
@@ -51,6 +54,9 @@ function App() {
         <Route path='cart' element={<CartPage/>}/>
         <Route path='favourites' element={<Favourites/>}/>
         <Route path='profile' element={<Profile/>}/>
+        <Route path="About-us" element={<About/>}/>
+        <Route path="Contact" element={<Contact/>}/>
+        
       </Route>
     </Routes>
    

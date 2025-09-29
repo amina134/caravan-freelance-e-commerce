@@ -1,7 +1,8 @@
 import './menu.css';
 import { useSelector } from 'react-redux';
 import ProductCard from '../2-hero/cardProduct';
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
+import { useLocation } from "react-router-dom";
 import { ToastContainer } from 'react-toastify'; // Import ToastContainer
 import 'react-toastify/dist/ReactToastify.css';
 const Menu = () => {
@@ -11,7 +12,7 @@ const Menu = () => {
   const [sortOption, setSortOption] = useState("bestSellers");
 
   const [activeFilters, setActiveFilters] = useState(0);
-
+  const location = useLocation();
   const categories = ["All", "Pizza", "Burger", "Hot Dog", "Poutine"];
   const sortOptions = [
     { value: "bestSellers", label: "Best Sellers" },
@@ -51,7 +52,11 @@ const Menu = () => {
   useState(() => {
     updateActiveFiltersCount();
   }, [activeCategory, priceRange]);
-
+  useEffect(() => {
+    if (location.state?.category) {
+      setActiveCategory(location.state.category);
+    }
+  }, [location.state]);
   return (
     <div className="menu-layout">
 

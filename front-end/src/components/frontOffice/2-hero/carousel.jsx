@@ -10,10 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
   import * as motion from "motion/react-client"
   const CarouselPage = () => {
-       const products = useSelector(state => state.productElement || []); // get the products 
-       const [burger,setBurger]=useState({})
-       const [hotDog,setHotDog]=useState({})
-       const [poutine,setPoutine]=useState({})
+    
        
 
 
@@ -59,27 +56,31 @@ import { useDispatch, useSelector } from "react-redux";
       <div className="slide1-buttons">
         
        <Link to='/Menu'> <button className="btn-secondary">See Menu</button></Link>
-        <button className="btn-primary">Order Now</button>
+         <Link to='/Menu'><button className="btn-primary">Order Now</button></Link>
       </div>
       </div>
       <div className='categories-slide1'>
         <Link to="/Menu" state={{ category: "Pizza" }}>
         <div className="category-slide">
           <img className="category-img" src="productImages/pizza1.png" />
-          <h4>Pizza</h4>
+          <h4  className='h4-car'>Pizza</h4>
           <h6>Delicious and cheesy</h6>
         </div>
         </Link>
+        <Link to="/Menu" state={{category:"Hot Dog"}}>
         <div className='category-slide'>
           <img className='category-img ' src='productImages/Subject 14.png'/>
-          <h4>Hot Dog</h4>
+          <h4  className='h4-car'>Hot Dog</h4>
           <h6>Delicous and cheesy</h6>
         </div>
+        </Link>
+        <Link to="/Menu" state={{category:"Burger"}}>
         <div className='category-slide'>
-          <img  className='category-img 'src='bur.webp'/>
-          <h4>Poutine</h4>
+          <img  className='category-img ' src='productImages/burger.png'/>
+          <h4 className='h4-car'>Burger</h4>
           <h6>Delicous and cheesy</h6>
         </div>
+        </Link>
       </div>
 
     
@@ -124,21 +125,27 @@ import { useDispatch, useSelector } from "react-redux";
         
         
         <div className='slide2'>
+          <Link to="/Menu" state={{ category: "Pizza" }}>
           <div className='car hot1'>
               <div className='hot-dog-carousel'>
                   <img src='productImages/pizza1.png'/>
               </div>
           </div>
+          </Link>
+          <Link to="/Menu" state={{category:"Burger"}}>
           <div className='car hot2'>
               <div className='hot-dog-carousel'>
-                  <img src='productImages/Subject 13.png'/>
+                  <img src='productImages/burger.png'/>
               </div>
           </div>
+          </Link>
+           <Link to="/Menu" state={{category:"Hot Dog"}}>
           <div className='car hot3'>
                 <div className='hot-dog-carousel'>
                   <img src='productImages/Subject 14.png'/>
               </div>
           </div>
+          </Link>
         
             
         
@@ -152,15 +159,15 @@ import { useDispatch, useSelector } from "react-redux";
              <h6 className='des-slide3'>Hot & frech Pizza. Delivered Fast</h6>
               <div className=" slide3-but">
         
-        <button className="btn-secondary">See Menu</button>
-        <button className="btn-primary">Order Now</button>
+         <Link to='/Menu'><button className="btn-secondary">See Menu</button></Link>
+        <Link to='/Menu'><button className="btn-primary">Order Now</button></Link>
       </div>
           </div>
           <div></div>
           <div className='slid3-des'>
             <img  className='slid-img'src='/pizza3.png'/>
           </div>
-          <div>hello</div>
+          
         
       
    
