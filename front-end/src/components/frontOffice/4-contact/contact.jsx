@@ -3,14 +3,21 @@ import './contact.css';
 const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission here
+    const formData = {
+    name: e.target[0].value,
+    email: e.target[1].value,
+    phone: e.target[2].value,
+    message: e.target[3].value,
+  };
+  
     alert('Message sent successfully!');
   };
 
   return (
     <div className='contact-container'>
+      <div className='contact-div'>
       <div className="contact-header">
-        <h1>What are you looking for?</h1>
+        <h1 className='contact-h'>What are you looking for?</h1>
       </div>
       
       <div className="contact-content">
@@ -66,11 +73,12 @@ const Contact = () => {
               ></textarea>
             </div>
             
-            <button type="submit" className="submit-btn">
+            <button type="submit" className="btn-send">
               Send Message
             </button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );
