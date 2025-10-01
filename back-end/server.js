@@ -25,7 +25,7 @@ app.use('/user',userRoute)
 app.use('/cart', cartRoute)
 
 // contact route 
-app.use("/contact", contactRoute);
+app.use("/api", contactRoute);
 
 app.listen(port,()=>{
     console.log(`server is running on ${port}`);

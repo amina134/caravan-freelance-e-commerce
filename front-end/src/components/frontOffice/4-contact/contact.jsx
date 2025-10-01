@@ -1,16 +1,26 @@
 import './contact.css';
-
+import axios from 'axios';
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const formData = {
-    name: e.target[0].value,
-    email: e.target[1].value,
-    phone: e.target[2].value,
-    message: e.target[3].value,
-  };
+    name: e.target.name.value,
+    email: e.target.email.value,
+    phone: e.target.phone.value,
+    message: e.target.message.value,
+};
+ 
+  try{
+    const response=await axios.post("http://localhost:4100/api/contact",formData)
+     e.target.reset(); 
+  }
+  catch(err){
+
+  console.error(err);
+  alert(err.response?.data?.message || "Something went wrong");
+  }
   
-    alert('Message sent successfully!');
+  
   };
 
   return (
@@ -45,6 +55,7 @@ const Contact = () => {
                   placeholder="Your Name *" 
                   required 
                   className="form-input"
+                  name="name"
                 />
               </div>
               <div className="form-group">
@@ -53,6 +64,7 @@ const Contact = () => {
                   placeholder="Your Email *" 
                   required 
                   className="form-input"
+                  name="email"
                 />
               </div>
               <div className="form-group">
@@ -61,6 +73,7 @@ const Contact = () => {
                   placeholder="Your Phone *" 
                   required 
                   className="form-input"
+                  name="phone"
                 />
               </div>
             </div>
@@ -70,6 +83,7 @@ const Contact = () => {
                 placeholder="Your Message" 
                 rows="6"
                 className="form-textarea"
+                name="message"
               ></textarea>
             </div>
             
