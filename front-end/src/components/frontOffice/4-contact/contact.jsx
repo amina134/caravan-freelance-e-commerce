@@ -67,6 +67,7 @@ const Contact = () => {
                   name="email"
                 />
               </div>
+              
               <div className="form-group">
                 <input 
                   type="tel" 

@@ -13,17 +13,25 @@
 }
 
 .contact-div {
-  width: 100%;
 
-  max-width: 1100px;
-  padding-left:70px;
-  margin-top: 30px;
-  margin-left:40px;
+  width: 100%;
+  font-family: 'Raleway', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding:60px;
+  box-sizing: border-box;
+  
+ 
 }
 
 /* ===== Header ===== */
 .contact-header{
-  margin-bottom: 30px;
+   margin-bottom: 50px;
 }
 .contact-h{
   font-size: 2.75rem;
@@ -59,6 +67,8 @@
 
 /* ===== Content Grid ===== */
 .contact-content {
+
+
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 2rem;
@@ -184,6 +194,11 @@
   .contact-content {
     grid-template-columns: 1fr;
   }
+  .contact-div{
+       margin-right: 100px;
+
+  
+  }
 
   .contact-header h1 {
     font-size: 2rem;
@@ -192,7 +207,7 @@
 
 @media (max-width: 600px) {
   .contact-container {
-    padding: 2rem 1rem;
+ 
   }
 
   .contact-header h1 {
