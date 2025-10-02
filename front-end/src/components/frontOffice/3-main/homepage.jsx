@@ -21,7 +21,7 @@ const Homepage=()=>{
        <ProductCarousel/>
        <ChefSection/>
        <Welcome/>
-       <Footer/>
+   
        
       
    

@@ -1,6 +1,6 @@
 .about-container{
     width:100vw;
-    height: 100vh;
+    height: 100%;
 
     margin: 0px;
     
@@ -193,6 +193,9 @@
   background: linear-gradient(135deg, #ffb8a3 0%, #ff9a7f 100%);
   position: relative;
   overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    margin-right:30px;
 }
 
 .team-section::before {
@@ -210,6 +213,8 @@
 
 .team-section .container {
   position: relative;
+
+  
   z-index: 1;
 }
 

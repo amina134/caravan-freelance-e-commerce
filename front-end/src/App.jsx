@@ -17,6 +17,7 @@ import Favourites from './components/frontOffice/3-main/favourites';
 import Profile from './components/frontOffice/3-main/profile';
 import About from './components/frontOffice/4-contact/about';
 import Contact from './components/frontOffice/4-contact/contact';
+import Footer from './components/frontOffice/5-footer/footer';
 function App() {
 
   const products=useSelector(state=>state.productElement)
@@ -59,6 +60,7 @@ function App() {
         
       </Route>
     </Routes>
+    <Footer/>
    
     </>
   )
