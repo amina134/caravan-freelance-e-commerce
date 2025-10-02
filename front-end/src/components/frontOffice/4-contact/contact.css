@@ -1,4 +1,81 @@
-/* ===== Base Styling ===== */
+/* ===== FAQ Section ===== */
+.faq-layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* center horizontally */
+  align-items: center;       /* center vertically */
+  min-height: 100vh;         /* full viewport height */
+  width: 100%;  
+  padding: 50px 20px;        /* replace margin with padding to avoid overflow */
+  box-sizing: border-box;
+}
+
+.faq-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #2d3748;
+  position: relative;
+  text-align: center; /* ✅ keep it centered across all devices */
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+.faq-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  margin: 12px auto 0;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+  border-radius: 2px;
+}
+
+.faq-cont {
+  width: 100%;
+  max-width: 800px;   /* ✅ limits width on large screens */
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .faq-layout {
+    min-height: auto;
+    padding: 40px 100px 15px 60px;
+    background-color: yellow;
+  }
+
+  .faq-title {
+    font-size: 2rem;
+  }
+
+  .faq-cont {
+    max-width: 100%; /* full width on tablet */
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .faq-layout {
+    background-color: pink;
+    padding: 30px 70px 10px;
+  }
+
+  .faq-title {
+    font-size: 1.8rem;
+  }
+
+  .faq-cont {
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.07);
+  }
+}
+
 .contact-container {
   width: 100vw;
   
@@ -8,7 +85,7 @@
   min-height: 100vh;
   
   display: flex;
-
+  flex-direction: column;
   align-items: flex-start;
 }
 

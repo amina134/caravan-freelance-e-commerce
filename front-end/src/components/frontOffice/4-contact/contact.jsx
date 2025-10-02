@@ -1,5 +1,6 @@
 import './contact.css';
 import axios from 'axios';
+import ControlledAccordions from './faq';
 const Contact = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -95,6 +96,14 @@ const Contact = () => {
         </div>
       </div>
       </div>
+
+      <div className='faq-layout'>
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+     
+  <ControlledAccordions/>
+      </div>
+    
+     
     </div>
   );
 }
