@@ -44,8 +44,13 @@ const ChefSection = () => {
 
           {/* Buttons */}
           <div className="chef-buttons">
+<<<<<<< HEAD
             <button className="btn btn-dark">View Menu</button>
             <button className="btn btn-orange">Book a Table</button>
+=======
+            <button className="btn btn-dark">See Menu</button>
+            <button className="btn btn-orange">Order Now</button>
+>>>>>>> 47cb3df (correct corrupted git files)
           </div>
         </div>
 

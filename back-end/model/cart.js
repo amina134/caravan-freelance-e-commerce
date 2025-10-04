@@ -34,4 +34,8 @@ const CartSchema = new mongoose.Schema({
   },
 });
 
+<<<<<<< HEAD
 module.exports = mongoose.model("cart", CartSchema);
+=======
+module.exports = mongoose.model("cart", CartSchema);
+>>>>>>> 47cb3df (correct corrupted git files)

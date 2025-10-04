@@ -10,7 +10,11 @@
   display: flex;
   align-items: center;
 
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 47cb3df (correct corrupted git files)
   flex-direction: column;
 
 }
@@ -19,7 +23,12 @@
 .product-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
+<<<<<<< HEAD
  
+=======
+
+ margin: 40px;
+>>>>>>> 47cb3df (correct corrupted git files)
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.313);

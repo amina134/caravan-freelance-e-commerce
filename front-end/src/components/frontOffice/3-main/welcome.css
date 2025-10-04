@@ -3,6 +3,10 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 47cb3df (correct corrupted git files)
   padding: 50px 30px;
   flex-wrap: wrap; /* ensures stacking on smaller screens */
 }
@@ -48,11 +52,16 @@
 .welcome-buttons {
   display: flex;
   flex-wrap: wrap;
+<<<<<<< HEAD
  
+=======
+   font-family: "Raleway", sans-serif;
+>>>>>>> 47cb3df (correct corrupted git files)
   gap: 20px;
 }
 
 .welcome-side-container button {
+<<<<<<< HEAD
   padding: 14px 28px;
   font-size: 1rem;
   font-weight: 500;
@@ -62,6 +71,17 @@
   transition: all 0.3s ease;
   border: none;
   min-width: 160px;
+=======
+ padding: 14px 28px;
+  font-size: 1rem!important;
+
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 150px;
+  text-align: center;
+>>>>>>> 47cb3df (correct corrupted git files)
 }
 
 .welcome-side-container button:hover {
@@ -69,6 +89,7 @@
 }
 
 .menu-but-welcome {
+<<<<<<< HEAD
   background: var(--primary);
   color: #fff;
 }
@@ -76,6 +97,20 @@
 .book-but-welcome {
   background: #2d2d2d;
   color: #fff;
+=======
+background: transparent;
+  border: 0.3px solid black !important;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+   color: black !important;
+}
+
+.book-but-welcome {
+  background: var(--primary);
+  color: white;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+>>>>>>> 47cb3df (correct corrupted git files)
 }
 
 /* ========== Responsive Breakpoints ========== */

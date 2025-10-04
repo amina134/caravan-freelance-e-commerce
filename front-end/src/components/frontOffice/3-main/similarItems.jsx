@@ -23,4 +23,8 @@ const SimilarItems = ({ foodCat ,foodId }) => {
   );
 };
 
+<<<<<<< HEAD
 export default SimilarItems;
+=======
+export default SimilarItems;
+>>>>>>> 47cb3df (correct corrupted git files)

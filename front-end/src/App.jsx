@@ -7,7 +7,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import {setProduct} from './redux/productSlice'
 import Homepage from './components/frontOffice/3-main/homepage'
 
+<<<<<<< HEAD
 import { Routes, Route } from "react-router-dom";
+=======
+import { Routes, Route,useLocation } from "react-router-dom";
+>>>>>>> 47cb3df (correct corrupted git files)
 import Menu from './components/frontOffice/3-main/menu';
 import Navbar from './components/frontOffice/1-header/navbar';
 import ProductInformation from './components/frontOffice/3-main/productInformation';
@@ -18,16 +22,28 @@ import Profile from './components/frontOffice/3-main/profile';
 import About from './components/frontOffice/4-contact/about';
 import Contact from './components/frontOffice/4-contact/contact';
 import Footer from './components/frontOffice/5-footer/footer';
+<<<<<<< HEAD
+=======
+import AdminDashboard from './components/backOffice/admin/adminDashboard';
+>>>>>>> 47cb3df (correct corrupted git files)
 function App() {
 
   const products=useSelector(state=>state.productElement)
   const dispatch=useDispatch()
+<<<<<<< HEAD
+=======
+  const location = useLocation();
+>>>>>>> 47cb3df (correct corrupted git files)
   //getinng the books from database using axios
   const getAllProducts=async()=>{
     const data=await fetchAllProducts();
     console.log("productss",data)
     dispatch(setProduct(data.products))
   }
+<<<<<<< HEAD
+=======
+   const hideLayout = location.pathname.startsWith("/Admindashboard");
+>>>>>>> 47cb3df (correct corrupted git files)
   useEffect(()=>{
      getAllProducts()
   },[])
@@ -36,7 +52,11 @@ function App() {
  
  
     <>
+<<<<<<< HEAD
     <Navbar/>
+=======
+    {! hideLayout && <Navbar/>}
+>>>>>>> 47cb3df (correct corrupted git files)
     <Routes> 
       <Route path="/" element={<Homepage/>}/>
       <Route path='/Home' element={<Homepage/>}/>
@@ -59,11 +79,25 @@ function App() {
         <Route path="Contact" element={<Contact/>}/>
         
       </Route>
+<<<<<<< HEAD
     </Routes>
     <Footer/>
+=======
+      <Route path="/Admindashboard" element={<AdminDashboard/>}>
+         
+
+      </Route>
+    </Routes>
+      {! hideLayout && <Footer/>}
+    {/* <Footer/> */}
+>>>>>>> 47cb3df (correct corrupted git files)
    
     </>
   )
 }
 
+<<<<<<< HEAD
 export default App
+=======
+export default App
+>>>>>>> 47cb3df (correct corrupted git files)

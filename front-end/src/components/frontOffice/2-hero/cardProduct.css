@@ -18,6 +18,10 @@ button:focus {
   /* background-color: aqua; */
   margin: 0px!important;
  
+<<<<<<< HEAD
+=======
+ 
+>>>>>>> 47cb3df (correct corrupted git files)
 
 }
 
@@ -47,6 +51,10 @@ button:focus {
 }
 
 .food-image-wrapper {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 47cb3df (correct corrupted git files)
   position: relative;
   display: flex;
   justify-content: center;
@@ -58,7 +66,13 @@ button:focus {
 }
 
 .food-image {
+<<<<<<< HEAD
   width: 180px;
+=======
+  
+  width: 180px;
+
+>>>>>>> 47cb3df (correct corrupted git files)
 }
 
 .food-price {
@@ -93,11 +107,19 @@ button:focus {
 
 .food-icons {
 
+<<<<<<< HEAD
   padding-left: 29px;
    padding-right: 40px;
   margin-top:40px ;
   display: flex;
   gap: 0px;
+=======
+  padding-left: 69px;
+   padding-right: 40px;
+  margin-top:40px ;
+  display: flex;
+  gap: 10px;
+>>>>>>> 47cb3df (correct corrupted git files)
 
 }
 
@@ -152,7 +174,11 @@ button:focus {
   display: flex;
   align-items: center;
   gap: 2px;
+<<<<<<< HEAD
  /* background-color: yellow; */
+=======
+
+>>>>>>> 47cb3df (correct corrupted git files)
   border-radius: 12px;
   
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.185);
@@ -168,9 +194,15 @@ button:focus {
   height: 20px;
   border-radius: 8px;
   
+<<<<<<< HEAD
   display: flex;             /* Add this */
   align-items: center;       /* Vertical center */
   justify-content: center;   /* Horizontal center */
+=======
+  display: flex;           
+  align-items: center;     
+  justify-content: center;   
+>>>>>>> 47cb3df (correct corrupted git files)
   
   cursor: pointer;
   transition: 0.2s;

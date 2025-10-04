@@ -135,7 +135,11 @@
 }
 
 /* Food Image */
+<<<<<<< HEAD
 .food-image {
+=======
+.food-image1 {
+>>>>>>> 47cb3df (correct corrupted git files)
   text-align: center;
   border-radius: 12px;
   overflow: hidden;
@@ -145,7 +149,11 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
+<<<<<<< HEAD
 .food-image img {
+=======
+.food-image1 img {
+>>>>>>> 47cb3df (correct corrupted git files)
   width: 100%;
   height: auto;
   max-height: 400px;
@@ -330,7 +338,11 @@
     gap: 30px;
   }
   
+<<<<<<< HEAD
   .food-image img {
+=======
+  .food-image1 img {
+>>>>>>> 47cb3df (correct corrupted git files)
     height: 300px;
   }
 }

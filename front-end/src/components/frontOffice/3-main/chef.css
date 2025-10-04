@@ -83,6 +83,7 @@
 }
 
 .btn {
+<<<<<<< HEAD
   padding: 16px 30px;
   font-size: 1rem;
   font-weight: 400;
@@ -93,20 +94,45 @@
   border: none;
 
   min-width: 160px;
+=======
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  min-width: 150px;
+>>>>>>> 47cb3df (correct corrupted git files)
   text-align: center;
 }
 
 .btn-dark {
+<<<<<<< HEAD
   background: #2d2d2d;
   color: #fff;
+=======
+  background: transparent;
+  border: 0.3px solid black;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+   color: black !important;
+>>>>>>> 47cb3df (correct corrupted git files)
 
 }
 
 
 
 .btn-orange {
+<<<<<<< HEAD
   background: var(--primary);
   color: #fff;
+=======
+ background: var(--primary);
+  color: white;
+  font-weight: 400;
+  font-family: "Raleway", sans-serif;
+>>>>>>> 47cb3df (correct corrupted git files)
 
 }
 
