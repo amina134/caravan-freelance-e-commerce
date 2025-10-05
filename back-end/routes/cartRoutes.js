@@ -19,8 +19,7 @@ cartRoute.delete('/clearCart/:userId', clearCart);
 //http://localhost:4100/cart/updateQuantity/:userId/:productId
 cartRoute.put('/updateQuantity/:userId/:productId',updateQuantityItemCart)
 
-<<<<<<< HEAD
+
+
+
 module.exports = cartRoute;
-=======
-module.exports = cartRoute;
->>>>>>> 47cb3df (correct corrupted git files)

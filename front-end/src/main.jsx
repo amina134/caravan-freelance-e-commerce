@@ -16,8 +16,5 @@ createRoot(document.getElementById('root')).render(
     </Provider>
    </BrowserRouter>
   </StrictMode>
-<<<<<<< HEAD
 )
-=======
-)
->>>>>>> 47cb3df (correct corrupted git files)
+

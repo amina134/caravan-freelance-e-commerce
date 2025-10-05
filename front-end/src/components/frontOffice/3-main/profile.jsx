@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> 47cb3df (correct corrupted git files)
 import React, { useEffect, useState } from 'react';
 import { User, Mail, Phone, MapPin, Edit, Heart, Calendar, Clock } from 'lucide-react';
 import './profile.css';

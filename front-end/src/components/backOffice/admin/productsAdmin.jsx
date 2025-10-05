@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, Edit2, Trash2, Search, X, Upload, DollarSign, Package, Tag, ImageIcon } from 'lucide-react';
-
+import './productsAdmin.css'
 const ProductsAdmin = () => {
   const [products, setProducts] = useState([
     {

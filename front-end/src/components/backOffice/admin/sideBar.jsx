@@ -1,37 +1,30 @@
-// src/Sidebar.jsx
+// sideBar.jsx
 import React from "react";
 import "./sideBar.css";
-import ProductsAdmin from "./productsAdmin";
 
-const Sidebar = () => {
-  const menuItems = ["Dashboard", "Orders", "Menu", "Customers", "Settings"];
-
+const Sidebar = ({ setActivePage }) => {
   return (
     <div className="sidebar">
       <h2 className="sidebar-title">Admin</h2>
       <ul className="sidebar-list">
-       
-          <li  className="sidebar-item">
-            Dashboard
-           
-          </li>
-          <li className="sidebar-item">
-            Orders
-     
-          </li>
-          <li  className="sidebar-item" onClick={<ProductsAdmin/>}>
-            Menu
-      
-          </li>
-          <li  className="sidebar-item">
-            Customers
-  
-          </li>
-          <li  className="sidebar-item">
-            Settings
-            
-          </li>
-     
+        <li className="sidebar-item" onClick={() => setActivePage("dashboard")}>
+          Dashboard
+        </li>
+        <li className="sidebar-item" onClick={() => setActivePage("orders")}>
+          Orders
+        </li>
+        <li className="sidebar-item" onClick={() => setActivePage("menu")}>
+          Menu
+        </li>
+        <li className="sidebar-item" onClick={() => setActivePage("customers")}>
+          Customers
+        </li>
+        <li className="sidebar-item" onClick={() => setActivePage("reviews")}>
+          Reviews
+        </li>
+        <li className="sidebar-item" onClick={() => setActivePage("settings")}>
+          Settings
+        </li>
       </ul>
     </div>
   );

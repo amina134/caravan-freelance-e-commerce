@@ -47,11 +47,7 @@ const About=()=>{
             </p>
           </div>
 
-<<<<<<< HEAD
           <div className="food-image">
-=======
-          <div className="food-image1">
->>>>>>> 47cb3df (correct corrupted git files)
             <img src="./about6.jpg" alt="Delicious food spread" />
           </div>
 

@@ -98,7 +98,7 @@ const ProductCard = ({ _id, name, description, price, image,liked: initialLiked 
         await removeFavorites(currentUser._id, _id);
         setLiked(false);
 
-        // 🔴 notify parent (Favourites)
+       
         if (onUnlike) {
           onUnlike(_id);
         }

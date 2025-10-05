@@ -57,11 +57,8 @@ const SignIn = ({ setShowLoginForm }) => {
     setShowLoginForm(false);
 
     if (user.role === 'admin') {
-<<<<<<< HEAD
       navigate('/dashboard');
-=======
       navigate('/Admindashboard');
->>>>>>> 47cb3df (correct corrupted git files)
     } else {
       navigate('/userZone');
     }

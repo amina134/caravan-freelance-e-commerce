@@ -4,11 +4,8 @@ import CarouselPage from '../2-hero/carousel';
 
 
 
-<<<<<<< HEAD
 import CarouselBurger from '../2-hero/test';
-=======
 
->>>>>>> 47cb3df (correct corrupted git files)
 import Footer from '../5-footer/footer';
 import ProductCarousel from './carouselProducts';
 import ChefSection from './chef';
