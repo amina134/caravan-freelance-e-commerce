@@ -95,7 +95,7 @@ const AdminDashboard = () => {
             <div className="section-header">
               <h2 className="section-title">Recent Orders</h2>
               <button className="btn-link">View All</button>
-              <h1>hez</h1>
+              <h1>hello</h1>
             </div>
             <div className="orders-list">
 
