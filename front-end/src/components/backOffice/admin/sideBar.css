@@ -1,0 +1,226 @@
+/* src/Sidebar.css */
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 280px;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  overflow-y: auto;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.sidebar-title {
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  padding: 0 2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.sidebar-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.75rem;
+  left: 2rem;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.sidebar-item {
+  color: #b8c1ec;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1rem 2rem;
+  margin: 0.25rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: linear-gradient(180deg, #667eea, #764ba2);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background: rgba(102, 126, 234, 0.15);
+  color: #fff;
+  transform: translateX(8px);
+}
+
+.sidebar-item:hover::before {
+  transform: scaleY(1);
+}
+
+.sidebar-item:active {
+  transform: translateX(8px) scale(0.98);
+}
+
+/* Active state */
+.sidebar-item.active {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+  color: #fff;
+  font-weight: 600;
+}
+
+.sidebar-item.active::before {
+  transform: scaleY(1);
+}
+
+/* Scrollbar styling */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
+}
+
+/* Tablet responsiveness */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+  
+  .sidebar-title {
+    font-size: 1.5rem;
+    padding: 0 1.5rem;
+  }
+  
+  .sidebar-title::after {
+    left: 1.5rem;
+  }
+  
+  .sidebar-item {
+    padding: 0.875rem 1.5rem;
+    margin: 0.25rem 0.75rem;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 1.5rem 0;
+  }
+  
+  .sidebar-title {
+    font-size: 1.25rem;
+    padding: 0 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .sidebar-title::after {
+    display: none;
+  }
+  
+  .sidebar-item {
+    padding: 1rem;
+    margin: 0.25rem 0.5rem;
+    text-align: center;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .sidebar:hover {
+    width: 240px;
+  }
+  
+  .sidebar:hover .sidebar-title,
+  .sidebar:hover .sidebar-item {
+    overflow: visible;
+    white-space: normal;
+  }
+  
+  .sidebar:hover .sidebar-title::after {
+    display: block;
+  }
+  
+  .sidebar:hover .sidebar-item {
+    text-align: left;
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .sidebar {
+    width: 60px;
+  }
+  
+  .sidebar-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .sidebar-item {
+    font-size: 0.65rem;
+    padding: 0.875rem 0.5rem;
+  }
+}
+
+/* Dark mode enhancement (optional) */
+@media (prefers-color-scheme: dark) {
+  .sidebar {
+    background: linear-gradient(180deg, #0f0f1e 0%, #0a0a14 100%);
+    box-shadow: 4px 0 32px rgba(0, 0, 0, 0.5);
+  }
+}

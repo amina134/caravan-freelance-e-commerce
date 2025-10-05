@@ -1,6 +1,7 @@
 // src/Sidebar.jsx
 import React from "react";
-// import "./Sidebar.css";
+import "./sideBar.css";
+import ProductsAdmin from "./productsAdmin";
 
 const Sidebar = () => {
   const menuItems = ["Dashboard", "Orders", "Menu", "Customers", "Settings"];
@@ -9,11 +10,28 @@ const Sidebar = () => {
     <div className="sidebar">
       <h2 className="sidebar-title">Admin</h2>
       <ul className="sidebar-list">
-        {menuItems.map((item) => (
-          <li key={item} className="sidebar-item">
-            {item}
+       
+          <li  className="sidebar-item">
+            Dashboard
+           
           </li>
-        ))}
+          <li className="sidebar-item">
+            Orders
+     
+          </li>
+          <li  className="sidebar-item" onClick={<ProductsAdmin/>}>
+            Menu
+      
+          </li>
+          <li  className="sidebar-item">
+            Customers
+  
+          </li>
+          <li  className="sidebar-item">
+            Settings
+            
+          </li>
+     
       </ul>
     </div>
   );
