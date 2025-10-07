@@ -5,7 +5,7 @@ const ReviewsAdmin=()=>{
 
     return(
         <div> 
-           <h1>heyyyy</h1>
+           <h1>heyy</h1>
         </div>
     )
 }
