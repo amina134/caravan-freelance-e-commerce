@@ -1,8 +1,4 @@
- * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
+
 
         :root {
           --purple: #667eea;
@@ -15,10 +11,6 @@
           --orange-light: rgba(245, 158, 11, 0.1);
         }
 
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          background: #f8fafc;
-        }
 
         .dashboard-container {
           display: flex;
