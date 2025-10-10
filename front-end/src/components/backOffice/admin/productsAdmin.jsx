@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Search, X, DollarSign, Package, Tag, ImageIcon, SlidersHorizontal } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import './productsAdmin.css';
+import { updateProduct } from '../../../api/productApi';
 
 const ProductsAdmin = () => {
   const productsRedux = useSelector(state => state.productElement || []);
+  console.log("products admin",productsRedux)
   const [products, setProducts] = useState(productsRedux);
-
+  const [isOpen, setIsOpen] = useState(false);
+  const handleSelect = (value) => {
+    setSortOption(value);
+    setIsOpen(false);
+  };
   useEffect(() => {
     setProducts(productsRedux);
   }, [productsRedux]);
@@ -87,6 +93,7 @@ const ProductsAdmin = () => {
   };
 
   const handleEditProduct = (product) => {
+    console.log("is is editing",product)
     setEditingProduct(product);
     setFormData({
       name: product.name,
@@ -94,9 +101,11 @@ const ProductsAdmin = () => {
       price: product.price,
       category: product.category,
       image: product.image,
-      available: product.isAvailable
+      isAvailable: product.isAvailable
     });
+    console.log("is show model",showModal)
     setShowModal(true);
+    console.log("yes show model",showModal)
   };
 
   const handleDeleteProduct = (id) => {
@@ -108,7 +117,9 @@ const ProductsAdmin = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingProduct) {
-      setProducts(products.map(p => p.id === editingProduct.id ? { ...formData, id: p.id } : p));
+      
+      const updatedProd=updateProduct(editingProduct._id,{...formData})
+      setProducts(products.map(p => p._id === editingProduct._id ? { ...formData, id: p._id } : p));
     } else {
       setProducts([...products, { ...formData, id: Date.now() }]);
     }
@@ -126,20 +137,20 @@ const ProductsAdmin = () => {
   return (
     <div className="products-admin-layout">
       {/* Sidebar Filters */}
-      <div className="filter-sidebar1">
-        <div className="filter-header">
-          <h2><SlidersHorizontal size={18}/> Filters {activeFilters > 0 && <span className="filter-count">{activeFilters}</span>}</h2>
-          <button className="reset-btn" onClick={resetFilters}>Reset All</button>
+      <div className="filter-sidebar">
+        <div className="filter-header1">
+          <h2><SlidersHorizontal size={18}/> Filters {activeFilters > 0 && <span className="filter-count1">{activeFilters}</span>}</h2>
+          <button className="reset-btn1" onClick={resetFilters}>Reset All</button>
         </div>
 
         {/* Category Filter */}
-        <div className="filter-section">
+        <div className="filter-section1">
           <h3>Category</h3>
-          <div className="chip-container">
+          <div className="chip-container1">
             {categories.map(cat => (
               <div
                 key={cat}
-                className={`chip ${selectedCategory === cat ? "active" : ""}`}
+                className={`chip1 ${selectedCategory === cat ? "active" : ""}`}
                 onClick={() => setSelectedCategory(cat)}
               >
                 {cat}
@@ -149,12 +160,12 @@ const ProductsAdmin = () => {
         </div>
 
         {/* Price Filter */}
-        <div className="filter-section">
+        <div className="filter-section1">
           <h3>Price Range: {priceRange[0]}dt - {priceRange[1]}dt</h3>
-          <div className="price-range">
-            <div className="slider-container">
+          <div className="price-range1">
+            <div className="slider-container1">
               <div 
-                className="slider-track"
+                className="slider-track1"
                 style={{ 
                   left: `${(priceRange[0] / 50) * 100}%`, 
                   width: `${((priceRange[1] - priceRange[0]) / 50) * 100}%` 
@@ -170,7 +181,7 @@ const ProductsAdmin = () => {
                   setPriceRange([value, priceRange[1]]);
                   updateActiveFiltersCount();
                 }}
-                className="slider-thumb"
+                className="slider-thumb1"
               />
               <input 
                 type="range" 
@@ -182,7 +193,7 @@ const ProductsAdmin = () => {
                   setPriceRange([priceRange[0], value]);
                   updateActiveFiltersCount();
                 }}
-                className="slider-thumb"
+                className="slider-thumb1"
               />
             </div>
             
@@ -191,21 +202,30 @@ const ProductsAdmin = () => {
 
         {/* Sort Filter */}
        {/* Sort Filter */}
-        <div className="filter-section">
-          <h3>Sort By</h3>
-          <select
-            className="sort-dropdown"
-            value={sortOption}
-            onChange={(e) => setSortOption(e.target.value)}
-          >
-            {sortOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+      <div className="filter-section1">
+      <h3>Sort By</h3>
+
+      <div className="custom-dropdown" onClick={() => setIsOpen(!isOpen)}>
+        <div className="dropdown-selected">
+          {sortOptions.find(option => option.value === sortOption)?.label || "Select option"}
+          <span className={`arrow ${isOpen ? "open" : ""}`}>▼</span>
         </div>
 
+        {isOpen && (
+          <ul className="dropdown-list">
+            {sortOptions.map(option => (
+              <li
+                key={option.value}
+                className={`dropdown-item ${sortOption === option.value ? "active" : ""}`}
+                onClick={() => handleSelect(option.value)}
+              >
+                {option.label}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
       </div>
 
       {/* Main Admin Section */}
@@ -237,7 +257,7 @@ const ProductsAdmin = () => {
         {/* Products Grid */}
         <div className="products-grid">
           {filteredProducts.map(product => (
-            <div key={product.id} className="product-card">
+            <div key={product._id} className="product-card">
               <div className="product-image-wrapper">
                 <img src={product.image} alt={product.name} className="product-image" />
                 <div className={`availability-badge ${product.isAvailable ? 'available' : 'unavailable'}`}>
@@ -273,6 +293,129 @@ const ProductsAdmin = () => {
             <p>Try adjusting your search or filters</p>
           </div>
         )}
+
+
+        {/* //// model */}
+         {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
+              <button className="close-btn" onClick={() => setShowModal(false)}>
+                <X size={24} />
+              </button>
+            </div>
+            <form className="product-form" onSubmit={handleSubmit}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label className="form-label">
+                    <Tag size={16} />
+                    Product Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="Enter product name"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">
+                    <DollarSign size={16} />
+                    Price
+                  </label>
+                  <input
+                    type="number"
+                    name="price"
+                    value={formData.price}
+                    onChange={handleInputChange}
+                    className="form-input"
+                    placeholder="0.00"
+                    step="0.01"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <Package size={16} />
+                  Category
+                </label>
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handleInputChange}
+                  className="form-select"
+                  required
+                >
+                  {categories.filter(c => c !== 'All').map(cat => (
+                    <option key={cat} value={cat}>{cat}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <Package size={16} />
+                  Description
+                </label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleInputChange}
+                  className="form-textarea"
+                  placeholder="Enter product description"
+                  rows="3"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">
+                  <ImageIcon size={16} />
+                  Image Path
+                </label>
+                <input
+                 
+                  name="image"
+                  value={formData.image}
+                  onChange={handleInputChange}
+                  className="form-input"
+                  placeholder="https://example.com/image.jpg"
+                  required
+                />
+              </div>
+
+              <div className="form-group-checkbox">
+                <label className="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="available"
+                    checked={formData.available}
+                    onChange={handleInputChange}
+                    className="form-checkbox"
+                  />
+                  <span>Product is available</span>
+                </label>
+              </div>
+
+              <div className="form-actions">
+                <button type="button" className="btn-cancel" onClick={() => setShowModal(false)}>
+                  Cancel
+                </button>
+                <button type="submit" className="btn-submit">
+                  {editingProduct ? 'Update Product' : 'Add Product'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       </div>
     </div>
   );
