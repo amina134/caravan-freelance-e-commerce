@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Search, X, DollarSign, Package, Tag, ImageIcon, SlidersHorizontal } from 'lucide-react';
 import { useSelector } from 'react-redux';
 import './productsAdmin.css';
-import { updateProduct } from '../../../api/productApi';
-
+import { deleteProduct, postProduct, updateProduct } from '../../../api/productApi';
+import { v4 as uuidv4 } from "uuid";
 const ProductsAdmin = () => {
   const productsRedux = useSelector(state => state.productElement || []);
   console.log("products admin",productsRedux)
@@ -31,7 +31,7 @@ const ProductsAdmin = () => {
     price: '',
     category: 'Main Course',
     image: '',
-    available: true
+    isAvailable: true
   });
 
   const categories = ['All', 'Pizza', 'Burger', 'Hot Dog', 'Poutine'];
@@ -81,14 +81,16 @@ const ProductsAdmin = () => {
   // Form functions
   const handleAddProduct = () => {
     setEditingProduct(null);
+    
     setFormData({
       name: '',
       description: '',
-      price: '',
-      category: 'Main Course',
+      price: 0,
+      category: 'Burger',
       image: '',
-      available: true
+      isAvailable: true
     });
+ 
     setShowModal(true);
   };
 
@@ -110,7 +112,8 @@ const ProductsAdmin = () => {
 
   const handleDeleteProduct = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      setProducts(products.filter(p => p.id !== id));
+      const deleteProd= deleteProduct(id)
+      setProducts(products.filter(p => p._id !== id));
     }
   };
 
@@ -121,7 +124,11 @@ const ProductsAdmin = () => {
       const updatedProd=updateProduct(editingProduct._id,{...formData})
       setProducts(products.map(p => p._id === editingProduct._id ? { ...formData, id: p._id } : p));
     } else {
-      setProducts([...products, { ...formData, id: Date.now() }]);
+      console.log("from dataaaa",formData)
+      // const produiit={ ...formData}
+      //  console.log("from produiit",produiit)
+      postProduct({ ...formData})
+      setProducts([...products, { ...formData, _id: uuidv4() }]);
     }
     setShowModal(false);
   };
@@ -236,7 +243,7 @@ const ProductsAdmin = () => {
             <h1 className="page-title">Products Management</h1>
             <p className="page-subtitle">Manage your restaurant menu items</p>
           </div>
-          <button className="btn-add" onClick={handleAddProduct}>
+          <button className="btn-add-product" onClick={handleAddProduct}>
             <Plus size={20} />
             Add Product
           </button>
@@ -257,7 +264,7 @@ const ProductsAdmin = () => {
         {/* Products Grid */}
         <div className="products-grid">
           {filteredProducts.map(product => (
-            <div key={product._id} className="product-card">
+            <div key={product._id } className="product-card">
               <div className="product-image-wrapper">
                 <img src={product.image} alt={product.name} className="product-image" />
                 <div className={`availability-badge ${product.isAvailable ? 'available' : 'unavailable'}`}>
@@ -276,7 +283,7 @@ const ProductsAdmin = () => {
                     <button className="action-btn edit-btn" onClick={() => handleEditProduct(product)}>
                       <Edit2 size={16} />
                     </button>
-                    <button className="action-btn delete-btn" onClick={() => handleDeleteProduct(product.id)}>
+                    <button className="action-btn delete-btn" onClick={() => handleDeleteProduct(product._id)}>
                       <Trash2 size={16} />
                     </button>
                   </div>
@@ -385,7 +392,7 @@ const ProductsAdmin = () => {
                   value={formData.image}
                   onChange={handleInputChange}
                   className="form-input"
-                  placeholder="https://example.com/image.jpg"
+                  placeholder="productImages/imagename"
                   required
                 />
               </div>
@@ -394,8 +401,8 @@ const ProductsAdmin = () => {
                 <label className="checkbox-label">
                   <input
                     type="checkbox"
-                    name="available"
-                    checked={formData.available}
+                    name="isAvailable"
+                    checked={formData.isAvailable}
                     onChange={handleInputChange}
                     className="form-checkbox"
                   />

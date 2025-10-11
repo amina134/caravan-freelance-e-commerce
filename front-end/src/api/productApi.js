@@ -15,7 +15,7 @@ export const updateProduct=async(id,values)=>{
 }
 
 export const deleteProduct=async(id)=>{
-    const{data}=await axios.delete(`http://localhost:${API_URL}/product/addProduct/${id}`)
+    const{data}=await axios.delete(`http://localhost:${API_URL}/product/deleteProduct/${id}`)
 }
 
 export const getUniqueProduct = async (id) => {
