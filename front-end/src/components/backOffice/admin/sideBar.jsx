@@ -22,9 +22,9 @@ const Sidebar = ({ setActivePage }) => {
         <li className="sidebar-item" onClick={() => setActivePage("reviews")}>
           Reviews
         </li>
-        <li className="sidebar-item" onClick={() => setActivePage("settings")}>
+        {/* <li className="sidebar-item" onClick={() => setActivePage("settings")}>
           Settings
-        </li>
+        </li> */}
       </ul>
     </div>
   );
