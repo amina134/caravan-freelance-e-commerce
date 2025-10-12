@@ -64,7 +64,7 @@ export const fetchAccount = async () => {
 };
 export const fetchAllUsers = async () => {
     const { data } = await axios.get(`http://localhost:${API_URL}/user/allUsers`);
-    return data;
+    return data.users;
 }
   export const fetchFavorites = async (userId) => {
         try {
