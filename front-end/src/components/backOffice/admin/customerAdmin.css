@@ -189,7 +189,9 @@
 }
 
 .users-table td {
+
   padding: 1.25rem;
+
   font-size: 0.95rem;
   color: #4a5568;
 }
@@ -211,6 +213,7 @@
 .role-customer {
   background: rgba(88, 162, 227, 0.15);
   color: #2b6cb0;
+  
 }
 
 .role-admin {

@@ -2,6 +2,7 @@ const userSchema=require('../model/user')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const productSchema=require('../model/product');
+const crypto = require("crypto");
 require('dotenv').config();
 
 // get all the users
@@ -20,13 +21,22 @@ const getAllUsers=async(req,res)=>{
 // add a user to the database
 const addUser=async(req,res)=>{
     try {
-        const {password,...rest}=req.body;
+        let {password,...rest}=req.body;
+        // IF THE PASSWORD NOT PROVIDED
+        if (!password) {
+            password = crypto.randomBytes(6).toString("base64").slice(0, 8);
+            console.log("PASSWORD GENERATED FOR ADMIN",password)
+         }
          const saltRounds = 10;
          const hash = bcrypt.hashSync(password, saltRounds);
         const newUser= new userSchema({password:hash,...rest  });
         console.log("New User", req.body);
         await newUser.save();
-        res.status(200).json({ msg: 'you added new User', newUser });
+        res.status(200).json({
+        msg: "New user added successfully.",
+        newUser,
+        generatedPassword: password, // send it for admin display (optional)
+    });
     } catch (error) {
           console.log(error);
         res.send('You have a problem adding a new user');
