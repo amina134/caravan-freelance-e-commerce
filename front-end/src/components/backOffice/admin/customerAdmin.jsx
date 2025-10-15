@@ -100,7 +100,7 @@ const CustomerAdmin = () => {
       setShowModalAdd(false);
       setNewUser({ userName: '', email: '', phone: '', role: 'customer' });
     } catch (error) {
-      console.error('Error adding user:', error);
+      console.error('Error adding user please verify:', error);
     }
   };
 
