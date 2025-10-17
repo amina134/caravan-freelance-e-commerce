@@ -12,7 +12,7 @@ const SignUp = ({ setShowLoginForm }) => {
         userName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        
     });
     
     const [errors, setErrors] = useState({});
@@ -49,9 +49,7 @@ const SignUp = ({ setShowLoginForm }) => {
             newErrors.password = "Password must be at least 8 characters";
         }
 
-        if (formData.password !== formData.confirmPassword) {
-            newErrors.confirmPassword = "Passwords do not match";
-        }
+      
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;

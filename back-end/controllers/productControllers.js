@@ -84,7 +84,7 @@ const addReview = async (req, res) => {
         if (!product) return res.status(404).json({ msg: 'Product not found' });
 
       
-        const existingReview = product.reviews.find(r => r.user.toString() === userId);
+        const existingReview = product.reviews.find(r => r.user === userId);
         if (existingReview) {
             return res.status(400).json({ msg: 'You have already reviewed this product' });
         }

@@ -33,8 +33,8 @@ export const fetchReviews = async (id) => {
 };
 
 // Add review
-export const addReview = async (id, review) => {
-  const { data } = await axios.post(`http://localhost:${API_URL}/product/addReview/${id}`, review);
+export const addReview = async (id,userId, review) => {
+  const { data } = await axios.post(`http://localhost:${API_URL}/product/addReview/${id}`, userId,review);
   return data;
 };
 

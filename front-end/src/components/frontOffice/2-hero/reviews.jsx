@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./reviews.css";
 import { fetchReviews, addReview, deleteReview } from "../../../api/productApi";
+import { useSelector } from "react-redux";
 
 const Reviews = ({ productId }) => {
   const [reviews, setReviews] = useState([]);
@@ -8,7 +9,8 @@ const Reviews = ({ productId }) => {
   const [comment, setComment] = useState("");
   const [hoverRating, setHoverRating] = useState(0);
   const [loading, setLoading] = useState(false);
-
+  const { currentUser } = useSelector((state) => state.userElement);
+  
   useEffect(() => {
     loadReviews();
   }, [productId]);
@@ -28,7 +30,7 @@ const Reviews = ({ productId }) => {
 
     setLoading(true);
     try {
-      await addReview(productId, { rating, comment });
+      await addReview(productId,currentUser._id,{ rating, comment });
       setRating(0);
       setComment("");
       setHoverRating(0);
