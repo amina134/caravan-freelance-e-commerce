@@ -36,7 +36,7 @@ const Reviews = ({ productId }) => {
       setHoverRating(0);
       loadReviews();
     } catch (err) {
-      console.error("Error adding review:", err);
+      console.error("Error adding reviews please check:", err);
     } finally {
       setLoading(false);
     }
