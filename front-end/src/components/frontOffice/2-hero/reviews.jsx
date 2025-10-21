@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./reviews.css";
-import { fetchReviews, addReview, deleteReview } from "../../../api/productApi";
+import { fetchReviews, addReview, deleteReview, fetchAllProducts } from "../../../api/productApi";
 import { useSelector } from "react-redux";
 
 const Reviews = ({ productId }) => {
@@ -41,6 +41,7 @@ const Reviews = ({ productId }) => {
       setLoading(false);
     }
   };
+
 
   const handleDeleteReview = async (reviewId) => {
     try {
