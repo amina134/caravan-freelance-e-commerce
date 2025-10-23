@@ -71,8 +71,8 @@ function App() {
         
       </Route>    
    
-       {/* <Route path="/Admindashboard" element={<AdminDashboard/>}>
-      </Route>  */}
+        <Route path="/Admindashboard" element={<AdminDashboard/>}>
+      </Route>  
     </Routes>
       {! hideLayout && <Footer/>}
    

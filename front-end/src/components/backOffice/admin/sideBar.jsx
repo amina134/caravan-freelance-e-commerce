@@ -1,32 +1,33 @@
+
 import React from "react";
-import styles from "./sideBar.module.css";
+import "./sideBar.css";
 
 const Sidebar = ({ setActivePage }) => {
   return (
-    <div className={styles.sidebar}>
-      <h2 className={styles.sidebarTitle}>Admin</h2>
-      <ul className={styles.sidebarList}>
-        <li className={styles.sidebarItem} onClick={() => setActivePage("dashboard")}>
+    <div className="sidebar">
+      <h2 className="sidebar-title">Admin</h2>
+      <ul className="sidebar-list">
+        <li className="sidebar-item" onClick={() => setActivePage("dashboard")}>
           Dashboard
         </li>
-        <li className={styles.sidebarItem} onClick={() => setActivePage("orders")}>
+        <li className="sidebar-item" onClick={() => setActivePage("orders")}>
           Orders
         </li>
-        <li className={styles.sidebarItem} onClick={() => setActivePage("menu")}>
+        <li className="sidebar-item" onClick={() => setActivePage("menu")}>
           Menu
         </li>
-        <li className={styles.sidebarItem} onClick={() => setActivePage("customers")}>
+        <li className="sidebar-item" onClick={() => setActivePage("customers")}>
           Customers
         </li>
-        <li className={styles.sidebarItem} onClick={() => setActivePage("reviews")}>
+        <li className="sidebar-item" onClick={() => setActivePage("reviews")}>
           Reviews
         </li>
-        {/* <li className={styles.sidebarItem} onClick={() => setActivePage("settings")}>
-          Settings
-        </li> */}
+      
       </ul>
     </div>
   );
 };
 
 export default Sidebar;
+
+

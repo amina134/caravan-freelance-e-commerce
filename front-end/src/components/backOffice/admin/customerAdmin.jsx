@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Edit2, Trash2, Search, Plus } from 'lucide-react';
-import styles from './customerAdmin.module.css';
 import { deleteUser, fetchAllUsers, postUser, updateUser } from '../../../api/userApi';
-
+import './customerAdmin.css';
 const CustomerAdmin = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -89,36 +88,33 @@ const CustomerAdmin = () => {
   };
 
   return (
-    <div className={styles.adminUsers}>
-      <div className={styles.adminUsers__header}>
+    <div className="users-admin-container">
+      <div className="users-admin-header">
         <div>
-          <h1 className={styles.adminUsers__title}>Users Management</h1>
-          <p className={styles.adminUsers__subtitle}>Manage all registered users</p>
+          <h1 className="users-admin-title">Users Management</h1>
+          <p className="users-admin-subtitle">Manage all registered users</p>
         </div>
-        <button
-          className={styles.adminUsers__addBtn}
-          onClick={() => setShowAddModal(true)}
-        >
+        <button className="btn-add-user" onClick={() => setShowAddModal(true)}>
           <Plus size={18} /> Add User
         </button>
       </div>
 
-      {/* 🔍 Filters */}
-      <div className={styles.adminUsers__filters}>
-        <div className={styles.adminUsers__searchBox}>
-          <Search size={18} className={styles.adminUsers__searchIcon} />
+      {/* Filters */}
+      <div className="users-filters-bar">
+        <div className="search-box-users">
+          <Search size={18} className="search-icon-users" />
           <input
             type="text"
             placeholder="Search by name or email..."
-            className={styles.adminUsers__searchInput}
+            className="search-input-users"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
-        <div className={styles.adminUsers__filtersGroup}>
+        <div className="filters-group">
           <select
-            className={styles.adminUsers__select}
+            className="filter-select"
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
           >
@@ -130,7 +126,7 @@ const CustomerAdmin = () => {
           </select>
 
           <select
-            className={styles.adminUsers__select}
+            className="filter-select"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -142,11 +138,13 @@ const CustomerAdmin = () => {
       </div>
 
       {/* Table */}
-      <div className={styles.adminUsers__tableWrapper}>
+      <div className="users-table-wrapper">
         {loading ? (
           <p>Loading users...</p>
+        ) : filteredUsers.length === 0 ? (
+          <div className="empty-state-users">No users found.</div>
         ) : (
-          <table className={styles.adminUsers__table}>
+          <table className="users-table">
             <thead>
               <tr>
                 <th>Name</th>
@@ -160,26 +158,18 @@ const CustomerAdmin = () => {
             <tbody>
               {filteredUsers.map((user) => (
                 <tr key={user._id}>
-                  <td>{user.userName}</td>
+                  <td className="user-name">{user.userName}</td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
                   <td>
-                    <span className={`${styles.adminUsers__roleBadge} ${styles[`role-${user.role}`]}`}>
-                      {user.role}
-                    </span>
+                    <span className={`role-badge role-${user.role}`}>{user.role}</span>
                   </td>
                   <td>{new Date(user.createdAt).toLocaleString()}</td>
-                  <td className={styles.adminUsers__actions}>
-                    <button
-                      className={`${styles.adminUsers__btn} ${styles.edit}`}
-                      onClick={() => handleEditUser(user)}
-                    >
+                  <td className="actions-cell">
+                    <button className="action-btn-small edit" onClick={() => handleEditUser(user)}>
                       <Edit2 size={15} />
                     </button>
-                    <button
-                      className={`${styles.adminUsers__btn} ${styles.delete}`}
-                      onClick={() => handleDeleteUser(user._id)}
-                    >
+                    <button className="action-btn-small delete" onClick={() => handleDeleteUser(user._id)}>
                       <Trash2 size={15} />
                     </button>
                   </td>
@@ -190,20 +180,14 @@ const CustomerAdmin = () => {
         )}
       </div>
 
-      {/* ✏️ Edit Modal */}
+      {/* Edit Modal */}
       {showEditModal && editingUser && (
-        <div
-          className={styles.adminUsers__modalOverlay}
-          onClick={() => setShowEditModal(false)}
-        >
-          <div
-            className={styles.adminUsers__modal}
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay-users" onClick={() => setShowEditModal(false)}>
+          <div className="modal-content-users" onClick={(e) => e.stopPropagation()}>
             <h2>Edit User</h2>
-            <div className={styles.adminUsers__form}>
-              <label>
-                Name
+            <div className="modal-form">
+              <div className="form-group-users">
+                <label>Name</label>
                 <input
                   type="text"
                   value={editingUser.userName}
@@ -211,9 +195,9 @@ const CustomerAdmin = () => {
                     setEditingUser({ ...editingUser, userName: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Email
+              </div>
+              <div className="form-group-users">
+                <label>Email</label>
                 <input
                   type="email"
                   value={editingUser.email}
@@ -221,9 +205,9 @@ const CustomerAdmin = () => {
                     setEditingUser({ ...editingUser, email: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Phone
+              </div>
+              <div className="form-group-users">
+                <label>Phone</label>
                 <input
                   type="tel"
                   value={editingUser.phone}
@@ -231,9 +215,9 @@ const CustomerAdmin = () => {
                     setEditingUser({ ...editingUser, phone: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Role
+              </div>
+              <div className="form-group-users">
+                <label>Role</label>
                 <select
                   value={editingUser.role}
                   onChange={(e) =>
@@ -243,19 +227,13 @@ const CustomerAdmin = () => {
                   <option value="customer">Customer</option>
                   <option value="admin">Admin</option>
                 </select>
-              </label>
+              </div>
             </div>
-            <div className={styles.adminUsers__modalActions}>
-              <button
-                className={styles.adminUsers__cancelBtn}
-                onClick={() => setShowEditModal(false)}
-              >
+            <div className="modal-actions">
+              <button className="btn-cancel-users" onClick={() => setShowEditModal(false)}>
                 Cancel
               </button>
-              <button
-                className={styles.adminUsers__saveBtn}
-                onClick={handleSaveUser}
-              >
+              <button className="btn-save-users" onClick={handleSaveUser}>
                 Save
               </button>
             </div>
@@ -263,20 +241,14 @@ const CustomerAdmin = () => {
         </div>
       )}
 
-      {/* ➕ Add Modal */}
+      {/* Add Modal */}
       {showAddModal && (
-        <div
-          className={styles.adminUsers__modalOverlay}
-          onClick={() => setShowAddModal(false)}
-        >
-          <div
-            className={styles.adminUsers__modal}
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="modal-overlay-users" onClick={() => setShowAddModal(false)}>
+          <div className="modal-content-users" onClick={(e) => e.stopPropagation()}>
             <h2>Add User</h2>
-            <div className={styles.adminUsers__form}>
-              <label>
-                Name
+            <div className="modal-form">
+              <div className="form-group-users">
+                <label>Name</label>
                 <input
                   type="text"
                   value={newUser.userName}
@@ -284,9 +256,9 @@ const CustomerAdmin = () => {
                     setNewUser({ ...newUser, userName: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Email
+              </div>
+              <div className="form-group-users">
+                <label>Email</label>
                 <input
                   type="email"
                   value={newUser.email}
@@ -294,9 +266,9 @@ const CustomerAdmin = () => {
                     setNewUser({ ...newUser, email: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Phone
+              </div>
+              <div className="form-group-users">
+                <label>Phone</label>
                 <input
                   type="tel"
                   value={newUser.phone}
@@ -304,9 +276,9 @@ const CustomerAdmin = () => {
                     setNewUser({ ...newUser, phone: e.target.value })
                   }
                 />
-              </label>
-              <label>
-                Role
+              </div>
+              <div className="form-group-users">
+                <label>Role</label>
                 <select
                   value={newUser.role}
                   onChange={(e) =>
@@ -316,19 +288,13 @@ const CustomerAdmin = () => {
                   <option value="customer">Customer</option>
                   <option value="admin">Admin</option>
                 </select>
-              </label>
+              </div>
             </div>
-            <div className={styles.adminUsers__modalActions}>
-              <button
-                className={styles.adminUsers__cancelBtn}
-                onClick={() => setShowAddModal(false)}
-              >
+            <div className="modal-actions">
+              <button className="btn-cancel-users" onClick={() => setShowAddModal(false)}>
                 Cancel
               </button>
-              <button
-                className={styles.adminUsers__saveBtn}
-                onClick={handleAddUser}
-              >
+              <button className="btn-save-users" onClick={handleAddUser}>
                 Add
               </button>
             </div>
