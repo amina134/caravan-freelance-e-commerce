@@ -88,33 +88,33 @@ const CustomerAdmin = () => {
   };
 
   return (
-    <div className="users-admin-container">
-      <div className="users-admin-header">
+    <div className="Users-admin-container">
+      <div className="Users-admin-header">
         <div>
-          <h1 className="users-admin-title">Users Management</h1>
-          <p className="users-admin-subtitle">Manage all registered users</p>
+          <h1 className="Users-admin-title">Users Management</h1>
+          <p className="Users-admin-subtitle">Manage all registered users</p>
         </div>
-        <button className="btn-add-user" onClick={() => setShowAddModal(true)}>
+        <button className="Btn-add-user" onClick={() => setShowAddModal(true)}>
           <Plus size={18} /> Add User
         </button>
       </div>
 
       {/* Filters */}
-      <div className="users-filters-bar">
-        <div className="search-box-users">
-          <Search size={18} className="search-icon-users" />
+      <div className="Users-filters-bar">
+        <div className="Search-box-users">
+          <Search size={18} className="Search-icon-users" />
           <input
             type="text"
             placeholder="Search by name or email..."
-            className="search-input-users"
+            className="Search-input-users"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
 
-        <div className="filters-group">
+        <div className="Filters-group">
           <select
-            className="filter-select"
+            className="Filter-select"
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
           >
@@ -126,7 +126,7 @@ const CustomerAdmin = () => {
           </select>
 
           <select
-            className="filter-select"
+            className="Filter-select"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
@@ -138,13 +138,13 @@ const CustomerAdmin = () => {
       </div>
 
       {/* Table */}
-      <div className="users-table-wrapper">
+      <div className="Users-table-wrapper">
         {loading ? (
           <p>Loading users...</p>
         ) : filteredUsers.length === 0 ? (
-          <div className="empty-state-users">No users found.</div>
+          <div className="Empty-state-users">No users found.</div>
         ) : (
-          <table className="users-table">
+          <table className="Users-table">
             <thead>
               <tr>
                 <th>Name</th>
@@ -158,18 +158,18 @@ const CustomerAdmin = () => {
             <tbody>
               {filteredUsers.map((user) => (
                 <tr key={user._id}>
-                  <td className="user-name">{user.userName}</td>
+                  <td className="User-name">{user.userName}</td>
                   <td>{user.email}</td>
                   <td>{user.phone}</td>
                   <td>
-                    <span className={`role-badge role-${user.role}`}>{user.role}</span>
+                    <span className={`Role-badge role-${user.role}`}>{user.role}</span>
                   </td>
                   <td>{new Date(user.createdAt).toLocaleString()}</td>
-                  <td className="actions-cell">
-                    <button className="action-btn-small edit" onClick={() => handleEditUser(user)}>
+                  <td className="Actions-cell">
+                    <button className="Action-btn-small edit" onClick={() => handleEditUser(user)}>
                       <Edit2 size={15} />
                     </button>
-                    <button className="action-btn-small delete" onClick={() => handleDeleteUser(user._id)}>
+                    <button className="Action-btn-small delete" onClick={() => handleDeleteUser(user._id)}>
                       <Trash2 size={15} />
                     </button>
                   </td>
@@ -182,11 +182,11 @@ const CustomerAdmin = () => {
 
       {/* Edit Modal */}
       {showEditModal && editingUser && (
-        <div className="modal-overlay-users" onClick={() => setShowEditModal(false)}>
-          <div className="modal-content-users" onClick={(e) => e.stopPropagation()}>
+        <div className="Modal-overlay-users" onClick={() => setShowEditModal(false)}>
+          <div className="Modal-content-users" onClick={(e) => e.stopPropagation()}>
             <h2>Edit User</h2>
-            <div className="modal-form">
-              <div className="form-group-users">
+            <div className="Modal-form">
+              <div className="Form-group-users">
                 <label>Name</label>
                 <input
                   type="text"
@@ -196,7 +196,7 @@ const CustomerAdmin = () => {
                   }
                 />
               </div>
-              <div className="form-group-users">
+              <div className="Form-group-users">
                 <label>Email</label>
                 <input
                   type="email"
@@ -206,7 +206,7 @@ const CustomerAdmin = () => {
                   }
                 />
               </div>
-              <div className="form-group-users">
+              <div className="Form-group-users">
                 <label>Phone</label>
                 <input
                   type="tel"
@@ -216,7 +216,7 @@ const CustomerAdmin = () => {
                   }
                 />
               </div>
-              <div className="form-group-users">
+              <div className="Form-group-users">
                 <label>Role</label>
                 <select
                   value={editingUser.role}
@@ -229,11 +229,11 @@ const CustomerAdmin = () => {
                 </select>
               </div>
             </div>
-            <div className="modal-actions">
-              <button className="btn-cancel-users" onClick={() => setShowEditModal(false)}>
+            <div className="Modal-actions">
+              <button className="Btn-cancel-users" onClick={() => setShowEditModal(false)}>
                 Cancel
               </button>
-              <button className="btn-save-users" onClick={handleSaveUser}>
+              <button className="Btn-save-users" onClick={handleSaveUser}>
                 Save
               </button>
             </div>
@@ -243,11 +243,11 @@ const CustomerAdmin = () => {
 
       {/* Add Modal */}
       {showAddModal && (
-        <div className="modal-overlay-users" onClick={() => setShowAddModal(false)}>
-          <div className="modal-content-users" onClick={(e) => e.stopPropagation()}>
+        <div className="Modal-overlay-users" onClick={() => setShowAddModal(false)}>
+          <div className="Modal-content-users" onClick={(e) => e.stopPropagation()}>
             <h2>Add User</h2>
-            <div className="modal-form">
-              <div className="form-group-users">
+            <div className="Modal-form">
+              <div className="Form-group-users">
                 <label>Name</label>
                 <input
                   type="text"
@@ -257,7 +257,7 @@ const CustomerAdmin = () => {
                   }
                 />
               </div>
-              <div className="form-group-users">
+              <div className="Form-group-users">
                 <label>Email</label>
                 <input
                   type="email"
@@ -267,7 +267,7 @@ const CustomerAdmin = () => {
                   }
                 />
               </div>
-              <div className="form-group-users">
+              <div className="Form-group-users">
                 <label>Phone</label>
                 <input
                   type="tel"
@@ -277,7 +277,7 @@ const CustomerAdmin = () => {
                   }
                 />
               </div>
-              <div className="form-group-users">
+              <div className="Form-group-users">
                 <label>Role</label>
                 <select
                   value={newUser.role}
@@ -290,11 +290,11 @@ const CustomerAdmin = () => {
                 </select>
               </div>
             </div>
-            <div className="modal-actions">
-              <button className="btn-cancel-users" onClick={() => setShowAddModal(false)}>
+            <div className="Modal-actions">
+              <button className="Btn-cancel-users" onClick={() => setShowAddModal(false)}>
                 Cancel
               </button>
-              <button className="btn-save-users" onClick={handleAddUser}>
+              <button className="Btn-save-users" onClick={handleAddUser}>
                 Add
               </button>
             </div>

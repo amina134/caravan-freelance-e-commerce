@@ -1,5 +1,5 @@
 /* Users Admin Container */
-.users-admin-container {
+.Users-admin-container {
   padding: 2rem;
   min-height: 100vh;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -7,7 +7,7 @@
 }
 
 /* Header */
-.users-admin-header {
+.Users-admin-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,19 +16,19 @@
   gap: 1rem;
 }
 
-.users-admin-title {
+.Users-admin-title {
   font-size: 2.5rem;
   font-weight: 700;
   color: #1a202c;
   margin-bottom: 0.5rem;
 }
 
-.users-admin-subtitle {
+.Users-admin-subtitle {
   font-size: 1rem;
   color: #718096;
 }
 
-.btn-add-user {
+.Btn-add-user {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -45,13 +45,13 @@
   white-space: nowrap;
 }
 
-.btn-add-user:hover {
+.Btn-add-user:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 /* Filters Bar */
-.users-filters-bar {
+.Users-filters-bar {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
@@ -63,13 +63,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.search-box-users {
+.Search-box-users {
   position: relative;
   flex: 1;
   min-width: 250px;
 }
 
-.search-icon-users {
+.Search-icon-users {
   position: absolute;
   left: 1rem;
   top: 50%;
@@ -77,7 +77,7 @@
   color: #cbd5e0;
 }
 
-.search-input-users {
+.Search-input-users {
   width: 100%;
   padding: 0.875rem 1rem 0.875rem 3rem;
   border: 2px solid #e2e8f0;
@@ -88,21 +88,21 @@
   box-sizing: border-box;
 }
 
-.search-input-users:focus {
+.Search-input-users:focus {
   outline: none;
   border-color: #667eea;
   background: white;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.filters-group {
+.Filters-group {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.filter-select {
+.Filter-select {
   padding: 0.75rem 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
@@ -113,13 +113,13 @@
   transition: all 0.3s ease;
 }
 
-.filter-select:hover,
-.filter-select:focus {
+.Filter-select:hover,
+.Filter-select:focus {
   border-color: #667eea;
   outline: none;
 }
 
-.view-toggle {
+.View-toggle {
   display: flex;
   gap: 0.25rem;
   background: #f0f4f8;
@@ -127,7 +127,7 @@
   border-radius: 8px;
 }
 
-.view-btn {
+.View-btn {
   width: 40px;
   height: 40px;
   border: none;
@@ -139,17 +139,17 @@
   transition: all 0.2s ease;
 }
 
-.view-btn:hover {
+.View-btn:hover {
   background: #e2e8f0;
 }
 
-.view-btn.active {
+.View-btn.active {
   background: #667eea;
   color: white;
 }
 
 /* Table View */
-.users-table-wrapper {
+.Users-table-wrapper {
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -157,38 +157,38 @@
   overflow-x: auto;
 }
 
-.users-table {
+.Users-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.users-table thead {
+.Users-table thead {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   font-weight: 600;
 }
 
-.users-table th {
+.Users-table th {
   padding: 1.25rem;
   text-align: left;
   font-size: 0.95rem;
   white-space: nowrap;
 }
 
-.users-table tbody tr {
+.Users-table tbody tr {
   border-bottom: 1px solid #e2e8f0;
   transition: all 0.2s ease;
 }
 
-.users-table tbody tr:hover {
+.Users-table tbody tr:hover {
   background: #f8fafc;
 }
 
-.users-table tbody tr.status-inactive {
+.Users-table tbody tr.status-inactive {
   opacity: 0.7;
 }
 
-.users-table td {
+.Users-table td {
 
   padding: 1.25rem;
 
@@ -196,12 +196,12 @@
   color: #4a5568;
 }
 
-.user-name {
+.User-name {
   font-weight: 600;
   color: #2d3748;
 }
 
-.role-badge {
+.Role-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
   border-radius: 20px;
@@ -210,17 +210,17 @@
   white-space: nowrap;
 }
 
-.role-customer {
+.Role-customer {
   background: rgba(88, 162, 227, 0.15);
   color: #2b6cb0;
 }
 
-.role-admin {
+.Role-admin {
   background: rgba(237, 137, 54, 0.15);
   color: #b7591f;
 }
 
-.status-badge {
+.Status-badge {
   display: inline-block;
   padding: 0.35rem 0.75rem;
   border-radius: 20px;
@@ -229,27 +229,27 @@
   white-space: nowrap;
 }
 
-.status-active {
+.Status-active {
   background: rgba(16, 185, 129, 0.15);
   color: #065f46;
 }
 
-.status-inactive {
+.Status-inactive {
   background: rgba(239, 68, 68, 0.15);
   color: #7f1d1d;
 }
 
-.order-count {
+.Order-count {
   font-weight: 600;
   color: #667eea;
 }
 
-.actions-cell {
+.Actions-cell {
   display: flex;
   gap: 0.5rem;
 }
 
-.action-btn-small {
+.Action-btn-small {
   width: 36px;
   height: 36px;
   border: none;
@@ -261,36 +261,36 @@
   transition: all 0.3s ease;
 }
 
-.action-btn-small.edit {
+.Action-btn-small.edit {
   background: rgba(79, 158, 255, 0.1);
   color: #4f9eff;
 }
 
-.action-btn-small.edit:hover {
+.Action-btn-small.edit:hover {
   background: #4f9eff;
   color: white;
   transform: scale(1.1);
 }
 
-.action-btn-small.delete {
+.Action-btn-small.delete {
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
 }
 
-.action-btn-small.delete:hover {
+.Action-btn-small.delete:hover {
   background: #ef4444;
   color: white;
   transform: scale(1.1);
 }
 
 /* Card View */
-.users-grid {
+.Users-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 1.5rem;
 }
 
-.user-card {
+.User-card {
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -300,12 +300,12 @@
   flex-direction: column;
 }
 
-.user-card:hover {
+.User-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
-.card-header {
+.Card-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 1.5rem;
@@ -314,18 +314,18 @@
   align-items: flex-start;
 }
 
-.card-name {
+.Card-name {
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.card-body {
+.Card-body {
   padding: 1.5rem;
   flex: 1;
 }
 
-.card-row {
+.Card-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -333,25 +333,25 @@
   gap: 1rem;
 }
 
-.card-row .label {
+.Card-row .label {
   font-weight: 600;
   color: #718096;
   font-size: 0.9rem;
 }
 
-.card-row .value {
+.Card-row .value {
   color: #2d3748;
   text-align: right;
 }
 
-.card-footer {
+.Card-footer {
   display: flex;
   gap: 0.75rem;
   padding: 1.5rem;
   border-top: 1px solid #e2e8f0;
 }
 
-.action-btn-card {
+.Action-btn-card {
   flex: 1;
   display: flex;
   align-items: center;
@@ -365,28 +365,28 @@
   transition: all 0.3s ease;
 }
 
-.action-btn-card.edit {
+.Action-btn-card.edit {
   background: rgba(79, 158, 255, 0.1);
   color: #4f9eff;
 }
 
-.action-btn-card.edit:hover {
+.Action-btn-card.edit:hover {
   background: #4f9eff;
   color: white;
 }
 
-.action-btn-card.delete {
+.Action-btn-card.delete {
   background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
 }
 
-.action-btn-card.delete:hover {
+.Action-btn-card.delete:hover {
   background: #ef4444;
   color: white;
 }
 
 /* Empty State */
-.empty-state-users {
+.Empty-state-users {
   text-align: center;
   padding: 3rem 1rem;
   background: white;
@@ -396,7 +396,7 @@
 }
 
 /* Modal */
-.modal-overlay-users {
+.Modal-overlay-users {
   position: fixed;
   top: 0;
   left: 0;
@@ -411,7 +411,7 @@
   backdrop-filter: blur(4px);
 }
 
-.modal-content-users {
+.Modal-content-users {
   background: white;
   border-radius: 16px;
   width: 100%;
@@ -422,22 +422,22 @@
   padding: 2rem;
 }
 
-.modal-content-users h2 {
+.Modal-content-users h2 {
   font-size: 1.5rem;
   color: #1a202c;
   margin-bottom: 1.5rem;
   font-weight: 700;
 }
 
-.modal-form {
+.Modal-form {
   margin-bottom: 1.5rem;
 }
 
-.form-group-users {
+.Form-group-users {
   margin-bottom: 1.25rem;
 }
 
-.form-group-users label {
+.Form-group-users label {
   display: block;
   font-weight: 600;
   color: #2d3748;
@@ -445,8 +445,8 @@
   font-size: 0.9rem;
 }
 
-.form-group-users input,
-.form-group-users select {
+.Form-group-users input,
+.Form-group-users select {
   width: 100%;
   padding: 0.875rem;
   border: 2px solid #e2e8f0;
@@ -456,20 +456,20 @@
   box-sizing: border-box;
 }
 
-.form-group-users input:focus,
-.form-group-users select:focus {
+.Form-group-users input:focus,
+.Form-group-users select:focus {
   outline: none;
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.modal-actions {
+.Modal-actions {
   display: flex;
   gap: 1rem;
 }
 
-.btn-cancel-users,
-.btn-save-users {
+.Btn-cancel-users,
+.Btn-save-users {
   flex: 1;
   padding: 0.875rem;
   border: none;
@@ -479,180 +479,180 @@
   transition: all 0.3s ease;
 }
 
-.btn-cancel-users {
+.Btn-cancel-users {
   background: #f0f4f8;
   color: #4a5568;
 }
 
-.btn-cancel-users:hover {
+.Btn-cancel-users:hover {
   background: #e2e8f0;
 }
 
-.btn-save-users {
+.Btn-save-users {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
-.btn-save-users:hover {
+.Btn-save-users:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .users-admin-container {
+  .Users-admin-container {
     padding: 1.5rem;
   }
 
-  .users-admin-title {
+  .Users-admin-title {
     font-size: 2rem;
   }
 
-  .users-admin-header {
+  .Users-admin-header {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .btn-add-user {
+  .Btn-add-user {
     width: 100%;
     justify-content: center;
   }
 
-  .users-filters-bar {
+  .Users-filters-bar {
     flex-direction: column;
   }
 
-  .search-box-users {
+  .Search-box-users {
     min-width: auto;
   }
 
-  .filters-group {
+  .Filters-group {
     width: 100%;
     justify-content: flex-start;
   }
 
-  .users-grid {
+  .Users-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
-  .users-admin-container {
+  .Users-admin-container {
     padding: 1rem;
   }
 
-  .users-admin-title {
+  .Users-admin-title {
     font-size: 1.75rem;
   }
 
-  .users-admin-subtitle {
+  .Users-admin-subtitle {
     font-size: 0.9rem;
   }
 
-  .users-filters-bar {
+  .Users-filters-bar {
     padding: 1rem;
     gap: 0.75rem;
   }
 
-  .search-box-users {
+  .Search-box-users {
     width: 100%;
     min-width: auto;
   }
 
-  .filters-group {
+  .Filters-group {
     width: 100%;
     gap: 0.5rem;
   }
 
-  .filter-select {
+  .Filter-select {
     flex: 1;
     min-width: 120px;
     padding: 0.65rem 0.75rem;
     font-size: 0.85rem;
   }
 
-  .view-btn {
+  .View-btn {
     width: 36px;
     height: 36px;
     font-size: 1rem;
   }
 
-  .users-table-wrapper {
+  .Users-table-wrapper {
     overflow-x: auto;
     border-radius: 8px;
   }
 
-  .users-table {
+  .Users-table {
     font-size: 0.85rem;
   }
 
-  .users-table th,
-  .users-table td {
+  .Users-table th,
+  .Users-table td {
     padding: 0.75rem;
   }
 
-  .actions-cell {
+  .Actions-cell {
     flex-direction: column;
     gap: 0.25rem;
   }
 
-  .action-btn-small {
+  .Action-btn-small {
     width: 32px;
     height: 32px;
   }
 
-  .users-grid {
+  .Users-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
   }
 
-  .user-card {
+  .User-card {
     border-radius: 10px;
   }
 
-  .card-header {
+  .Card-header {
     padding: 1rem;
   }
 
-  .card-name {
+  .Card-name {
     font-size: 1.15rem;
   }
 
-  .card-body {
+  .Card-body {
     padding: 1rem;
   }
 
-  .card-row {
+  .Card-row {
     margin-bottom: 0.75rem;
     font-size: 0.9rem;
   }
 
-  .card-footer {
+  .Card-footer {
     padding: 1rem;
     gap: 0.5rem;
   }
 
-  .modal-content-users {
+  .Modal-content-users {
     max-width: 95%;
     padding: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .users-admin-container {
+  .Users-admin-container {
     padding: 0.75rem;
   }
 
-  .users-admin-title {
+  .Users-admin-title {
     font-size: 1.5rem;
     margin-bottom: 0.25rem;
   }
 
-  .users-admin-subtitle {
+  .Users-admin-subtitle {
     font-size: 0.8rem;
   }
 
-  .users-admin-header {
+  .Users-admin-header {
     gap: 0.5rem;
   }}
