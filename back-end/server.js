@@ -10,6 +10,7 @@ const connectDb=require('./config/connectDb')
 const productRoute = require('./routes/productRoutes')
 const userRoute=require('./routes/userRoutes')
 const cartRoute=require('./routes/cartRoutes')
+const orderRoute=require('./routes/orderRoutes.js')
 app.use(cors());
 app.use('/productImages',express.static(path.join(__dirname,'public/productImages')))
 app.use(express.json())
@@ -26,6 +27,9 @@ app.use('/cart', cartRoute)
 
 // contact route 
 app.use("/api", contactRoute);
+
+// order route 
+app.use("/order",orderRoute)
 
 app.listen(port,()=>{
     console.log(`server is running on ${port}`);
