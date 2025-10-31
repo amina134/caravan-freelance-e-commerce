@@ -24,6 +24,7 @@ import Footer from './components/frontOffice/5-footer/footer';
 
 
 import AdminDashboard from './components/backOffice/admin/adminDashboard';
+import CheckoutForm from './components/frontOffice/3-main/CheckoutForm';
 function App() {
 
   const products=useSelector(state=>state.productElement)
@@ -68,13 +69,14 @@ function App() {
         <Route path='profile' element={<Profile/>}/>
         <Route path="About-us" element={<About/>}/>
         <Route path="Contact" element={<Contact/>}/>
+        <Route path="checkout" element={<CheckoutForm/>}/>
         
       </Route>    
    
         <Route path="/Admindashboard" element={<AdminDashboard/>}>
       </Route>  
     </Routes>
-     
+         {! hideLayout && <Footer/>}
    
     </>
   )
