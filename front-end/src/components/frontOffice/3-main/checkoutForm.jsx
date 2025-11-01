@@ -2,40 +2,85 @@ import './checkoutForm.css';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Check, ShoppingCart } from 'lucide-react';
-
+import { postOrder } from '../../../api/orderApi';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import cart from '../../../../../back-end/model/cart';
 const CheckoutForm = ({ onSubmit }) => {
   const location = useLocation();
-  const cart = location.state?.cart || [];
+  const {currentUser}=useSelector((state)=>state.userElement);
+
+  const [cartItems,setCartItems]=useState([])
   const [formData, setFormData] = useState({
     customerName: '',
     phone: '',
     address: '',
     city: '',
     notes: ''
+   
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  // get the cart items 
+  const cartItemsRedux = useSelector((state) => state.cartElement.items||[]);
+  // console.log("cart items redux",cartItemsRedux)
+  useEffect(() => {
+  // Try to get cart from Redux first
+  if (cartItemsRedux.length > 0) {
+    setCartItems(cartItemsRedux);
+    console.log("cart itemssss redux",cartItemsRedux);
+  } else {
+    // If Redux is empty, fallback to localStorage
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+        const parsed = JSON.parse(savedCart);
+        if (Array.isArray(parsed)) setCartItems(parsed);
+        console.log("Cartttttt from localStorage:", parsed);
+      }
+  }
+}, [cartItemsRedux]);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    if (onSubmit) onSubmit(formData);
-    console.log('Order submitted', formData, cart);
+      if (!currentUser?._id) {
+      alert("Please log in before placing an order.");
+      setIsSubmitting(false);
+      return;
+    }
+    if (onSubmit) 
+       
+      {
+       
+        onSubmit(formData);
+     
+      }
+    console.log("cartItemsssssss",cartItems)
+    const orderData = {
+    userId:currentUser._id,
+    ...formData,
+    cartItems:cartItems ||[],
+  };
+    console.log("formdaaaaata",{...formData});
+
+    const postedOrder=await postOrder(orderData)
+    console.log("postedOrder",postedOrder)
+    
+    console.log('Order submitted', formData, cartItems);
     setTimeout(() => setIsSubmitting(false), 1000);
   };
 
-  const totalPrice = cart.reduce((acc, item) => {
-    const itemPrice = item.productId.price * item.quantity;
-    const extrasPrice = item.supplements?.reduce((sum, extra) => sum + extra.price * item.quantity, 0) || 0;
-    return acc + itemPrice + extrasPrice;
-  }, 0);
+  // const totalPrice = cart.reduce((acc, item) => {
+  //   const itemPrice = item.productId.price * item.quantity;
+  //   const extrasPrice = item.supplements?.reduce((sum, extra) => sum + extra.price * item.quantity, 0) || 0;
+  //   return acc + itemPrice + extrasPrice;
+  // }, 0);
 
-  const subtotal = totalPrice;
-  const tax = subtotal * 0.1;
-  const total = subtotal + tax;
+  // const subtotal = totalPrice;
+  // const tax = subtotal * 0.1;
+  // const total = subtotal + tax;
   
   return (
     <div className="checkout-wrapper">
@@ -51,7 +96,7 @@ const CheckoutForm = ({ onSubmit }) => {
             <input
               id="name"
               type="text"
-              name="name"
+              name="customerName"
               value={formData.customerName}
               onChange={handleChange}
               placeholder="John Doe"
@@ -127,10 +172,10 @@ const CheckoutForm = ({ onSubmit }) => {
       <div className="checkout-summary-container">
         <div className="summary-header">
           <h3>Order Summary</h3>
-          <span className="item-count">{cart.length} items</span>
+          {/* <span className="item-count">{cart.length} items</span> */}
         </div>
 
-        {cart.length === 0 ? (
+        {/* {cart.length === 0 ? (
           <div className="empty-cart">
             <ShoppingCart size={40} />
             <p>Your cart is empty</p>
@@ -189,7 +234,7 @@ const CheckoutForm = ({ onSubmit }) => {
               <p> Pay on delivery. No prepayment required.</p>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

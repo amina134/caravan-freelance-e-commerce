@@ -38,6 +38,7 @@ const getOrderById = async (req, res) => {
 };
 
 
+
 // update the satus of the order
 const updateOrderStatus = async (req, res) => {
   try {
@@ -61,4 +62,16 @@ const deleteOrder = async (req, res) => {
   }
 };
 
-module.exports={addOrder,getAllOrders,getOrderById,updateOrderStatus,deleteOrder} 
+const getOrdersByUserId = async (req, res) => {
+  try {
+    const orders = await orderSchema.find({ userId: req.params.userId });
+    if (!orders.length) {
+      return res.status(404).json({ message: "No orders found for this user" });
+    }
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports={addOrder,getAllOrders,getOrderById,updateOrderStatus,deleteOrder,getOrdersByUserId} 

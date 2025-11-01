@@ -11,22 +11,36 @@
     const { currentUser } = useSelector((state) => state.userElement);
     const itemsRedux = useSelector((state) => state.cartElement.items);
 
-    useEffect(() => {
-      console.log('current user ', currentUser);
+  useEffect(() => {
+  const fetchCartItems = async () => {
+    try {
       if (currentUser && currentUser._id) {
-        const fetchCartItems = async () => {
-          try {
-
-            const response = await getCartByUserId(currentUser._id);
-            console.log('response items', response.cart.items);
-            dispatch(setCart(response.cart.items));
-          } catch (error) {
-            console.error(error);
-          }
-        };
-        fetchCartItems();
+        // Logged in: get from backend
+        const response = await getCartByUserId(currentUser._id);
+        console.log('response items', response.cart.items);
+        dispatch(setCart(response.cart.items));
+        // Save to localStorage too (for faster reload)
+        localStorage.setItem('cartItems', JSON.stringify(response.cart.items));
+      } else {
+        // Guest mode: get from localStorage
+        const savedCart = JSON.parse(localStorage.getItem('cartItems')) || [];
+        dispatch(setCart(savedCart));
       }
-    }, [currentUser, dispatch]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  fetchCartItems();
+  }, [currentUser, dispatch]);
+  useEffect(() => {
+  if (itemsRedux.length > 0) {
+    localStorage.setItem('cartItems', JSON.stringify(itemsRedux));
+  } else {
+    localStorage.removeItem('cartItems');
+  }
+}, [itemsRedux]);
+
 
     const totalPrice = itemsRedux.reduce((acc, item) => {
       const itemPrice = item.productId.price * item.quantity;

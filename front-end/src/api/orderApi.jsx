@@ -4,8 +4,8 @@ const API_URL = 4100;
 /// ADDING AN ORDER
 export const postOrder = async (values) => {
   try {
-    const { data } = await axios.post(`http://localhost:${API_URL}/order/addOrder`, values);
-    console.log("Order added:", data);
+    const { data } = await axios.post(`http://localhost:${API_URL}/order/addOrder`, {...values});
+    console.log("Order added:", data.order);
     return data;
   } catch (error) {
     console.error("Error adding order:", error);
@@ -35,13 +35,13 @@ export const getOrderById = async (id) => {
   }
 };
 
-///UPDATE ORDER STATUS
-export const updateOrderStatus = async (id, updatedFields) => {
-  try {
-    const { data } = await axios.patch(`http://localhost:${API_URL}/order/updateOrderStatus/${id}`, updatedFields);
-    return data;
-  } catch (error) {
-    console.error("Error updating order status:", error);
-    throw error;
-  }
-};
+// ///UPDATE ORDER STATUS
+// export const updateOrderStatus = async (id, updatedStatus) => {
+//   try {
+//     const { data } = await axios.patch(`http://localhost:${API_URL}/order/updateOrderStatus/${id}`, updatedFields);
+//     return data;
+//   } catch (error) {
+//     console.error("Error updating order status:", error);
+//     throw error;
+//   }
+// };
