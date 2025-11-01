@@ -4,6 +4,7 @@ const orderSchema = new mongoose.Schema({
   customerName: { type: String, required: true },
   phone: { type: String, required: true },
   address: { type: String, required: true },
+  city:{type:String, required :true},
   notes: { type: String }, // optional
   cartItems: [
   {

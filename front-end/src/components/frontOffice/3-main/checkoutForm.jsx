@@ -7,7 +7,7 @@ const CheckoutForm = ({ onSubmit }) => {
   const location = useLocation();
   const cart = location.state?.cart || [];
   const [formData, setFormData] = useState({
-    name: '',
+    customerName: '',
     phone: '',
     address: '',
     city: '',
@@ -52,7 +52,7 @@ const CheckoutForm = ({ onSubmit }) => {
               id="name"
               type="text"
               name="name"
-              value={formData.name}
+              value={formData.customerName}
               onChange={handleChange}
               placeholder="John Doe"
               required
@@ -67,7 +67,7 @@ const CheckoutForm = ({ onSubmit }) => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="+216 XX XXX XXX"
+              placeholder="XX XXX XXX"
               required
             />
           </div>
@@ -186,7 +186,7 @@ const CheckoutForm = ({ onSubmit }) => {
             </div>
 
             <div className="payment-note">
-              <p>💳 Pay on delivery. No prepayment required.</p>
+              <p> Pay on delivery. No prepayment required.</p>
             </div>
           </div>
         )}
