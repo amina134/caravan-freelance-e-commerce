@@ -9,7 +9,7 @@ export const postOrder = async (values) => {
     return data;
   } catch (error) {
     console.error("Error adding order:", error);
-    throw error; // Re-throw if you want to handle it elsewhere
+    throw error; 
   }
 };
 

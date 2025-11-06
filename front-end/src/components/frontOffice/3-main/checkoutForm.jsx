@@ -5,7 +5,6 @@ import { Check, ShoppingCart } from 'lucide-react';
 import { postOrder } from '../../../api/orderApi';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import cart from '../../../../../back-end/model/cart';
 const CheckoutForm = ({ onSubmit }) => {
   const location = useLocation();
   const {currentUser}=useSelector((state)=>state.userElement);
@@ -25,19 +24,24 @@ const CheckoutForm = ({ onSubmit }) => {
   // console.log("cart items redux",cartItemsRedux)
   useEffect(() => {
   // Try to get cart from Redux first
-  if (cartItemsRedux.length > 0) {
+  const getItemsFunc=async()=>{
+       if (cartItemsRedux.length > 0) {
     setCartItems(cartItemsRedux);
     console.log("cart itemssss redux",cartItemsRedux);
   } else {
     // If Redux is empty, fallback to localStorage
-    const savedCart = localStorage.getItem('cartItems');
+    const savedCart = await localStorage.getItem('cartItems');
     if (savedCart) {
         const parsed = JSON.parse(savedCart);
-        if (Array.isArray(parsed)) setCartItems(parsed);
+        if (Array.isArray(parsed)) setCartItems(parsed ||[]);
         console.log("Cartttttt from localStorage:", parsed);
       }
   }
-}, [cartItemsRedux]);
+  }
+  getItemsFunc()
+  }
+  
+ , [cartItemsRedux]);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -61,10 +65,10 @@ const CheckoutForm = ({ onSubmit }) => {
     const orderData = {
     userId:currentUser._id,
     ...formData,
-    cartItems:cartItems ||[],
+    cartItems:cartItems,
   };
-    console.log("formdaaaaata",{...formData});
-
+    console.log("orderData",orderData);
+    
     const postedOrder=await postOrder(orderData)
     console.log("postedOrder",postedOrder)
     

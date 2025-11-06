@@ -8,11 +8,35 @@ require('dotenv').config()
 // add orders
 const addOrder = async (req, res) => {
   try {
+    const { userId } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
+    //Check if the user already has an active order
+    const activeOrder = await orderSchema.findOne({
+      userId,
+      status: { $in: ["Pending", "Preparing", "On the way"] },
+    });
+
+    if (activeOrder) {
+      return res.status(400).json({
+        message:
+          "You already have an active order. Please wait until it is delivered or cancelled before placing a new one.",
+      });
+    }
+
+    //Create new order
     const newOrder = new orderSchema(req.body);
     await newOrder.save();
-    res.status(201).json({ message: "Order placed successfully", order: newOrder });
+
+    return res
+      .status(201)
+      .json({ message: "Order placed successfully", order: newOrder });
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    console.error("Error placing order:", error);
+    res.status(500).json({ message: "Failed to place order", error: error.message });
   }
 };
 
