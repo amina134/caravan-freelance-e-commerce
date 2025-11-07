@@ -29,7 +29,7 @@ const orderSchema = new mongoose.Schema({
   enum: ["Pending", "Preparing", "On the way", "Delivered", "Cancelled"],
   default: "Pending"
   },
-  // totalPrice: { type: Number, required: true },
+   totalPrice: { type: Number, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 

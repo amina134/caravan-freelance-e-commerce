@@ -1,0 +1,22 @@
+.my-orders-page {
+  padding: 2rem;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+}
+
+.order-card p {
+  margin: 4px 0;
+}
+
+.order-items {
+  margin-top: 10px;
+  list-style: disc;
+  padding-left: 20px;
+}

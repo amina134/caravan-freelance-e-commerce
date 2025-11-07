@@ -1,11 +1,8 @@
-const orderSchema=require("../model/order")
-const mongoose=require('mongoose');
-require('dotenv').config()
+const orderSchema = require("../model/order");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-
-
-
-// add orders
+// Add order
 const addOrder = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -14,7 +11,7 @@ const addOrder = async (req, res) => {
       return res.status(400).json({ message: "User ID is required" });
     }
 
-    //Check if the user already has an active order
+    // Check if the user already has an active order
     const activeOrder = await orderSchema.findOne({
       userId,
       status: { $in: ["Pending", "Preparing", "On the way"] },
@@ -27,33 +24,49 @@ const addOrder = async (req, res) => {
       });
     }
 
-    //Create new order
+    // Create new order
     const newOrder = new orderSchema(req.body);
     await newOrder.save();
 
+     const populatedOrder = await newOrder.populate({
+      path: "cartItems.productId",
+      select: "name price image",
+     
+    });
+
     return res
       .status(201)
-      .json({ message: "Order placed successfully", order: newOrder });
+      .json({ message: "Order placed successfully", order: populatedOrder });
   } catch (error) {
     console.error("Error placing order:", error);
-    res.status(500).json({ message: "Failed to place order", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Failed to place order", error: error.message });
   }
 };
 
-// get all orders 
+// Get all orders
 const getAllOrders = async (req, res) => {
   try {
-    const orders = await orderSchema.find().sort({ createdAt: -1 });
-    res.status(200).json({ msg: 'You got all the orders', orders });
+    const orders = await orderSchema
+      .find()
+       
+      .populate("cartItems.productId") // populate product details if exists
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({ msg: "You got all the orders", orders });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-// get order by id 
+// Get order by ID
 const getOrderById = async (req, res) => {
   try {
-    const order = await orderSchema.findById(req.params.id);
+    const order = await orderSchema
+      .findById(req.params.id)
+      
+      .populate("cartItems.productId");
     if (!order) return res.status(404).json({ message: "Order not found" });
     res.status(200).json(order);
   } catch (error) {
@@ -61,13 +74,15 @@ const getOrderById = async (req, res) => {
   }
 };
 
-
-
-// update the satus of the order
+// Update order status
 const updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
-    const order = await orderSchema.findByIdAndUpdate(req.params.id, { status }, { new: true });
+    const order = await orderSchema
+      .findByIdAndUpdate(req.params.id, { status }, { new: true })
+      .populate("userId")
+      .populate("cartItems.productId");
+
     if (!order) return res.status(404).json({ message: "Order not found" });
     res.status(200).json({ message: "Order status updated", order });
   } catch (error) {
@@ -75,7 +90,7 @@ const updateOrderStatus = async (req, res) => {
   }
 };
 
-// delete order
+// Delete order
 const deleteOrder = async (req, res) => {
   try {
     const order = await orderSchema.findByIdAndDelete(req.params.id);
@@ -86,9 +101,15 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+// Get orders by user ID
 const getOrdersByUserId = async (req, res) => {
   try {
-    const orders = await orderSchema.find({ userId: req.params.userId });
+    const orders = await orderSchema
+      .find({ userId: req.params.userId })
+      
+      .populate("cartItems.productId")
+     
+
     if (!orders.length) {
       return res.status(404).json({ message: "No orders found for this user" });
     }
@@ -98,4 +119,11 @@ const getOrdersByUserId = async (req, res) => {
   }
 };
 
-module.exports={addOrder,getAllOrders,getOrderById,updateOrderStatus,deleteOrder,getOrdersByUserId} 
+module.exports = {
+  addOrder,
+  getAllOrders,
+  getOrderById,
+  updateOrderStatus,
+  deleteOrder,
+  getOrdersByUserId,
+};

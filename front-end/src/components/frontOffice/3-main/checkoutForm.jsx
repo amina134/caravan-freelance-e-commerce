@@ -3,13 +3,17 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Check, ShoppingCart } from 'lucide-react';
 import { postOrder } from '../../../api/orderApi';
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 const CheckoutForm = ({ onSubmit }) => {
   const location = useLocation();
+  
   const {currentUser}=useSelector((state)=>state.userElement);
-
+  const navigate = useNavigate();
   const [cartItems,setCartItems]=useState([])
+  
+  
   const [formData, setFormData] = useState({
     customerName: '',
     phone: '',
@@ -21,13 +25,12 @@ const CheckoutForm = ({ onSubmit }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   // get the cart items 
   const cartItemsRedux = useSelector((state) => state.cartElement.items||[]);
-  // console.log("cart items redux",cartItemsRedux)
   useEffect(() => {
   // Try to get cart from Redux first
   const getItemsFunc=async()=>{
        if (cartItemsRedux.length > 0) {
-    setCartItems(cartItemsRedux);
-    console.log("cart itemssss redux",cartItemsRedux);
+         setCartItems(cartItemsRedux);
+         console.log("cart itemssss redux",cartItemsRedux);
   } else {
     // If Redux is empty, fallback to localStorage
     const savedCart = await localStorage.getItem('cartItems');
@@ -45,7 +48,17 @@ const CheckoutForm = ({ onSubmit }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+ 
+  // calculating total price
+    const totalPrice = cartItems.reduce((acc, item) => {
+    const itemPrice = item.productId.price * item.quantity;
+    const extrasPrice = item.supplements?.reduce((sum, extra) => sum + extra.price * item.quantity, 0) || 0;
+    return acc + itemPrice + extrasPrice;
+  }, 0);
 
+  
+   const total = totalPrice +7;
+  // handle submit function
   const handleSubmit = async(e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -66,6 +79,7 @@ const CheckoutForm = ({ onSubmit }) => {
     userId:currentUser._id,
     ...formData,
     cartItems:cartItems,
+    totalPrice:total
   };
     console.log("orderData",orderData);
     
@@ -73,18 +87,11 @@ const CheckoutForm = ({ onSubmit }) => {
     console.log("postedOrder",postedOrder)
     
     console.log('Order submitted', formData, cartItems);
+    navigate("/userZone/orderSummary", { state: { order: {...postedOrder.order} } });
     setTimeout(() => setIsSubmitting(false), 1000);
   };
 
-  // const totalPrice = cart.reduce((acc, item) => {
-  //   const itemPrice = item.productId.price * item.quantity;
-  //   const extrasPrice = item.supplements?.reduce((sum, extra) => sum + extra.price * item.quantity, 0) || 0;
-  //   return acc + itemPrice + extrasPrice;
-  // }, 0);
 
-  // const subtotal = totalPrice;
-  // const tax = subtotal * 0.1;
-  // const total = subtotal + tax;
   
   return (
     <div className="checkout-wrapper">
@@ -162,7 +169,7 @@ const CheckoutForm = ({ onSubmit }) => {
           <button type="submit" className={`checkout-btn ${isSubmitting ? 'loading' : ''}`} disabled={isSubmitting}>
             {isSubmitting ? (
               <>
-                <Check size={18} /> Order Confirmed
+                <Check size={18} /> Order Pending ....
               </>
             ) : (
               <>
@@ -172,14 +179,14 @@ const CheckoutForm = ({ onSubmit }) => {
           </button>
         </form>
       </div>
-
+      {/* // cart details summary */}
       <div className="checkout-summary-container">
         <div className="summary-header">
           <h3>Order Summary</h3>
-          {/* <span className="item-count">{cart.length} items</span> */}
+          <span className="item-count">{cartItems.length} items</span>
         </div>
 
-        {/* {cart.length === 0 ? (
+        {cartItems.length === 0 ? (
           <div className="empty-cart">
             <ShoppingCart size={40} />
             <p>Your cart is empty</p>
@@ -187,7 +194,7 @@ const CheckoutForm = ({ onSubmit }) => {
         ) : (
           <div className="summary-content">
             <div className="summary-items">
-              {cart.map((item) => {
+              {cartItems.map((item) => {
                 const itemTotal = item.productId.price * item.quantity +
                   (item.supplements?.reduce((sum, extra) => sum + extra.price * item.quantity, 0) || 0);
                 
@@ -218,27 +225,27 @@ const CheckoutForm = ({ onSubmit }) => {
 
             <div className="summary-breakdown">
               <div className="breakdown-row">
-                <span>Subtotal</span>
-                <span>{subtotal.toFixed(2)} dt</span>
+                <span>totalPrice</span>
+                <span>{totalPrice.toFixed(2)} dt</span>
               </div>
               <div className="breakdown-row">
-                <span>Tax (10%)</span>
-                <span>{tax.toFixed(2)} dt</span>
+                <span>Delivery cost</span>
+                <span>7 dt</span>
               </div>
             </div>
 
             <div className="summary-divider"></div>
 
-            <div className="summary-total">
-              <span>Total Amount</span>
-              <span className="total-price">{total.toFixed(2)} dt</span>
-            </div>
+              <div className="summary-total">
+                <span>Total Amount</span>
+                <span className="total-price">{total.toFixed(2)} dt</span>
+              </div>
 
             <div className="payment-note">
               <p> Pay on delivery. No prepayment required.</p>
             </div>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );
