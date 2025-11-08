@@ -104,11 +104,13 @@ const deleteOrder = async (req, res) => {
 // Get orders by user ID
 const getOrdersByUserId = async (req, res) => {
   try {
+    const{userId}=req.params;
+    console.log("userid",userId)
     const orders = await orderSchema
-      .find({ userId: req.params.userId })
+      .find({userId })
       
       .populate("cartItems.productId")
-     
+       
 
     if (!orders.length) {
       return res.status(404).json({ message: "No orders found for this user" });

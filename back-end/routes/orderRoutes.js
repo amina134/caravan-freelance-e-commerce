@@ -19,6 +19,6 @@ orderRoute.put('/updateOrderStatus/:id',updateOrderStatus)
 orderRoute.delete('/deleteOrder/:id',deleteOrder)
 
 // http://localhost:4100/order/getOrdersByUserId/:id
-orderRoute.get('/getOrdersByUserId/:id',getOrdersByUserId)
+orderRoute.get('/getOrdersByUserId/:userId',getOrdersByUserId)
 
 module.exports=orderRoute
