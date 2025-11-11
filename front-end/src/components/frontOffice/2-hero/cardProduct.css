@@ -1,145 +1,252 @@
+/* ============================================
+   PRODUCT CARD - FIXED & RESPONSIVE CSS
+   ============================================ */
+
 button:focus {
   outline: none !important;
   box-shadow: none !important;
 }
 
+/* ============================================
+   MAIN CARD CONTAINER
+   ============================================ */
 
-
-.food-card {
-
+.food-card-cardProduct {
   border-radius: 16px;
-    padding: 20px;
+  padding: 20px;
   max-width: 250px;
   min-height: 380px;
   text-align: center;
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
-  /* background-color: aqua; */
-  margin: 0px!important;
- 
-
-
+  margin: 0 auto;
 }
 
-.food-card:hover {
+.food-card-cardProduct:hover {
   transform: scale(1.05);
 }
 
-.food-content {
+/* ============================================
+   CARD CONTENT SECTION
+   ============================================ */
 
+.food-content-cardProduct {
   transform-style: preserve-3d;
   position: absolute;
   top: 30%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  padding-top: 80px;
-  margin-right: 10px;
-  height: 200px;
+  padding: 80px 20px 20px;
+  height: 290px;
+  width: 100%;
   max-width: 250px;
-
   z-index: 1;
   border-radius: 16px;
 }
 
-.food-content:hover {
-  background: #fafafa;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+.food-content-cardProduct:hover {
+  
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
-.food-image-wrapper {
+/* ============================================
+   IMAGE SECTION
+   ============================================ */
 
+.food-image-wrapper-cardProduct {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 180px;
+  width: 200px;
   height: 200px;
-  margin-left: 40px;
+  margin: 0 auto;
   z-index: 2;
 }
 
-.food-image {
-  width: 180px;
+.food-image-cardProduct {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
 }
 
-.food-price {
+.food-card-cardProduct:hover .food-image-cardProduct {
+  transform: scale(1.1);
+}
+
+.food-price-cardProduct {
   position: absolute;
   bottom: 130px;
-  right: 0px;
+  right: -10px;
   background: #111;
   color: #fff;
   font-weight: bold;
   height: 50px;
-  width: 60px;
+  width: 50px;
   border-radius: 50%;
   font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 3;
 }
 
-.food-title {
+/* ============================================
+   TEXT CONTENT
+   ============================================ */
+
+.food-title-cardProduct {
   font-size: 18px;
   font-weight: 600;
-  margin: 15px 0 5px;
+  margin: 35px 0 8px;
+  color: #333;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.food-desc {
+.food-desc-cardProduct {
   font-size: 14px;
   color: #666;
   margin-bottom: 15px;
   line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  min-height: 40px;
 }
 
-.food-icons {
+/* ============================================
+   ACTION ICONS SECTION
+   ============================================ */
 
-
-  padding-left: 29px;
-   padding-right: 40px;
-  margin-top:40px ;
+.food-icons-cardProduct {
   display: flex;
-  gap: 0px;
-
-  padding-left: 69px;
-   padding-right: 40px;
-  margin-top:40px ;
-  display: flex;
-  gap: 10px;
-
-
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 0 10px;
 }
 
-.food-icons button {
+.food-icons-cardProduct button {
   background: transparent;
   border: none;
   cursor: pointer;
   font-size: 20px;
   transition: transform 0.2s ease, color 0.3s ease;
+  padding: 8px;
 }
 
-.food-icons button:hover {
+.food-icons-cardProduct button:hover {
   transform: scale(1.2);
 }
 
-.heart-btn {
-  color: #000000;
-}
-
-.heart-btn.liked {
-  color: red;
-}
-
-.cart-btn {
+/* Heart Button */
+.heart-btn-cardProduct {
   color: #000;
-  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.heart-btn-cardProduct.liked {
+  color: red;
+  animation: heartBeat 0.3s ease;
+}
 
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
 
+/* Cart Button */
+.cart-btn-cardProduct {
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* Animation for the checkmark */
+/* ============================================
+   QUANTITY CONTROLS
+   ============================================ */
+
+.cart-qty-controls-cardProduct {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 25px;
+  padding: 4px 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border: 2px solid #f0f0f0;
+}
+
+.cart-qty-controls-cardProduct .qty-btn-cardProduct {
+  background: transparent;
+  border: none;
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.cart-qty-controls-cardProduct .qty-btn-cardProduct:hover {
+  background: #f5f5f5;
+  transform: scale(1.1);
+}
+
+.cart-qty-controls-cardProduct .qty-btn-cardProduct:active {
+  transform: scale(0.95);
+}
+
+.cart-qty-controls-cardProduct .qty-display {
+  min-width: 30px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Trash Icon */
+.trash-icon-cardProduct {
+  color: #ef4444;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+.cart-qty-controls-cardProduct .qty-btn-cardProduct:hover .trash-icon-cardProduct {
+  color: #dc2626;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
 @keyframes checkmarkAnimation {
   0% {
     transform: scale(0);
@@ -152,49 +259,278 @@ button:focus {
   }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 
+/* Large Tablets - 1024px and below */
+@media (max-width: 1024px) {
+  .food-card-cardProduct {
+    max-width: 240px;
+    min-height: 370px;
+    padding: 18px;
+  }
 
-.cart-qty-controls {
-  margin-left: 0px!important;
-  margin-right: 13px;
+  .food-content-cardProduct {
+    height: 280px;
+    max-width: 240px;
+    padding: 75px 18px 18px;
+  }
 
- 
-  display: flex;
-  align-items: center;
-  gap: 2px;
- /* background-color: yellow; */
+  .food-image-wrapper-cardProduct {
+    width: 170px;
+    height: 190px;
+  }
 
+  .food-price-cardProduct {
+    height: 48px;
+    width: 48px;
+    font-size: 13px;
+    bottom: 125px;
+  }
 
-  border-radius: 12px;
-  
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.185);
+  .food-title-cardProduct {
+    font-size: 17px;
+  }
+
+  .food-desc-cardProduct {
+    font-size: 13px;
+  }
 }
 
+/* Tablets - 768px and below */
+@media (max-width: 768px) {
+  .food-card-cardProduct {
+    max-width: 220px;
+    min-height: 350px;
+    padding: 16px;
+  }
 
-.cart-qty-controls .qty-btn .trash-icon {
-  border: none;
-  color: #000000;
-  font-size: 16px;
-  font-weight: bold;
-  width: 20px;
-  height: 20px;
-  border-radius: 8px;
-  
-  display: flex;             /* Add this */
-  align-items: center;       /* Vertical center */
-  justify-content: center;   /* Horizontal center */
+  .food-content-cardProduct {
+    height: 270px;
+    max-width: 220px;
+    padding: 70px 16px 16px;
+  }
 
-  display: flex;           
-  align-items: center;     
-  justify-content: center;   
-  
-  cursor: pointer;
-  transition: 0.2s;
- 
+  .food-image-wrapper-cardProduct {
+    width: 160px;
+    height: 180px;
+  }
+
+  .food-price-cardProduct {
+    height: 45px;
+    width: 45px;
+    font-size: 12px;
+    bottom: 120px;
+    right: -8px;
+  }
+
+  .food-title-cardProduct {
+    font-size: 16px;
+    margin: 12px 0 6px;
+  }
+
+  .food-desc-cardProduct {
+    font-size: 12px;
+    margin-bottom: 12px;
+    min-height: 36px;
+  }
+
+  .food-icons-cardProduct {
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .food-icons-cardProduct button {
+    font-size: 18px;
+  }
+
+  .cart-qty-controls-cardProduct {
+    gap: 6px;
+    padding: 3px 6px;
+  }
+
+  .cart-qty-controls-cardProduct .qty-btn-cardProduct {
+    width: 26px;
+    height: 26px;
+    font-size: 16px;
+  }
+
+  .cart-qty-controls-cardProduct .qty-display {
+    min-width: 28px;
+    font-size: 15px;
+  }
 }
 
+/* Mobile - 480px and below */
+@media (max-width: 480px) {
+  .food-card-cardProduct {
+    max-width: 200px;
+    min-height: 330px;
+    padding: 14px;
+  }
 
-.trash-icon{
+  .food-content-cardProduct {
+    height: 260px;
+    max-width: 200px;
+    padding: 65px 14px 14px;
+    border-radius: 14px;
+  }
 
+  .food-image-wrapper-cardProduct {
+    width: 150px;
+    height: 170px;
+  }
 
+  .food-price-cardProduct {
+    height: 42px;
+    width: 42px;
+    font-size: 11px;
+    bottom: 115px;
+    right: -6px;
+  }
+
+  .food-title-cardProduct {
+    font-size: 15px;
+    margin: 10px 0 5px;
+  }
+
+  .food-desc-cardProduct {
+    font-size: 11px;
+    margin-bottom: 10px;
+    min-height: 33px;
+  }
+
+  .food-icons-cardProduct {
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .food-icons-cardProduct button {
+    font-size: 16px;
+    padding: 6px;
+  }
+
+  .cart-qty-controls-cardProduct {
+    gap: 5px;
+    padding: 2px 5px;
+  }
+
+  .cart-qty-controls-cardProduct .qty-btn-cardProduct {
+    width: 24px;
+    height: 24px;
+    font-size: 15px;
+  }
+
+  .cart-qty-controls-cardProduct .qty-display {
+    min-width: 25px;
+    font-size: 14px;
+  }
+
+  .trash-icon-cardProduct {
+    font-size: 14px;
+  }
+}
+
+/* Extra Small - 360px and below */
+@media (max-width: 360px) {
+  .food-card-cardProduct {
+    max-width: 180px;
+    min-height: 310px;
+    padding: 12px;
+  }
+
+  .food-content-cardProduct {
+    height: 250px;
+    max-width: 180px;
+    padding: 60px 12px 12px;
+  }
+
+  .food-image-wrapper-cardProduct {
+    width: 140px;
+    height: 160px;
+  }
+
+  .food-price-cardProduct {
+    height: 40px;
+    width: 40px;
+    font-size: 10px;
+    bottom: 110px;
+    right: -5px;
+  }
+
+  .food-title-cardProduct {
+    font-size: 14px;
+    margin: 8px 0 4px;
+  }
+
+  .food-desc-cardProduct {
+    font-size: 10px;
+    margin-bottom: 8px;
+    min-height: 30px;
+  }
+
+  .food-icons-cardProduct {
+    gap: 8px;
+    margin-top: 12px;
+    padding: 0 5px;
+  }
+
+  .food-icons-cardProduct button {
+    font-size: 15px;
+    padding: 5px;
+  }
+
+  .cart-qty-controls-cardProduct {
+    gap: 4px;
+    padding: 2px 4px;
+  }
+
+  .cart-qty-controls-cardProduct .qty-btn-cardProduct {
+    width: 22px;
+    height: 22px;
+    font-size: 14px;
+  }
+
+  .cart-qty-controls-cardProduct .qty-display {
+    min-width: 22px;
+    font-size: 13px;
+  }
+
+  .trash-icon-cardProduct {
+    font-size: 13px;
+  }
+}
+
+/* ============================================
+   GRID LAYOUT HELPERS (Optional)
+   ============================================ */
+
+/* For parent containers using grid/flex */
+@media (max-width: 1200px) {
+  .food-card-cardProduct {
+    width: 100%;
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .food-card-cardProduct {
+    width: 100%;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-card-cardProduct {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 360px) {
+  .food-card-cardProduct {
+    width: 100%;
+    max-width: 180px;
+  }
 }

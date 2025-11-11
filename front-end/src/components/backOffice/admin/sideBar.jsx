@@ -4,22 +4,22 @@ import "./sideBar.css";
 
 const Sidebar = ({ setActivePage }) => {
   return (
-    <div className="sidebar">
-      <h2 className="sidebar-title">Admin</h2>
-      <ul className="sidebar-list">
-        <li className="sidebar-item" onClick={() => setActivePage("dashboard")}>
+    <div className="sidebar-admin">
+      <h2 className="sidebar-title-admin">Admin</h2>
+      <ul className="sidebar-list-admin">
+        <li className="sidebar-item-admin" onClick={() => setActivePage("dashboard")}>
           Dashboard
         </li>
-        <li className="sidebar-item" onClick={() => setActivePage("orders")}>
+        <li className="sidebar-item-admin" onClick={() => setActivePage("orders")}>
           Orders
         </li>
-        <li className="sidebar-item" onClick={() => setActivePage("menu")}>
+        <li className="sidebar-item-admin" onClick={() => setActivePage("menu")}>
           Menu
         </li>
-        <li className="sidebar-item" onClick={() => setActivePage("customers")}>
+        <li className="sidebar-item-admin" onClick={() => setActivePage("customers")}>
           Customers
         </li>
-        <li className="sidebar-item" onClick={() => setActivePage("reviews")}>
+        <li className="sidebar-item-admin" onClick={() => setActivePage("reviews")}>
           Reviews
         </li>
       

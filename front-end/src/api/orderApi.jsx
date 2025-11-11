@@ -8,8 +8,7 @@ export const postOrder = async (values) => {
     console.log("Order added:", data.order);
     return data;
   } catch (error) {
-    console.error("Error adding order:", error);
-    throw error; 
+    throw error.response?.data?.message || "Something went wrong";
   }
 };
 
@@ -45,3 +44,14 @@ export const getOrderById = async (id) => {
 //     throw error;
 //   }
 // };
+
+export const getOrdersByUserId=async(userId)=>{
+  try{
+    const {data}=await axios.get(`http://localhost:${API_URL}/order/getOrdersByUserId/${userId}`)
+    return data;
+  }
+  catch(error){
+     console.error("Error fetching orders by userID:", error);
+     throw error;
+  }
+}

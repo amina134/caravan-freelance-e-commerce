@@ -115,6 +115,9 @@ const Navbar = () => {
                                 <li>
                                     <Link to="userZone/profile">Profile</Link>
                                 </li>
+                                <li>
+                                    <Link to="userZone/myOrders">Orders</Link>
+                                </li>
                                 <li onClick={() => {console.log("Logout clicked");
                                                   logoutUser();}}>
                                     Logout

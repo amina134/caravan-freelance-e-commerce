@@ -80,7 +80,7 @@ function App() {
         <Route path="/Admindashboard" element={<AdminDashboard/>}>
       </Route>  
     </Routes>
-         {! hideLayout && <Footer/>}
+         {/* {! hideLayout && <Footer/>} */}
    
     </>
   )

@@ -117,24 +117,24 @@ const ProductCard = ({ _id, name, description, price, image,liked: initialLiked 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ transformStyle: "preserve-3d", transform }}
-      className="food-card"
+      className="food-card-cardProduct"
     >
       <Link to={`/ProductInformation/${_id}`}>
-        <div className="food-image-wrapper">
-          <img src={`/${image}`} alt={name} className="food-image" />
-          <span className="food-price">{price}dt</span>
+        <div className="food-image-wrapper-cardProduct">
+          <img src={`/${image}`} alt={name} className="food-image-cardProduct" />
+          <span className="food-price-cardProduct">{price}dt</span>
         </div>
       </Link>
 
-      <div className="food-content">
+      <div className="food-content-cardProduct">
 
-        <h3 className="food-title">{name}</h3>
-        <p className="food-desc">{description}</p>
+        <h3 className="food-title-cardProduct">{name}</h3>
+        <p className="food-desc-cardProduct">{description}</p>
 
-        <div className="food-icons">
+        <div className="food-icons-cardProduct">
           {/*  Like */}
           <button
-            className={`heart-btn ${liked ? "liked" : ""}`}
+            className={`heart-btn-cardProduct ${liked ? "liked" : ""}`}
             onClick={handleToggleFavorite}
           >
             <FiHeart size={20} />
@@ -143,18 +143,18 @@ const ProductCard = ({ _id, name, description, price, image,liked: initialLiked 
           {/* Carttttttttttttttttttttttttttttttttttttttttttttt*/}
           {quantity === 0 ? (
             // Initial "Add to cart"
-            <button className="cart-btn" onClick={handleAddToCart}>
+            <button className="cart-btn-cardProduct" onClick={handleAddToCart}>
               <FiShoppingCart size={20} />
             </button>
           ) : (
             // Quantity controls
-            <div className="cart-qty-controls">
-              <button onClick={handleDecrease} className="qty-btn">
-                {quantity === 1 ? <GoTrash    className="trash-icon" /> 
+            <div className="cart-qty-controls-cardProduct">
+              <button onClick={handleDecrease} className="qty-btn-cardProduct">
+                {quantity === 1 ? <GoTrash    className="trash-icon-cardProduct" /> 
                 : "-"}
               </button>
               <span className="qty-display">{quantity}</span>
-              <button onClick={handleIncrease} className="qty-btn">
+              <button onClick={handleIncrease} className="qty-btn-cardProduct">
                 +
               </button>
             </div>

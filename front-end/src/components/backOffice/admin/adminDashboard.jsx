@@ -17,15 +17,15 @@ const StatCard = ({ title, value, change, icon, color }) => {
   const isPositive = change >= 0;
 
   return (
-    <div className={`stat-card stat-card-${color}`}>
-      <div className="stat-header">
+    <div className={`adm-stat-card adm-stat-card-${color}`}>
+      <div className="adm-stat-header">
         <div
-          className="stat-icon-wrapper"
+          className="adm-stat-icon-wrapper"
           style={{ background: `var(--${color}-light)` }}
         >
           {icon}
         </div>
-        <div className={`stat-change ${isPositive ? "positive" : "negative"}`}>
+        <div className={`adm-stat-change ${isPositive ? "positive" : "negative"}`}>
           <TrendingUp
             size={16}
             style={{ transform: isPositive ? "none" : "rotate(180deg)" }}
@@ -33,39 +33,38 @@ const StatCard = ({ title, value, change, icon, color }) => {
           {Math.abs(change)}%
         </div>
       </div>
-      <div className="stat-content">
-        <h3 className="stat-value">{value}</h3>
-        <p className="stat-title">{title}</p>
+      <div className="adm-stat-content">
+        <h3 className="adm-stat-value">{value}</h3>
+        <p className="adm-stat-title">{title}</p>
       </div>
     </div>
   );
 };
 
 const OrderCard = ({ order }) => (
-  <div className="order-card">
-    <div className="order-header">
-      <span className="order-id">#{order.id}</span>
-      <span className={`order-status status-${order.status.toLowerCase()}`}>
+  <div className="adm-order-card">
+    <div className="adm-order-header">
+      <span className="adm-order-id">#{order.id}</span>
+      <span className={`adm-order-status status-${order.status.toLowerCase()}`}>
         {order.status}
       </span>
     </div>
-    <div className="order-details">
-      <p className="order-customer">{order.customer}</p>
-      <p className="order-items">{order.items} items</p>
+    <div className="adm-order-details">
+      <p className="adm-order-customer">{order.customer}</p>
+      <p className="adm-order-items">{order.items} items</p>
     </div>
-    <div className="order-footer">
-      <span className="order-time">
+    <div className="adm-order-footer">
+      <span className="adm-order-time">
         <Clock size={14} />
         {order.time}
       </span>
-      <span className="order-price">${order.price}</span>
+      <span className="adm-order-price">${order.price}</span>
     </div>
   </div>
 );
 
 const AdminDashboard = () => {
   const [activePage, setActivePage] = useState("dashboard");
-
 
   const stats = [
     {
@@ -140,60 +139,60 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="dashboard-container">
+    <div className="adm-dashboard-container">
       <Sidebar setActivePage={setActivePage} />
 
-      <div className="dashboard-main">
+      <div className="adm-dashboard-main">
         {activePage === "dashboard" && (
           <>
-            <header className="dashboard-header">
+            <header className="adm-dashboard-header">
               <div>
-                <h1 className="dashboard-title">Welcome Back, Chef! 👨‍🍳</h1>
-                <p className="dashboard-subtitle">
+                <h1 className="adm-dashboard-title">Welcome Back, Chef! 👨‍🍳</h1>
+                <p className="adm-dashboard-subtitle">
                   Here's what's happening in your restaurant today
                 </p>
               </div>
-              <div className="header-actions">
-                <button className="btn-secondary">Download Report</button>
-                <button className="btn-primary">New Order</button>
+              <div className="adm-header-actions">
+                <button className="adm-btn-secondary">Download Report</button>
+                <button className="adm-btn-primary">New Order</button>
               </div>
             </header>
 
-            <div className="stats-grid">
+            <div className="adm-stats-grid">
               {stats.map((stat, index) => (
                 <StatCard key={index} {...stat} />
               ))}
             </div>
 
-            <div className="content-grid">
-              <div className="orders-section">
-                <div className="section-header">
-                  <h2 className="section-title">Recent Orders</h2>
-                  <button className="btn-link">View All</button>
+            <div className="adm-content-grid">
+              <div className="adm-orders-section">
+                <div className="adm-section-header">
+                  <h2 className="adm-section-title">Recent Orders</h2>
+                  <button className="adm-btn-link">View All</button>
                 </div>
-                <div className="orders-list">
+                <div className="adm-orders-list">
                   {recentOrders.map((order) => (
                     <OrderCard key={order.id} order={order} />
                   ))}
                 </div>
               </div>
 
-              <div className="popular-section">
-                <div className="section-header">
-                  <h2 className="section-title">Popular Items</h2>
-                  <button className="btn-link">View Menu</button>
+              <div className="adm-popular-section">
+                <div className="adm-section-header">
+                  <h2 className="adm-section-title">Popular Items</h2>
+                  <button className="adm-btn-link">View Menu</button>
                 </div>
-                <div className="popular-list">
+                <div className="adm-popular-list">
                   {popularItems.map((item, index) => (
-                    <div key={index} className="popular-item">
-                      <div className="popular-rank">{index + 1}</div>
-                      <div className="popular-info">
-                        <p className="popular-name">{item.name}</p>
-                        <p className="popular-orders">
+                    <div key={index} className="adm-popular-item">
+                      <div className="adm-popular-rank">{index + 1}</div>
+                      <div className="adm-popular-info">
+                        <p className="adm-popular-name">{item.name}</p>
+                        <p className="adm-popular-orders">
                           {item.orders} orders
                         </p>
                       </div>
-                      <div className="popular-revenue">{item.revenue}</div>
+                      <div className="adm-popular-revenue">{item.revenue}</div>
                     </div>
                   ))}
                 </div>
@@ -205,7 +204,7 @@ const AdminDashboard = () => {
         {activePage === "menu" && <ProductsAdmin />}
         {activePage === "orders" && <OrdersAdmin />}
         {activePage === "customers" && <CustomersAdmin />}
-        {activePage === "reviews" && <ReviewsAdmin/>}
+        {activePage === "reviews" && <ReviewsAdmin />}
         {activePage === "settings" && <h2>Settings Page</h2>}
       </div>
     </div>

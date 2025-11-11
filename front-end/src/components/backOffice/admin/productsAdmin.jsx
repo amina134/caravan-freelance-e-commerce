@@ -124,26 +124,26 @@ const ProductsAdmin = () => {
   };
 
   return (
-    <div className="Products-admin-layout">
+    <div className="ProductsAdmin-layout">
       {/* Sidebar Filters */}
-      <aside className="Filter-sidebar">
-        <div className="Filter-header1">
+      <aside className="ProductsAdmin-sidebar">
+        <div className="ProductsAdmin-filterHeader">
           <h2>
             <SlidersHorizontal size={18} /> Filters{" "}
-            {activeFilters > 0 && <span className="Filter-count1">{activeFilters}</span>}
+            {activeFilters > 0 && <span className="ProductsAdmin-filterCount">{activeFilters}</span>}
           </h2>
-          <button className="Reset-btn1" onClick={resetFilters}>
+          <button className="ProductsAdmin-resetBtn" onClick={resetFilters}>
             Reset All
           </button>
         </div>
 
-        <div className="Filter-section1">
+        <div className="ProductsAdmin-filterSection">
           <h3>Category</h3>
-          <div className="Chip-container1">
+          <div className="ProductsAdmin-chipContainer">
             {categories.map((cat) => (
               <div
                 key={cat}
-                className={`Chip1 ${selectedCategory === cat ? "active" : ""}`}
+                className={`ProductsAdmin-chip ${selectedCategory === cat ? "active" : ""}`}
                 onClick={() => setSelectedCategory(cat)}
               >
                 {cat}
@@ -152,34 +152,34 @@ const ProductsAdmin = () => {
           </div>
         </div>
 
-        <div className="Filter-section1">
+        <div className="ProductsAdmin-filterSection">
           <h3>Price: {priceRange[0]}dt - {priceRange[1]}dt</h3>
-          <div className="Slider-container1">
+          <div className="ProductsAdmin-sliderContainer">
             <input
               type="range" min="0" max="50" value={priceRange[0]}
               onChange={(e) => setPriceRange([+e.target.value, priceRange[1]])}
-              className="Slider-thumb1"
+              className="ProductsAdmin-sliderThumb"
             />
             <input
               type="range" min="0" max="50" value={priceRange[1]}
               onChange={(e) => setPriceRange([priceRange[0], +e.target.value])}
-              className="Slider-thumb1"
+              className="ProductsAdmin-sliderThumb"
             />
           </div>
         </div>
 
-        <div className="Filter-section1">
+        <div className="ProductsAdmin-filterSection">
           <h3>Sort By</h3>
-          <div className="Custom-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            <div className="Dropdown-selected">
+          <div className="ProductsAdmin-dropdown" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <div className="ProductsAdmin-dropdownSelected">
               {sortOptions.find((opt) => opt.value === sortOption)?.label} ▼
             </div>
             {isDropdownOpen && (
-              <ul className="Dropdown-list">
+              <ul className="ProductsAdmin-dropdownList">
                 {sortOptions.map((opt) => (
                   <li
                     key={opt.value}
-                    className={`Dropdown-item ${sortOption === opt.value ? "active" : ""}`}
+                    className={`ProductsAdmin-dropdownItem ${sortOption === opt.value ? "active" : ""}`}
                     onClick={() => { setSortOption(opt.value); setIsDropdownOpen(false); }}
                   >
                     {opt.label}
@@ -189,12 +189,13 @@ const ProductsAdmin = () => {
             )}
           </div>
         </div>
-          <div className="Search-wrapper">
-          <Search className="Search-icon" size={20} />
+
+        <div className="ProductsAdmin-searchWrapper">
+          <Search className="ProductsAdmin-searchIcon" size={20} />
           <input
             type="text"
             placeholder="Search products..."
-            className="Search-input"
+            className="ProductsAdmin-searchInput"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -202,39 +203,37 @@ const ProductsAdmin = () => {
       </aside>
 
       {/* Main Section */}
-      <main className="Products-admin">
-        <header className="Admin-header">
-          <div className="Header-content">
-            <h1 className="Page-title">Products Management</h1>
-            <p className="Page-subtitle">Manage your restaurant menu items</p>
+      <main className="ProductsAdmin-main">
+        <header className="ProductsAdmin-header">
+          <div className="ProductsAdmin-headerContent">
+            <h1 className="ProductsAdmin-pageTitle">Products Management</h1>
+            <p className="ProductsAdmin-pageSubtitle">Manage your restaurant menu items</p>
           </div>
-          <button className="Btn-add-product" onClick={handleAddProduct}>
+          <button className="ProductsAdmin-addBtn" onClick={handleAddProduct}>
             <Plus size={20} /> Add Product
           </button>
         </header>
 
-      
-
-        <div className="Products-grid">
+        <div className="ProductsAdmin-grid">
           {filteredProducts.map((product) => (
-            <div key={product._id} className="Product-card">
-              <div className="Product-image-wrapper">
-                <img src={product.image} alt={product.name} className="Product-image" />
-                <div className={`Availability-badge ${product.isAvailable ? "available" : "unavailable"}`}>
+            <div key={product._id} className="ProductsAdmin-card">
+              <div className="ProductsAdmin-imageWrapper">
+                <img src={product.image} alt={product.name} className="ProductsAdmin-image" />
+                <div className={`ProductsAdmin-availability ${product.isAvailable ? "available" : "unavailable"}`}>
                   {product.isAvailable ? "Available" : "Unavailable"}
                 </div>
               </div>
-              <div className="Product-content">
-                <div className="Product-header">
-                  <h3 className="Product-name">{product.name}</h3>
-                  <span className="Product-category">{product.category}</span>
+              <div className="ProductsAdmin-cardContent">
+                <div className="ProductsAdmin-cardHeader">
+                  <h3 className="ProductsAdmin-name">{product.name}</h3>
+                  <span className="ProductsAdmin-category">{product.category}</span>
                 </div>
-                <p className="Product-description">{product.description}</p>
-                <div className="Product-footer">
-                  <span className="Product-price">{product.price}dt</span>
-                  <div className="Product-actions">
-                    <button className="Action-btn edit-btn" onClick={() => handleEditProduct(product)}><Edit2 size={16} /></button>
-                    <button className="Action-btn delete-btn" onClick={() => handleDeleteProduct(product._id)}><Trash2 size={16} /></button>
+                <p className="ProductsAdmin-description">{product.description}</p>
+                <div className="ProductsAdmin-cardFooter">
+                  <span className="ProductsAdmin-price">{product.price}dt</span>
+                  <div className="ProductsAdmin-actions">
+                    <button className="ProductsAdmin-editBtn" onClick={() => handleEditProduct(product)}><Edit2 size={16} /></button>
+                    <button className="ProductsAdmin-deleteBtn" onClick={() => handleDeleteProduct(product._id)}><Trash2 size={16} /></button>
                   </div>
                 </div>
               </div>
@@ -243,7 +242,7 @@ const ProductsAdmin = () => {
         </div>
 
         {filteredProducts.length === 0 && (
-          <div className="Empty-state">
+          <div className="ProductsAdmin-emptyState">
             <Package size={64} />
             <h3>No products found</h3>
             <p>Try adjusting your search or filters</p>
